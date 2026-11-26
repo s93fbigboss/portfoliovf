@@ -1093,3 +1093,115 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!raf) raf = requestAnimationFrame(step);
     });
 })();
+
+
+/* =====================================================
+   PING — LA MASCOTTE DU SITE
+   Une astuce par page, les yeux suivent la souris,
+   clic = petit saut + astuce suivante, × = rangé pour la session.
+===================================================== */
+
+(() => {
+    if (sessionStorage.getItem("ping-hidden") === "1") return;
+
+    const page = (location.pathname.split("/").pop() || "index.html").replace(".html", "") || "index";
+    const TIPS = {
+        index: ["Salut, moi c'est Ping ! Clique sur « Qui suis-je ? » pour commencer la visite.", "Clique sur le logo en verre pour rejouer son animation."],
+        profil: ["Ici, tout sur Semih : son école, son entreprise et ce qui le motive.", "Les flèches en haut mènent à l'onglet suivant."],
+        epreuves: ["Survole une compétence du tableau pour voir les réalisations qui la mobilisent.", "Chaque étape du déroulé renvoie vers l'onglet qui l'illustre."],
+        formation: ["Fais défiler : la frise se remplit au fur et à mesure.", "Le lien vers le site de Schola Nova est juste en dessous."],
+        experience: ["Clique sur une ligne pour l'ouvrir.", "Les chiffres d'Orange viennent du site officiel du groupe."],
+        projets: ["Clique sur un dossier pour sortir ses documents !", "Les PDF arrivent au fur et à mesure des projets."],
+        competences: ["Change de domaine avec les onglets, ou avec les flèches du clavier.", "Passe la souris sur un outil pour le mettre en avant."],
+        veille: ["Accès autorisé. Les actus en bas de page sont mises à jour chaque jeudi à 8 h.", "Le cas d'étude principal, c'est PHP2Shell."],
+        contact: ["Laisse un message, Semih répond dès que possible.", "Tu peux aussi passer par LinkedIn."],
+    };
+    const tips = TIPS[page] || TIPS.index;
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const root = document.createElement("div");
+    root.className = "ping";
+    root.innerHTML = `
+        <div class="ping__bubble" role="status" aria-live="polite">
+            <strong>PING &gt;_</strong><span class="ping__text"></span>
+            <button class="ping__close" type="button" aria-label="Ranger la mascotte">×</button>
+        </div>
+        <button class="ping__bot" type="button" aria-label="Ping, la mascotte : afficher une astuce">
+            <svg viewBox="0 0 74 84" aria-hidden="true">
+                <path class="p-wave" d="M29 4a11 11 0 0 1 16 0"/>
+                <path class="p-wave p-wave--2" d="M25 0a17 17 0 0 1 24 0"/>
+                <line class="p-ant" x1="37" y1="12" x2="37" y2="24"/>
+                <circle class="p-dot" cx="37" cy="10" r="3.5"/>
+                <rect class="p-body" x="6" y="24" width="62" height="48" rx="16"/>
+                <rect class="p-screen" x="14" y="32" width="46" height="28" rx="9"/>
+                <g class="p-eyes">
+                    <circle class="p-eye" cx="28" cy="46" r="4.5"/>
+                    <circle class="p-eye" cx="46" cy="46" r="4.5"/>
+                </g>
+                <ellipse class="p-cheek" cx="20" cy="54" rx="3" ry="1.6"/>
+                <ellipse class="p-cheek" cx="54" cy="54" rx="3" ry="1.6"/>
+                <rect class="p-port" x="24" y="64" width="6" height="3" rx="1"/>
+                <rect class="p-port" x="34" y="64" width="6" height="3" rx="1"/>
+                <rect class="p-port" x="44" y="64" width="6" height="3" rx="1"/>
+                <line class="p-leg" x1="24" y1="72" x2="24" y2="80"/>
+                <line class="p-leg" x1="50" y1="72" x2="50" y2="80"/>
+            </svg>
+        </button>`;
+    document.body.appendChild(root);
+
+    const bot = root.querySelector(".ping__bot");
+    const text = root.querySelector(".ping__text");
+    const eyes = root.querySelectorAll(".p-eye");
+    let tip = 0;
+    let hideTimer = 0;
+
+    const say = (i) => {
+        text.textContent = tips[i % tips.length];
+        root.classList.add("is-talking");
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => root.classList.remove("is-talking"), 7000);
+    };
+
+    // Première astuce un peu après l'arrivée sur la page
+    setTimeout(() => say(0), page === "veille" ? 2600 : 1800);
+
+    bot.addEventListener("click", () => {
+        tip += 1;
+        say(tip);
+        if (!motionOK) return;
+        bot.classList.remove("is-jump");
+        void bot.offsetWidth;
+        bot.classList.add("is-jump");
+    });
+    bot.addEventListener("animationend", () => bot.classList.remove("is-jump"));
+
+    root.querySelector(".ping__close").addEventListener("click", () => {
+        sessionStorage.setItem("ping-hidden", "1");
+        root.hidden = true;
+    });
+
+    if (!motionOK) return;
+
+    // Clignement des yeux de temps en temps
+    const blink = () => {
+        bot.classList.add("is-blink");
+        setTimeout(() => bot.classList.remove("is-blink"), 140);
+        setTimeout(blink, 2500 + Math.random() * 3500);
+    };
+    setTimeout(blink, 2000);
+
+    // Les yeux suivent la souris
+    let raf = 0;
+    window.addEventListener("pointermove", (event) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+            raf = 0;
+            const r = bot.getBoundingClientRect();
+            const dx = event.clientX - (r.left + r.width / 2);
+            const dy = event.clientY - (r.top + r.height * 0.55);
+            const d = Math.hypot(dx, dy) || 1;
+            const k = Math.min(1, d / 300) * 2.6;
+            eyes.forEach((e) => { e.style.transform = `translate(${(dx / d) * k}px, ${(dy / d) * k}px)`; });
+        });
+    }, { passive: true });
+})();

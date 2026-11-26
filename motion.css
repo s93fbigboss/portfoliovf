@@ -981,3 +981,213 @@ body.page-veille .next-step__link:hover .next-step__arrow { background: #050807;
         animation: none;
     }
 }
+
+
+/* =====================================================
+   12. PING — LA MASCOTTE DU SITE
+   Petit robot-routeur : l'antenne émet, les yeux suivent la souris,
+   il cligne, sautille au clic et donne une astuce par page.
+===================================================== */
+
+.ping {
+    --ping-body: var(--card);
+    --ping-line: var(--cyan);
+    --ping-eye: var(--cyan);
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 1500;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+    animation: ping-arrive 900ms var(--ease-spring) both;
+}
+
+body.page-veille .ping {
+    --ping-line: #00ff66;
+    --ping-eye: #00ff66;
+}
+
+.ping[hidden] {
+    display: none;
+}
+
+.ping__bot {
+    position: relative;
+    width: 74px;
+    height: 84px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: ping-bob 3.2s ease-in-out infinite;
+}
+
+.ping__bot svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .35));
+}
+
+.ping__bot:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 4px;
+    border-radius: 18px;
+}
+
+.ping__bot.is-jump {
+    animation: ping-jump 600ms var(--ease-spring);
+}
+
+.ping .p-body { fill: var(--ping-body); stroke: var(--ping-line); stroke-width: 2.5; }
+.ping .p-screen { fill: var(--bg); }
+.ping .p-eye { fill: var(--ping-eye); transition: transform 120ms ease; }
+.ping .p-leg,
+.ping .p-ant { stroke: var(--ping-line); stroke-width: 2.5; stroke-linecap: round; fill: none; }
+.ping .p-port { fill: var(--ping-line); opacity: .55; }
+.ping .p-cheek { fill: var(--ping-eye); opacity: .25; }
+
+/* L'antenne envoie un « ping » */
+.ping .p-dot {
+    fill: var(--ping-eye);
+    animation: ping-led 1.6s steps(1) infinite;
+}
+
+.ping .p-wave {
+    fill: none;
+    stroke: var(--ping-eye);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0;
+    transform-origin: 37px 8px;
+    animation: ping-wave 2.4s ease-out infinite;
+}
+
+.ping .p-wave--2 {
+    animation-delay: .4s;
+}
+
+/* Clignement des yeux (classe posée par script.js) */
+.ping__bot.is-blink .p-eyes {
+    transform: scaleY(.1);
+}
+
+.ping .p-eyes {
+    transform-origin: 37px 46px;
+    transition: transform 90ms ease;
+}
+
+/* Bulle d'astuce */
+.ping__bubble {
+    position: relative;
+    max-width: 260px;
+    margin-bottom: 52px;
+    padding: 12px 34px 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 16px 16px 4px 16px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 16px 36px -18px rgba(0, 0, 0, .55);
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(8px) scale(.96);
+    transform-origin: 100% 100%;
+    transition: opacity 260ms ease, transform 420ms var(--ease-spring);
+}
+
+.ping.is-talking .ping__bubble {
+    opacity: 1;
+    transform: none;
+}
+
+.ping__bubble strong {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--ping-eye);
+    font-family: "Fira Code", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.ping__close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.ping__close:hover {
+    background: var(--border);
+    color: var(--white);
+}
+
+@keyframes ping-arrive {
+    from { opacity: 0; transform: translateY(40px) scale(.7); }
+}
+
+@keyframes ping-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+
+@keyframes ping-jump {
+    0%   { transform: translateY(0) scale(1, 1); }
+    25%  { transform: translateY(2px) scale(1.08, .9); }
+    55%  { transform: translateY(-18px) scale(.95, 1.06); }
+    80%  { transform: translateY(0) scale(1.04, .96); }
+    100% { transform: translateY(0) scale(1, 1); }
+}
+
+@keyframes ping-wave {
+    0%   { opacity: .9; transform: scale(.4); }
+    100% { opacity: 0; transform: scale(1.6); }
+}
+
+@keyframes ping-led {
+    50% { opacity: .25; }
+}
+
+@media (max-width: 600px) {
+    .ping {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .ping__bot {
+        width: 58px;
+        height: 66px;
+    }
+
+    .ping__bubble {
+        max-width: 200px;
+        margin-bottom: 40px;
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ping,
+    .ping__bot,
+    .ping .p-dot,
+    .ping .p-wave {
+        animation: none;
+    }
+}
+
+@media print {
+    .ping { display: none; }
+}
