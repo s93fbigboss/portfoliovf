@@ -16,7 +16,10 @@ function updateThemeButton() {
     const isLight = document.body.classList.contains("light-theme");
 
     if (themeIcon) {
-        themeIcon.textContent = isLight ? "☾" : "☀";
+        // Icônes au trait (lune en mode clair, soleil en mode sombre)
+        themeIcon.innerHTML = isLight
+            ? '<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>'
+            : '<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
     }
 
     if (themeButton) {
@@ -233,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const skipButton = document.getElementById("skip-intro");
     const matrixLayer = document.getElementById("matrix-layer");
 
-    const alreadySeen = sessionStorage.getItem("veilleIntroSeen");
     const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -252,7 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         timers.forEach(clearTimeout);
 
-        sessionStorage.setItem("veilleIntroSeen", "true");
 
         intro.classList.add("intro-hidden");
 
@@ -283,8 +284,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Déjà affichée pendant cette session
-    if (alreadySeen || reducedMotion) {
+    // L'intro se joue à chaque visite (elle prolonge l'animation de hacking du clic)
+    if (reducedMotion) {
         intro.remove();
         return;
     }
@@ -292,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createMatrix();
 
     // Déroulement de l'animation
-    const delays = [450, 950, 1450, 1950, 2450];
+    const delays = [180, 420, 660, 900, 1140];
 
     delays.forEach((delay, index) => {
         schedule(() => {
@@ -303,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (index === consoleLines.length - 1) {
                 loading.textContent = "CONNEXION SÉCURISÉE — REDIRECTION...";
-                schedule(finishIntro, 850);
+                schedule(finishIntro, 550);
             }
         }, delay);
     });
@@ -543,5 +544,148 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     window.matchMedia("(min-width: 1181px)").addEventListener("change", (event) => {
         if (event.matches) setOpen(false);
+    });
+})();
+
+
+/* =====================================================
+   MOUVEMENT — COMMUN À TOUTES LES PAGES
+===================================================== */
+
+(() => {
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // 1. Apparitions décalées : les éléments .reveal d'un même parent arrivent l'un après l'autre
+    const groups = new Map();
+    document.querySelectorAll(".reveal").forEach((el) => {
+        const list = groups.get(el.parentElement) || [];
+        list.push(el);
+        groups.set(el.parentElement, list);
+    });
+    groups.forEach((list) => {
+        list.forEach((el, i) => el.style.setProperty("--stagger", `${Math.min(i, 6) * 80}ms`));
+    });
+
+    // 2. Titres de page : découpe en mots
+    if (motionOK) {
+        document.querySelectorAll(".page-heading h1, .epreuves-intro h1").forEach((title) => {
+            let w = 0;
+            const wrapWord = (content) => {
+                const outer = document.createElement("span");
+                outer.className = "split-word";
+                const inner = document.createElement("span");
+                inner.style.setProperty("--w", w++);
+                if (typeof content === "string") inner.textContent = content;
+                else inner.appendChild(content);
+                outer.appendChild(inner);
+                return outer;
+            };
+            Array.from(title.childNodes).forEach((node) => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const frag = document.createDocumentFragment();
+                    node.textContent.split(/(\s+)/).forEach((part) => {
+                        if (!part) return;
+                        frag.appendChild(/^\s+$/.test(part) ? document.createTextNode(" ") : wrapWord(part));
+                    });
+                    title.replaceChild(frag, node);
+                } else if (node.nodeName !== "BR") {
+                    const placeholder = document.createComment("");
+                    title.replaceChild(placeholder, node);
+                    title.replaceChild(wrapWord(node), placeholder);
+                }
+            });
+        });
+    }
+
+    // 3. Cartes : lumière qui suit la souris
+    const cards = document.querySelectorAll([
+        ".profile-card", ".objective-card", ".project-card", ".contact-card", ".contact-info",
+        ".experience-main", ".experience-secondary", ".summary-card", ".timeline-content",
+        ".news-card", ".explanation-card", ".skill-row", ".skills-tools", ".security-action",
+        ".skills-note", ".profile-intro"
+    ].join(","));
+    cards.forEach((card) => {
+        card.classList.add("spot");
+        card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--x", `${event.clientX - rect.left}px`);
+            card.style.setProperty("--y", `${event.clientY - rect.top}px`);
+        });
+    });
+
+    // 4. Icônes : le trait se dessine à l'apparition
+    document.querySelectorAll(".icon-box").forEach((box) => {
+        box.querySelectorAll(".ui-icon *").forEach((shape) => shape.setAttribute("pathLength", "1"));
+        if (motionOK) box.classList.add("icon-draw");
+        const holder = box.closest(".reveal");
+        if (!holder) box.classList.add("visible");
+    });
+
+    // 5. Barre de lecture (sauf accueil, qui tient sur un écran)
+    if (!document.body.classList.contains("page-single") && !document.querySelector(".epreuves-page")) {
+        const bar = document.createElement("div");
+        bar.className = "read-progress";
+        bar.setAttribute("aria-hidden", "true");
+        document.body.appendChild(bar);
+        let ticking = false;
+        const update = () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.setProperty("--progress", max > 0 ? (window.scrollY / max).toFixed(4) : 0);
+            ticking = false;
+        };
+        window.addEventListener("scroll", () => {
+            if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }, { passive: true });
+        update();
+    }
+
+    // 6. Clic sur « Veille technologique » : animation d'intrusion avant d'ouvrir la page
+    const HACK_LINES = [
+        "&gt; ssh semih@veille.sisr -p 2222",
+        "&gt; scan des ports ............ <b>22 · 80 · 443</b>",
+        "&gt; contournement du pare-feu ... <b>OK</b>",
+        "&gt; déchiffrement AES-256 ...... <b>OK</b>",
+        "&gt; <b>ACCÈS AUTORISÉ</b> — ouverture de la veille",
+    ];
+    const HACK_DURATION = 1300;
+
+    document.addEventListener("click", (event) => {
+        const link = event.target.closest('a[href$="veille.html"]');
+        if (!link || !motionOK) return;
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || link.target === "_blank") return;
+        event.preventDefault();
+        if (document.querySelector(".hack-transition")) return;
+
+        const overlay = document.createElement("div");
+        overlay.className = "hack-transition";
+        overlay.setAttribute("role", "status");
+        overlay.style.setProperty("--hack-dur", `${HACK_DURATION}ms`);
+        overlay.innerHTML = `
+            <div class="hack-transition__box">
+                <p class="hack-transition__title">INTRUSION_</p>
+                <div class="hack-transition__lines"></div>
+                <div class="hack-transition__bar"><span></span></div>
+            </div>`;
+        document.body.classList.add("is-hacking");
+        document.body.appendChild(overlay);
+
+        const lines = overlay.querySelector(".hack-transition__lines");
+        HACK_LINES.forEach((html, i) => {
+            setTimeout(() => {
+                const p = document.createElement("p");
+                p.className = "hack-transition__line";
+                p.innerHTML = html;
+                lines.appendChild(p);
+            }, 120 + i * 220);
+        });
+
+        setTimeout(() => { window.location.href = link.href; }, HACK_DURATION + 120);
+    });
+
+    // Retour arrière depuis la veille : on retire l'overlay resté en cache
+    window.addEventListener("pageshow", (event) => {
+        if (!event.persisted) return;
+        document.querySelector(".hack-transition")?.remove();
+        document.body.classList.remove("is-hacking");
     });
 })();

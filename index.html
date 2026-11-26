@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="accueil.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
+    <link rel="stylesheet" href="motion.css">
 
     <!-- JavaScript -->
     <script>document.documentElement.classList.add("js");</script>
@@ -26,7 +27,7 @@
     <script src="script.js" defer></script>
 </head>
 
-<body class="page-accueil">
+<body class="page-accueil page-single">
 
     <!-- NAVIGATION -->
     <header class="header">
@@ -56,7 +57,7 @@
                     aria-label="Changer de thème"
                     aria-pressed="false"
                 >
-                    <span id="theme-icon" aria-hidden="true">☀</span>
+                    <span id="theme-icon" aria-hidden="true"></span>
                 </button>
 
                 <a href="contact.html" class="nav-contact uiverse-cta uiverse-cta--type1 uiverse-cta--nav"><span class="uiverse-cta__text">Me contacter ↗</span></a>
@@ -117,206 +118,8 @@
             </ul>
         </section>
 
-        <!-- BANDEAU DÉFILANT -->
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee__track">
-                <span>SYSTÈMES</span><i>✦</i><span>RÉSEAUX</span><i>✦</i><span>VLAN</span><i>✦</i><span>LINUX DEBIAN</span><i>✦</i><span>VIRTUALISATION</span><i>✦</i><span>CYBERSÉCURITÉ</span><i>✦</i><span>PACKET TRACER</span><i>✦</i><span>SUPERVISION</span><i>✦</i>
-                <span>SYSTÈMES</span><i>✦</i><span>RÉSEAUX</span><i>✦</i><span>VLAN</span><i>✦</i><span>LINUX DEBIAN</span><i>✦</i><span>VIRTUALISATION</span><i>✦</i><span>CYBERSÉCURITÉ</span><i>✦</i><span>PACKET TRACER</span><i>✦</i><span>SUPERVISION</span><i>✦</i>
-            </div>
-        </div>
-
-
-        <!-- PARCOURS -->
-        <section class="section section-alt" id="parcours">
-
-            <div class="section-heading reveal">
-
-                <p class="eyebrow">
-                    01 / MON PARCOURS
-                </p>
-
-                <h2>
-                    Un parcours en construction.
-                    <span class="highlight">Des compétences en action.</span>
-                </h2>
-
-                <p>
-                    De ma formation en informatique à mon expérience en entreprise,
-                    découvrez les différentes étapes de mon évolution.
-                </p>
-
-            </div>
-
-            <!-- EXPÉRIENCE ET FORMATION -->
-            <div class="journey-layout">
-
-                <article class="journey-feature reveal">
-
-                    <div class="journey-feature-top">
-                        <span>01 — EXPÉRIENCE PROFESSIONNELLE</span>
-                        <span class="journey-symbol">↗</span>
-                    </div>
-
-                    <div class="journey-feature-content">
-                        <p class="journey-date">DEPUIS SEPTEMBRE 2025</p>
-
-                        <h3>Orange<span class="highlight">.</span></h3>
-
-                        <p class="journey-role">
-                            Pilote d'activité · Alternance
-                        </p>
-
-                        <p>
-                            Une immersion dans un environnement professionnel
-                            autour de la fibre, de la supervision et du suivi
-                            des activités réseau.
-                        </p>
-
-                        <a href="experience.html" class="text-link">
-                            Découvrir mon expérience ↗
-                        </a>
-                    </div>
-
-                    <div class="journey-feature-footer">
-                        <span>ENTREPRISE</span>
-                        <span>01 / 02</span>
-                    </div>
-
-                </article>
-
-
-                <article class="journey-secondary reveal">
-
-                    <div class="journey-secondary-top">
-                        <span>02 — FORMATION</span>
-                        <span>2024 — 2027</span>
-                    </div>
-
-                    <div class="journey-secondary-content">
-                        <p class="journey-date">SCHOLA NOVA</p>
-
-                        <h3>BTS SIO <span class="highlight">SISR</span></h3>
-
-                        <p>
-                            Services Informatiques aux Organisations,
-                            spécialité Solutions d'Infrastructure,
-                            Systèmes et Réseaux.
-                        </p>
-
-                        <a href="formation.html" class="text-link">
-                            Voir ma formation ↗
-                        </a>
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- UNIVERS INFORMATIQUE -->
-        <section class="section technical-section">
-
-            <div class="technical-heading reveal">
-
-                <div>
-                    <p class="eyebrow">02 / MON UNIVERS</p>
-
-                    <h2>
-                        Ce qui me fait
-                        <span class="highlight">avancer.</span>
-                    </h2>
-                </div>
-
-                <p>
-                    Apprendre, expérimenter, configurer et comprendre
-                    les technologies qui font fonctionner les infrastructures.
-                </p>
-
-            </div>
-
-            <div class="technical-list">
-
-                <a href="projets.html" class="technical-item reveal">
-                    <span class="technical-number">01</span>
-                    <span class="technical-name">Projets informatiques</span>
-                    <span class="technical-description">Mes réalisations et expérimentations</span>
-                    <span class="technical-arrow">↗</span>
-                </a>
-
-                <a href="competences.html" class="technical-item reveal">
-                    <span class="technical-number">02</span>
-                    <span class="technical-name">Compétences</span>
-                    <span class="technical-description">Systèmes, réseaux et outils</span>
-                    <span class="technical-arrow">↗</span>
-                </a>
-
-                <a href="veille.html" class="technical-item reveal">
-                    <span class="technical-number">03</span>
-                    <span class="technical-name">Veille technologique</span>
-                    <span class="technical-description">Suivre les évolutions du numérique</span>
-                    <span class="technical-arrow">↗</span>
-                </a>
-
-                <a href="epreuves.html" class="technical-item reveal">
-                    <span class="technical-number">04</span>
-                    <span class="technical-name">Épreuves du BTS</span>
-                    <span class="technical-description">Démonstration de mon parcours</span>
-                    <span class="technical-arrow">↗</span>
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- CONTACT -->
-        <section class="contact-strip reveal">
-
-            <div class="contact-strip-inner">
-
-                <div>
-                    <p class="eyebrow">03 / PRENONS CONTACT</p>
-
-                    <h2>
-                        Un projet, une question ?
-                        <span class="highlight">Discutons.</span>
-                    </h2>
-                </div>
-
-                <a href="contact.html" class="btn btn-primary uiverse-cta uiverse-cta--type1">
-                    <span class="uiverse-cta__text">Me contacter ↗</span>
-                </a>
-
-            </div>
-
-        </section>
-
     </main>
 
-
-    <!-- FOOTER -->
-    <footer class="footer">
-
-        <a href="index.html" class="logo">
-            semih<span class="logo-dot">.</span>dev
-        </a>
-
-        <p>
-            © <span id="current-year"></span>
-            Semih Dusunceli · Portfolio
-        </p>
-
-        <a href="#accueil" class="back-top uiverse-stack" aria-label="Retour en haut">
-            <span class="uiverse-stack__layer" aria-hidden="true"></span>
-            <span class="uiverse-stack__layer" aria-hidden="true"></span>
-            <span class="uiverse-stack__layer" aria-hidden="true"></span>
-            <span class="uiverse-stack__layer" aria-hidden="true"></span>
-            <span class="uiverse-stack__layer uiverse-stack__label">Haut ↑</span>
-        </a>
-
-    </footer>
 
 </body>
 </html>

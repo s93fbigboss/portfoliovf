@@ -1,0 +1,508 @@
+/* =====================================================
+   SEMIH.DEV — MOUVEMENT
+   Couche d'animation commune à toutes les pages.
+   Règles suivies :
+   - retours d'interaction courts (120–250 ms), entrées 500–800 ms ;
+   - courbes « ease-out » (décélération naturelle), pas d'ease-in ;
+   - on n'anime que transform et opacity (fluide même sur un PC de salle) ;
+   - apparitions décalées de 70–90 ms entre éléments frères ;
+   - tout est coupé si le visiteur a demandé moins d'animations.
+===================================================== */
+
+:root {
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --ease-soft: cubic-bezier(.25, .8, .25, 1);
+    --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+    --dur-press: 120ms;
+    --dur-fast: 220ms;
+    --dur-base: 380ms;
+    --dur-enter: 700ms;
+}
+
+
+/* =====================================================
+   1. TRANSITION ENTRE LES PAGES
+   (Chrome, Edge, Safari 18.2+ ; les autres changent de page normalement)
+===================================================== */
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: page-out 260ms var(--ease-soft) both;
+}
+
+::view-transition-new(root) {
+    animation: page-in 520ms var(--ease-out) both;
+}
+
+/* La barre de navigation reste en place pendant le changement de page */
+.navbar {
+    view-transition-name: site-nav;
+}
+
+@keyframes page-out {
+    to { opacity: 0; transform: translateY(-12px); }
+}
+
+@keyframes page-in {
+    from { opacity: 0; transform: translateY(18px); }
+}
+
+
+/* =====================================================
+   2. BARRE DE LECTURE
+===================================================== */
+
+.read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 2px;
+    background: var(--cyan);
+    transform-origin: left;
+    transform: scaleX(var(--progress, 0));
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   3. APPARITIONS AU DÉFILEMENT
+===================================================== */
+
+.reveal {
+    transition:
+        opacity var(--dur-enter) var(--ease-out),
+        transform var(--dur-enter) var(--ease-out);
+    transition-delay: var(--stagger, 0ms);
+}
+
+/* Titres de page : les mots montent un par un */
+.split-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: .06em;
+    margin-bottom: -.06em;
+}
+
+.split-word > span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: word-up 900ms var(--ease-out) forwards;
+    animation-delay: calc(120ms + var(--w) * 70ms);
+}
+
+/* Les mots découpés gardent la couleur du titre ; seul le mot mis en avant reste en accent */
+.page-heading h1 .split-word,
+.page-heading h1 .split-word > span {
+    color: var(--white);
+}
+
+.page-heading h1 .split-word > span > span {
+    color: var(--cyan);
+}
+
+@keyframes word-up {
+    to { transform: translateY(0); }
+}
+
+/* Petites étiquettes au-dessus des titres : trait qui se dessine */
+.page-heading .section-tag {
+    position: relative;
+    padding-left: 0;
+    animation: tag-in 600ms var(--ease-out) both;
+}
+
+@keyframes tag-in {
+    from { opacity: 0; letter-spacing: 6px; }
+}
+
+
+/* =====================================================
+   4. CARTES : LUMIÈRE QUI SUIT LA SOURIS + LÉGÈRE ÉLÉVATION
+===================================================== */
+
+.spot {
+    position: relative;
+    isolation: isolate;
+    transition:
+        transform var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out),
+        box-shadow var(--dur-base) var(--ease-out);
+}
+
+.spot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgb(var(--accent-rgb) / .08), transparent 65%);
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.spot:hover {
+    transform: translateY(-4px);
+    border-color: rgb(var(--accent-rgb) / .45);
+    box-shadow: 0 18px 40px -22px var(--shadow);
+}
+
+.spot:hover::before {
+    opacity: 1;
+}
+
+
+/* =====================================================
+   5. ICÔNES AU TRAIT (remplacent les emojis)
+===================================================== */
+
+.ui-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.icon-box {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    border: 1px solid rgb(var(--accent-rgb) / .25);
+    border-radius: 12px;
+    background: rgb(var(--accent-rgb) / .08);
+    color: var(--cyan);
+    font-size: 0;
+    transition:
+        transform var(--dur-base) var(--ease-spring),
+        background var(--dur-fast) ease,
+        color var(--dur-fast) ease;
+}
+
+.contact-icon.icon-box {
+    margin-bottom: 0;
+    flex: 0 0 48px;
+}
+
+.spot:hover .icon-box,
+.contact-item:hover .icon-box {
+    transform: rotate(-6deg) scale(1.08);
+    background: var(--cyan);
+    color: var(--on-accent);
+}
+
+/* Le trait de l'icône se dessine quand la carte apparaît */
+.icon-draw .ui-icon * {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+
+.visible .icon-draw .ui-icon *,
+.icon-draw.visible .ui-icon * {
+    animation: icon-draw 1.1s var(--ease-out) .25s forwards;
+}
+
+@keyframes icon-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+#theme-icon {
+    display: grid;
+    place-items: center;
+}
+
+
+/* =====================================================
+   6. BOUTONS, LIENS ET ÉTIQUETTES
+===================================================== */
+
+.btn,
+.primary-button {
+    transition:
+        transform var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out),
+        background var(--dur-fast) ease,
+        color var(--dur-fast) ease;
+}
+
+.btn:active,
+.primary-button:active {
+    transform: scale(.97);
+    transition-duration: var(--dur-press);
+}
+
+/* Liens « Découvrir ... → » : la flèche avance, le trait se dessine */
+.profile-link,
+.contact-item a,
+.text-link {
+    position: relative;
+}
+
+.contact-item a {
+    display: inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size var(--dur-base) var(--ease-out), color var(--dur-fast) ease;
+}
+
+.contact-item a:hover {
+    background-size: 100% 1px;
+}
+
+/* Étiquettes (tags) : elles se soulèvent une à une au survol de la carte */
+.tags span,
+.epreuve-tags span,
+.tools-list span,
+.veille-hero-tags span {
+    display: inline-block;
+    transition:
+        transform var(--dur-fast) var(--ease-spring),
+        background var(--dur-fast) ease,
+        color var(--dur-fast) ease,
+        border-color var(--dur-fast) ease;
+}
+
+.tags span:hover,
+.epreuve-tags span:hover,
+.tools-list span:hover,
+.veille-hero-tags span:hover {
+    transform: translateY(-3px);
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+/* Champs du formulaire */
+.contact-form input,
+.contact-form textarea {
+    transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / .12);
+}
+
+
+/* =====================================================
+   7. PAGE PROFIL
+===================================================== */
+
+/* Photo : anneau lumineux qui tourne lentement */
+.profile-photo {
+    position: relative;
+    border: 0;
+    padding: 4px;
+    background: conic-gradient(from var(--ring, 0deg), var(--cyan), transparent 40%, var(--cyan) 70%, transparent);
+    animation: ring-turn 6s linear infinite;
+    transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.profile-photo img {
+    border-radius: 50%;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+@property --ring {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes ring-turn {
+    to { --ring: 360deg; }
+}
+
+/* Logos d'école et d'entreprise : léger zoom au survol de la carte */
+.school-logo img,
+.experience-logo img {
+    transition: transform var(--dur-base) var(--ease-out);
+}
+
+.spot:hover .school-logo img,
+.spot:hover .experience-logo img {
+    transform: scale(1.04);
+}
+
+/* Listes : la puce devient un petit trait d'accent */
+.profile-card ul,
+.experience-missions ul {
+    list-style: none;
+}
+
+.profile-card ul li,
+.experience-missions ul li {
+    position: relative;
+    padding-left: 22px;
+}
+
+.profile-card ul li::before,
+.experience-missions ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .85em;
+    width: 10px;
+    height: 2px;
+    background: var(--cyan);
+    transition: width var(--dur-base) var(--ease-out);
+}
+
+.profile-card ul li:hover::before,
+.experience-missions ul li:hover::before {
+    width: 16px;
+}
+
+
+/* =====================================================
+   8. TRANSITION « INTRUSION » VERS LA VEILLE
+===================================================== */
+
+.hack-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #030503;
+    color: #00ff66;
+    font-family: "Fira Code", monospace;
+    opacity: 0;
+    animation: hack-in 180ms linear forwards;
+}
+
+/* Lignes de balayage façon vieux moniteur */
+.hack-transition::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(0, 255, 102, .06) 0 1px, transparent 1px 3px);
+    animation: hack-scan 6s linear infinite;
+}
+
+/* Bande lumineuse qui descend l'écran */
+.hack-transition::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 120px;
+    top: -120px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 102, .14), transparent);
+    animation: hack-sweep 900ms linear infinite;
+}
+
+.hack-transition__box {
+    position: relative;
+    width: min(620px, 88vw);
+}
+
+.hack-transition__title {
+    margin-bottom: 18px;
+    font-size: clamp(22px, 4vw, 38px);
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-shadow: 2px 0 #ff0055, -2px 0 #00e5ff;
+    animation: hack-glitch 260ms steps(2) infinite;
+}
+
+.hack-transition__line {
+    margin: 4px 0;
+    font-size: 13px;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: hack-line 160ms ease-out forwards;
+}
+
+.hack-transition__line b {
+    color: #e8ffe8;
+    font-weight: 500;
+}
+
+.hack-transition__bar {
+    height: 3px;
+    margin-top: 18px;
+    background: rgba(0, 255, 102, .15);
+    overflow: hidden;
+}
+
+.hack-transition__bar span {
+    display: block;
+    height: 100%;
+    background: #00ff66;
+    box-shadow: 0 0 12px #00ff66;
+    transform-origin: left;
+    animation: hack-bar var(--hack-dur, 1300ms) cubic-bezier(.6, 0, .4, 1) forwards;
+}
+
+/* La page qu'on quitte « grésille » une fraction de seconde */
+body.is-hacking > *:not(.hack-transition) {
+    animation: hack-page 220ms steps(3) both;
+}
+
+@keyframes hack-in { to { opacity: 1; } }
+@keyframes hack-line { to { opacity: 1; transform: none; } }
+@keyframes hack-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes hack-sweep { to { top: 100%; } }
+@keyframes hack-scan { to { background-position: 0 300px; } }
+
+@keyframes hack-glitch {
+    0%   { transform: translate(0); }
+    33%  { transform: translate(-2px, 1px); clip-path: inset(10% 0 55% 0); }
+    66%  { transform: translate(2px, -1px); clip-path: inset(60% 0 5% 0); }
+    100% { transform: translate(0); clip-path: none; }
+}
+
+@keyframes hack-page {
+    0%   { transform: translate(0); filter: none; }
+    33%  { transform: translate(-6px, 2px); filter: hue-rotate(90deg) saturate(3); }
+    66%  { transform: translate(5px, -3px); filter: invert(1) hue-rotate(180deg); }
+    100% { transform: translate(0); opacity: .3; }
+}
+
+
+/* =====================================================
+   9. MOUVEMENTS RÉDUITS
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+
+    .split-word > span,
+    .page-heading .section-tag,
+    .profile-photo,
+    .visible .icon-draw .ui-icon *,
+    .icon-draw.visible .ui-icon * {
+        animation: none;
+        transform: none;
+    }
+
+    .icon-draw .ui-icon * {
+        stroke-dashoffset: 0;
+    }
+
+    .spot:hover {
+        transform: none;
+    }
+}
+
+.summary-card > .icon-box {
+    display: grid;
+}
