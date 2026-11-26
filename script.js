@@ -1034,3 +1034,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.6 });
     stats.forEach((s) => io.observe(s));
 })();
+
+
+/* =====================================================
+   PROJETS — DOSSIERS EN VERRE (couleur selon le thème)
+===================================================== */
+
+(() => {
+    const hosts = document.querySelectorAll("[data-folder]");
+    if (!hosts.length || !window.GlassFolder) return;
+    const tone = () => (document.body.classList.contains("light-theme") ? "light" : "dark");
+    const width = () => Math.min(340, Math.max(260, window.innerWidth - 80));
+    const folders = [];
+    hosts.forEach((host, i) => {
+        const cfg = JSON.parse(host.dataset.folder);
+        folders.push(window.GlassFolder.mount(host, {
+            ...cfg,
+            tone: tone(),
+            width: width(),
+            appearDelay: i * 140,
+        }));
+    });
+    new MutationObserver(() => folders.forEach((f) => f.setTone(tone())))
+        .observe(document.body, { attributes: true, attributeFilter: ["class"] });
+})();
+
+
+/* =====================================================
+   EN-TÊTE DES ONGLETS — LE NUMÉRO GÉANT SUIT LA SOURIS (ressort)
+===================================================== */
+
+(() => {
+    const hero = document.querySelector("[data-hero]");
+    const index = hero?.querySelector(".pg-hero__index");
+    if (!index) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover)").matches) return;
+
+    let tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+    const step = () => {
+        // amortissement façon ressort : on rattrape 10 % de l'écart à chaque image
+        x += (tx - x) * 0.1;
+        y += (ty - y) * 0.1;
+        index.style.setProperty("--ix", `${x.toFixed(2)}px`);
+        index.style.setProperty("--iy", `${y.toFixed(2)}px`);
+        raf = Math.abs(tx - x) > 0.1 || Math.abs(ty - y) > 0.1 ? requestAnimationFrame(step) : 0;
+    };
+    hero.addEventListener("pointermove", (event) => {
+        const r = hero.getBoundingClientRect();
+        const dx = event.clientX - (r.left + r.width / 2);
+        const dy = event.clientY - (r.top + r.height / 2);
+        tx = Math.max(-1, Math.min(1, dx / 400)) * 24;
+        ty = Math.max(-1, Math.min(1, dy / 400)) * 12;
+        if (!raf) raf = requestAnimationFrame(step);
+    });
+    hero.addEventListener("pointerleave", () => {
+        tx = 0; ty = 0;
+        if (!raf) raf = requestAnimationFrame(step);
+    });
+})();

@@ -19,6 +19,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="commun.css">
     <link rel="stylesheet" href="profil.css">
+    <link rel="stylesheet" href="onglets.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
     <link rel="stylesheet" href="motion.css">
@@ -78,17 +79,33 @@
 
         <section class="page-container">
 
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Qui suis-je ?</span>
-
-                <h1>Mon profil</h1>
-
-                <p>
-                    Qui je suis, d'où je viens, et vers quoi je veux aller dans l'informatique.
-                </p>
-
+            <section class="pg-hero" data-hero style="--progress: 0.125">
+            <div class="pg-hero__rail" aria-hidden="true">
+                <span class="pg-hero__vlabel">Portfolio</span>
+                <span class="pg-hero__progress"><i></i></span>
             </div>
+            <div class="pg-hero__body">
+                <span class="pg-hero__badge"><i aria-hidden="true"></i>01 / 08 · PROFIL</span>
+                <p class="section-tag">Qui suis-je ?</p>
+                <h1 class="pg-hero__title">Mon <span>profil</span></h1>
+                <p class="pg-hero__lead">Qui je suis, d'où je viens, et vers quoi je veux aller dans l'informatique.</p>
+                <div class="pg-hero__foot">
+                    <div class="pg-hero__author">
+                        <span class="pg-hero__line" aria-hidden="true"></span>
+                        <div>
+                            <p>Semih Dusunceli</p>
+                            <p>BTS SIO SISR · Schola Nova · Orange</p>
+                        </div>
+                    </div>
+                    <nav class="pg-hero__nav" aria-label="Changer d'onglet">
+                        <a class="pg-hero__arrow pg-hero__arrow--prev" href="index.html" aria-label="Onglet précédent : Accueil" title="Accueil"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a class="pg-hero__arrow pg-hero__arrow--next" href="epreuves.html" aria-label="Onglet suivant : Épreuve" title="Épreuve"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </nav>
+                </div>
+            </div>
+            <span class="pg-hero__index" aria-hidden="true"><span>01</span></span>
+            <div class="pg-hero__ticker" aria-hidden="true"><div><span>BTS SIO SISR • Schola Nova • Orange • Cybersécurité • </span><span>BTS SIO SISR • Schola Nova • Orange • Cybersécurité • </span><span>BTS SIO SISR • Schola Nova • Orange • Cybersécurité • </span><span>BTS SIO SISR • Schola Nova • Orange • Cybersécurité • </span><span>BTS SIO SISR • Schola Nova • Orange • Cybersécurité • </span><span>BTS SIO SISR • Schola Nova • Orange • Cybersécurité • </span></div></div>
+        </section>
 
 
             <!-- PRÉSENTATION -->

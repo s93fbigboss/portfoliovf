@@ -630,3 +630,354 @@ body.page-veille .next-step__link:hover .next-step__arrow { background: #050807;
 .summary-card > .icon-box {
     display: grid;
 }
+
+
+/* =====================================================
+   11. EN-TÊTE DES ONGLETS (style « Testimonial »)
+   Rail vertical + progression dans le portfolio, badge,
+   titre dont les mots basculent, auteur + flèches,
+   numéro géant qui suit la souris, bandeau défilant.
+   Fonctionne dans les deux thèmes (couleurs en variables).
+===================================================== */
+
+.pg-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 clamp(28px, 5vw, 64px);
+    padding: clamp(56px, 10vh, 110px) 0 clamp(90px, 14vh, 140px);
+    overflow: hidden;
+    isolation: isolate;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Rail : libellé vertical + ligne de progression */
+.pg-hero__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding-right: clamp(20px, 4vw, 56px);
+    border-right: 1px solid var(--border);
+}
+
+.pg-hero__vlabel {
+    writing-mode: vertical-rl;
+    color: var(--muted);
+    font-family: "Fira Code", monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: pg-fade 800ms var(--ease-out) 300ms both;
+}
+
+.pg-hero__progress {
+    position: relative;
+    width: 1px;
+    height: 130px;
+    background: var(--border);
+}
+
+.pg-hero__progress i {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: calc(var(--progress, 0) * 100%);
+    background: var(--white);
+    animation: pg-grow 900ms var(--ease-out) 400ms both;
+}
+
+.pg-hero__body {
+    position: relative;
+    z-index: 1;
+    padding: 20px 0;
+}
+
+/* Badge avec point d'accent */
+.pg-hero__badge {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 26px;
+    padding: 5px 13px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-family: "Fira Code", monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    animation: pg-slide 500ms var(--ease-out) 100ms both;
+}
+
+.pg-hero__badge i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+}
+
+.pg-hero .section-tag {
+    display: block;
+    margin-bottom: 18px;
+}
+
+.pg-hero__title {
+    max-width: 14ch;
+    margin-bottom: 26px;
+    color: var(--white);
+    font-size: clamp(52px, 9vw, 128px);
+    font-weight: 800;
+    line-height: .95;
+    letter-spacing: -.045em;
+    perspective: 700px;
+}
+
+.pg-hero__title span,
+.pg-hero__title .split-word > span > span {
+    color: var(--cyan);
+}
+
+.pg-hero__title .split-word,
+.pg-hero__title .split-word > span {
+    color: var(--white);
+}
+
+/* Les mots basculent vers l'avant, un par un */
+.pg-hero__title .split-word {
+    overflow: visible;
+}
+
+.pg-hero__title .split-word > span {
+    transform-origin: 50% 100%;
+    animation: word-flip 750ms cubic-bezier(.22, 1, .36, 1) both;
+    animation-delay: calc(150ms + var(--w) * 70ms);
+}
+
+.pg-hero__lead {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 17px;
+    animation: pg-rise 800ms var(--ease-out) 450ms both;
+}
+
+/* Auteur + flèches précédent / suivant */
+.pg-hero__foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 44px;
+    max-width: 900px;
+}
+
+.pg-hero__author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: pg-rise 600ms var(--ease-out) 650ms both;
+}
+
+.pg-hero__line {
+    width: 32px;
+    height: 1px;
+    background: var(--white);
+    transform-origin: left;
+    animation: pg-line 700ms var(--ease-out) 800ms both;
+}
+
+.pg-hero__author p:first-child {
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.pg-hero__author p:last-child {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.pg-hero__nav {
+    display: flex;
+    gap: 14px;
+}
+
+.pg-hero__arrow {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--white);
+    transition: transform var(--dur-press) ease, border-color var(--dur-base) ease, color var(--dur-base) ease;
+}
+
+/* Le fond glisse depuis le côté de la flèche */
+.pg-hero__arrow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--white);
+    transition: transform 300ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.pg-hero__arrow--prev::before { transform: translateX(-101%); }
+.pg-hero__arrow--next::before { transform: translateX(101%); }
+
+.pg-hero__arrow:hover::before,
+.pg-hero__arrow:focus-visible::before {
+    transform: none;
+}
+
+.pg-hero__arrow:hover,
+.pg-hero__arrow:focus-visible {
+    color: var(--bg);
+    border-color: var(--white);
+}
+
+.pg-hero__arrow:active {
+    transform: scale(.95);
+}
+
+.pg-hero__arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Numéro géant : apparaît dans un flou, suit la souris en douceur */
+.pg-hero__index {
+    position: absolute;
+    left: -2%;
+    top: 50%;
+    z-index: -1;
+    color: var(--white);
+    opacity: .035;
+    font-family: var(--font-display);
+    font-size: clamp(220px, 34vw, 460px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.06em;
+    pointer-events: none;
+    user-select: none;
+    transform: translate(var(--ix, 0px), calc(-50% + var(--iy, 0px) + var(--parallax, 0px)));
+}
+
+.pg-hero__index > span {
+    display: block;
+    animation: index-in 900ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* Bandeau : mots-clés qui défilent en fond */
+.pg-hero__ticker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    z-index: -1;
+    overflow: hidden;
+    opacity: .08;
+    pointer-events: none;
+}
+
+.pg-hero__ticker > div {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    animation: hero-ticker 40s linear infinite;
+}
+
+.pg-hero__ticker span {
+    padding-right: .4em;
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+
+@keyframes word-flip {
+    from { opacity: 0; transform: translateY(20px) rotateX(90deg); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes index-in {
+    from { opacity: 0; transform: scale(.8); filter: blur(10px); }
+    to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@keyframes pg-fade { from { opacity: 0; } }
+@keyframes pg-rise { from { opacity: 0; transform: translateY(18px); } }
+@keyframes pg-slide { from { opacity: 0; transform: translateX(-20px); } }
+@keyframes pg-grow { from { height: 0; } }
+@keyframes pg-line { from { transform: scaleX(0); } }
+@keyframes hero-ticker { to { transform: translateX(-50%); } }
+
+/* Page veille : mêmes éléments, en vert terminal */
+.pg-hero--veille {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.pg-hero--veille .pg-hero__index {
+    left: auto;
+    right: -2%;
+    color: #00ff66;
+    opacity: .05;
+}
+
+.pg-hero--veille .pg-hero__ticker span {
+    color: #00ff66;
+}
+
+.pg-hero--veille .pg-hero__foot {
+    margin-top: 34px;
+}
+
+.pg-hero--veille .pg-hero__arrow::before,
+.pg-hero--veille .pg-hero__line {
+    background: #00ff66;
+}
+
+.pg-hero--veille .pg-hero__arrow:hover,
+.pg-hero--veille .pg-hero__arrow:focus-visible {
+    color: #050807;
+    border-color: #00ff66;
+}
+
+@media (max-width: 760px) {
+    .pg-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .pg-hero__rail {
+        display: none;
+    }
+
+    .pg-hero__foot {
+        flex-wrap: wrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pg-hero__title .split-word > span,
+    .pg-hero__index > span,
+    .pg-hero__badge,
+    .pg-hero__author,
+    .pg-hero__line,
+    .pg-hero__lead,
+    .pg-hero__vlabel,
+    .pg-hero__progress i {
+        animation: none;
+    }
+
+    .pg-hero__ticker > div {
+        animation: none;
+    }
+}

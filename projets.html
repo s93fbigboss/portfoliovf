@@ -19,11 +19,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="commun.css">
     <link rel="stylesheet" href="onglets.css">
+    <link rel="stylesheet" href="glass-folder.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
     <link rel="stylesheet" href="motion.css">
 
     <!-- JAVASCRIPT -->
+    <script src="glass-folder.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 
@@ -75,15 +77,47 @@
     <main class="pg-main">
 
         <!-- EN-TÊTE DE L'ONGLET -->
-        <section class="pg-hero">
-            <div class="pg-hero__meta">
-                <span>05 / 08</span>
-                <span>PROJETS</span>
+        <section class="pg-hero" data-hero style="--progress: 0.625">
+            <div class="pg-hero__rail" aria-hidden="true">
+                <span class="pg-hero__vlabel">Portfolio</span>
+                <span class="pg-hero__progress"><i></i></span>
             </div>
-            <p class="section-tag">Mes réalisations</p>
-            <h1 class="pg-hero__title">Mes <span>projets</span></h1>
-            <p class="pg-hero__lead">Un projet terminé, deux en préparation : école, entreprise et perso.</p>
-            <span class="pg-hero__index" aria-hidden="true">05</span>
+            <div class="pg-hero__body">
+                <span class="pg-hero__badge"><i aria-hidden="true"></i>05 / 08 · PROJETS</span>
+                <p class="section-tag">Mes réalisations</p>
+                <h1 class="pg-hero__title">Mes <span>projets</span></h1>
+                <p class="pg-hero__lead">Un projet terminé, deux en préparation : école, entreprise et perso.</p>
+                <div class="pg-hero__foot">
+                    <div class="pg-hero__author">
+                        <span class="pg-hero__line" aria-hidden="true"></span>
+                        <div>
+                            <p>Semih Dusunceli</p>
+                            <p>BTS SIO SISR · Schola Nova · Orange</p>
+                        </div>
+                    </div>
+                    <nav class="pg-hero__nav" aria-label="Changer d'onglet">
+                        <a class="pg-hero__arrow pg-hero__arrow--prev" href="experience.html" aria-label="Onglet précédent : Expérience" title="Expérience"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a class="pg-hero__arrow pg-hero__arrow--next" href="competences.html" aria-label="Onglet suivant : Compétences" title="Compétences"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </nav>
+                </div>
+            </div>
+            <span class="pg-hero__index" aria-hidden="true"><span>05</span></span>
+            <div class="pg-hero__ticker" aria-hidden="true"><div><span>Packet Tracer • VLAN • HSRP • NAS • </span><span>Packet Tracer • VLAN • HSRP • NAS • </span><span>Packet Tracer • VLAN • HSRP • NAS • </span><span>Packet Tracer • VLAN • HSRP • NAS • </span><span>Packet Tracer • VLAN • HSRP • NAS • </span><span>Packet Tracer • VLAN • HSRP • NAS • </span></div></div>
+        </section>
+
+        <!-- DOSSIERS EN VERRE : LES DOCUMENTS DE CHAQUE PROJET -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">MES DOSSIERS</p>
+                <h2>Les documents <span>de chaque projet.</span></h2>
+                <p>Survolez un dossier pour l'entrouvrir, cliquez pour sortir ses documents. Les PDF arrivent au fur et à mesure.</p>
+            </div>
+            <div class="pj-desk reveal">
+                <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Réseau redondant&quot;, &quot;meta&quot;: &quot;01 · Projet scolaire&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;marble&quot;, &quot;colors&quot;: [&quot;#07080a&quot;, &quot;#15171b&quot;, &quot;#2b3a12&quot;, &quot;#6f9a12&quot;, &quot;#d4ff3a&quot;, &quot;#f2f1ec&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 3.3, &quot;angle&quot;: -0.4, &quot;gloss&quot;: 0.5, &quot;veins&quot;: 0.45}, &quot;seed&quot;: 3, &quot;labelPlacement&quot;: &quot;bottom-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Schéma Packet Tracer&quot;, &quot;meta&quot;: &quot;Image&quot;, &quot;image&quot;: &quot;packet-tracer.webp&quot;, &quot;href&quot;: &quot;packet-tracer.webp&quot;}, {&quot;name&quot;: &quot;Document technique&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 0"></div>
+                <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Infra Orange&quot;, &quot;meta&quot;: &quot;02 · Projet pro&quot;, &quot;art&quot;: &quot;verdant&quot;, &quot;seed&quot;: 7, &quot;labelPlacement&quot;: &quot;top-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 1"></div>
+                <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;NAS perso&quot;, &quot;meta&quot;: &quot;03 · Projet perso&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;streak&quot;, &quot;colors&quot;: [&quot;#f2f1ec&quot;, &quot;#dfe9b0&quot;, &quot;#a8e000&quot;, &quot;#1a1c12&quot;, &quot;#2a2c33&quot;, &quot;#8a8f99&quot;, &quot;#e6e6e0&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 1.5, &quot;angle&quot;: -0.6, &quot;gloss&quot;: 0.2, &quot;veins&quot;: 0}, &quot;seed&quot;: 11, &quot;labelPlacement&quot;: &quot;top-right&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 2"></div>
+            </div>
+            <p class="pj-desk__hint" aria-hidden="true">Survoler · Cliquer pour ouvrir · Échap pour fermer</p>
         </section>
 
         <section class="pg-section">
