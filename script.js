@@ -112,6 +112,26 @@ const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 ).matches;
 
+const homeHeroVideo = document.querySelector("[data-home-hero-video]");
+
+if (homeHeroVideo) {
+    homeHeroVideo.addEventListener("error", () => {
+        homeHeroVideo.classList.add("is-unavailable");
+    }, { once: true });
+
+    if (reduceMotion) {
+        homeHeroVideo.pause();
+    } else {
+        const videoPlayback = homeHeroVideo.play();
+
+        if (videoPlayback && typeof videoPlayback.catch === "function") {
+            videoPlayback.catch(() => {
+                homeHeroVideo.classList.add("is-unavailable");
+            });
+        }
+    }
+}
+
 if (typingText) {
     if (!reduceMotion) {
         typeWriter();

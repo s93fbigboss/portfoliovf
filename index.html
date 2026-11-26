@@ -67,138 +67,47 @@
 
     <main>
 
-        <!-- HERO : IDENTITÉ -->
-        <section class="hero" id="accueil">
+        <!-- HERO D'ACCUEIL INSPIRÉ DE PRISMA, ADAPTÉ AU PORTFOLIO -->
+        <section class="prisma-hero" id="accueil" aria-labelledby="home-title">
+            <video
+                class="prisma-hero__video"
+                data-home-hero-video
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-hidden="true">
+                <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4" type="video/mp4">
+            </video>
 
-            <div class="hero-inner">
+            <div class="prisma-hero__noise" aria-hidden="true"></div>
+            <div class="prisma-hero__shade" aria-hidden="true"></div>
 
-                <div class="hero-topline">
-                    <span>PORTFOLIO PERSONNEL / 2026</span>
-                    <span class="hero-location">
-                        <span class="status-dot"></span>
-                        DISPONIBLE POUR ÉCHANGER
-                    </span>
+            <div class="prisma-hero__content">
+                <div class="prisma-hero__identity">
+                    <p class="prisma-hero__eyebrow">PORTFOLIO PERSONNEL · BTS SIO SISR</p>
+                    <h1 class="prisma-hero__title" id="home-title" aria-label="Semih Dusunceli">
+                        <span class="prisma-hero__first-name">SEMİH<span class="prisma-hero__asterisk" aria-hidden="true">*</span></span>
+                        <span class="prisma-hero__last-name">DUSUNCELI</span>
+                    </h1>
                 </div>
 
-                <div class="hero-main">
-
-                    <!-- IDENTITÉ -->
-                    <div class="intro reveal">
-
-                        <p class="eyebrow">
-                            BTS SIO · OPTION SISR
-                        </p>
-
-                        <h1>
-                            <span class="hero-title-small">JE SUIS</span>
-                            SEMİH<span class="highlight">.</span>
-                            <span class="hero-title-outline">DUSUNCELI</span>
-                        </h1>
-
-                        <div class="hero-role">
-                            <span class="role-line"></span>
-                            <p>
-                                <span id="typing-text">Étudiant en BTS SIO SISR</span>
-                                <span class="cursor">|</span>
-                            </p>
-                        </div>
-
-                        <p class="description">
-                            Entre systèmes, réseaux et environnements professionnels,
-                            je construis progressivement mon parcours dans l'informatique.
-
-                            Actuellement en deuxième année de BTS SIO SISR à Schola Nova
-                            et en alternance chez Orange comme pilote d'activité.
-                        </p>
-
-                        <div class="hero-actions">
-
-                            <a href="projets.html" class="btn btn-primary uiverse-cta uiverse-cta--type1">
-                                <span class="uiverse-cta__text">Explorer mes projets ↗</span>
-                            </a>
-
-                            <a href="profil.html" class="btn btn-ghost uiverse-cta uiverse-cta--type1">
-                                <span class="uiverse-cta__text">En savoir plus</span>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <!-- PHOTO -->
-                    <div class="hero-visual reveal">
-
-                        <div class="visual-index">
-                            <span>FIG. 001</span>
-                            <span>IDENTITY</span>
-                        </div>
-
-                        <div class="portrait-frame">
-
-                            <div class="portrait-frame-label">
-                                SEMIH / 01
-                            </div>
-
-                            <img
-                                src="semih.jpg"
-                                alt="Portrait de Semih Dusunceli"
-                            >
-
-                            <span class="portrait-cross portrait-cross-one">+</span>
-                            <span class="portrait-cross portrait-cross-two">+</span>
-
-                        </div>
-
-                        <div class="visual-caption">
-                            <span>ÉTUDIANT & ALTERNANT</span>
-                            <span>FRANCE · 2026</span>
-                        </div>
-
-                    </div>
-
+                <div class="prisma-hero__intro">
+                    <p class="prisma-hero__role">
+                        <span class="prisma-hero__status" aria-hidden="true"></span>
+                        <span id="typing-text">Étudiant en BTS SIO SISR</span>
+                    </p>
+                    <p class="prisma-hero__copy">
+                        En deuxième année à Schola Nova et alternant chez Orange comme pilote d'activité,
+                        je développe mes compétences en systèmes, réseaux et infrastructure.
+                    </p>
+                    <p class="prisma-hero__domains">SYSTÈMES · RÉSEAUX · INFRASTRUCTURE</p>
+                    <a class="prisma-hero__cta" href="projets.html">
+                        Découvrir mes projets
+                        <span class="prisma-hero__cta-icon" aria-hidden="true">→</span>
+                    </a>
                 </div>
-
-                <!-- BANDEAU TECHNIQUE -->
-                <div class="hero-bottom">
-
-                    <div class="hero-bottom-item">
-                        <span class="bottom-number">01</span>
-                        <span>INFRASTRUCTURE</span>
-                    </div>
-
-                    <div class="hero-bottom-item">
-                        <span class="bottom-number">02</span>
-                        <span>RÉSEAUX</span>
-                    </div>
-
-                    <div class="hero-bottom-item">
-                        <span class="bottom-number">03</span>
-                        <span>SYSTÈMES</span>
-                    </div>
-
-                    <div class="hero-bottom-note">
-                        <span class="status-dot"></span>
-                        EN CONSTANTE ÉVOLUTION
-                    </div>
-
-                </div>
-
             </div>
-
-            <a href="#parcours" class="scroll-cue">
-                <span></span>
-                DÉCOUVRIR
-            </a>
-
-            <!-- DÉCORATION GRAPHIQUE -->
-            <div class="hero-coordinate coordinate-one">
-                SYS. 48° / NET. 01
-            </div>
-
-            <div class="hero-coordinate coordinate-two">
-                SEMIH.DEV — 2026
-            </div>
-
         </section>
 
 
