@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Veille technologique de Semih sur la cybersécurité, les vulnérabilités et la protection des infrastructures informatiques.">
-    <title>Veille technologique | semih.dev</title>
+    <title>Veille : les failles des sites internet | semih.dev</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
         <nav class="nav-links">
     <a href="index.html">Accueil</a>
     <a href="profil.html">Profil</a>
-    <a href="epreuves.html">Démonstration des épreuves</a>
+    <a href="epreuves.html">Épreuve</a>
     <a href="formation.html">Formation</a>
     <a href="experience.html">Expérience</a>
     <a href="projets.html">Projets</a>
@@ -101,29 +101,30 @@
 
                 <p class="veille-overline">VEILLE TECHNOLOGIQUE / 2026</p>
 
-                <h1>
-                    Comprendre les menaces.<br>
-                    <span>Anticiper les attaques.</span>
+                <h1 data-decrypt>
+                    Les failles<br>
+                    <span>des sites internet.</span>
                 </h1>
 
                 <p class="veille-intro">
-                    La cybersécurité évolue constamment. Les nouvelles vulnérabilités,
-                    les cyberattaques et les correctifs de sécurité obligent les
-                    professionnels de l'informatique à rester informés.
-                    Cette veille présente des actualités, leurs conséquences
-                    et les solutions à mettre en place.
+                    Un site web repose sur plusieurs briques : un serveur, un langage
+                    (très souvent PHP), un CMS comme WordPress ou Drupal, et des extensions.
+                    Une faille dans une seule de ces briques peut suffire à prendre le contrôle du site.
+                    Ma veille suit ces failles : d'où elles viennent, ce qu'elles permettent,
+                    et comment s'en protéger.
                 </p>
 
                 <div class="veille-hero-tags">
-                    <span>Cybersécurité</span>
-                    <span>Vulnérabilités</span>
+                    <span>Failles web</span>
+                    <span>PHP</span>
+                    <span>CMS et extensions</span>
                     <span>Sécurité des serveurs</span>
                 </div>
             </div>
 
             <div class="veille-hero-visual">
                 <div class="veille-visual-card">
-                    <span class="visual-label">SUJET À LA UNE</span>
+                    <span class="visual-label">CAS D'ÉTUDE PRINCIPAL</span>
                     <div class="visual-symbol">!</div>
                     <h2>PHP2Shell</h2>
                     <p>Deux vulnérabilités critiques dans PHP</p>
@@ -139,7 +140,7 @@
 
             <div class="veille-section-heading">
                 <div>
-                    <span class="section-tag">01 / ACTUALITÉ PRINCIPALE</span>
+                    <span class="section-tag">01 / CAS D'ÉTUDE : PHP</span>
                     <h2>Une faille critique dans PHP</h2>
                 </div>
 
@@ -647,6 +648,96 @@
                 </a>
 
             </div>
+
+        </section>
+
+
+        <!-- ACTUALITÉS EN CE MOMENT
+             Cette section est mise à jour automatiquement chaque jeudi à 8 h.
+             Ne pas supprimer les marqueurs ACTUALITES:START / ACTUALITES:END. -->
+        <section class="veille-section news-live" id="actualites">
+
+            <div class="veille-section-heading">
+                <div>
+                    <span class="section-tag">08 / ACTUALITÉS EN CE MOMENT</span>
+                    <h2 data-decrypt>Les failles web de la semaine</h2>
+                </div>
+                <span class="news-live__badge"><i aria-hidden="true"></i>Mis à jour chaque jeudi</span>
+            </div>
+
+            <!-- ACTUALITES:START -->
+            <p class="news-live__updated">Dernière mise à jour : <time datetime="2026-11-26">jeudi 26 novembre 2026</time></p>
+            <div class="news-live__list">
+                <article class="news-live__card news-live__card--hot reveal">
+                    <div class="news-live__top">
+                        <span class="news-live__date">25 nov. 2026</span>
+                        <span class="news-live__target">Drupal</span>
+                        <span class="news-live__status">Exploitée</span>
+                    </div>
+                    <div class="news-live__body">
+                        <div class="news-live__meter"><span class="news-live__score" data-count-to="9.8">9.8</span><small>CVSS</small></div>
+                        <div>
+                            <p class="news-live__ref">CVE-2026-132165</p>
+                            <h3>Fail2Install : prise de contrôle de sites Drupal</h3>
+                            <p>Le programme d'installation de Drupal (install.php) peut croire qu'un site en production n'est pas encore installé. Un attaquant sans compte peut alors relancer l'installation, prendre la main sur le site ou exécuter du code. Corrigée le 18 novembre, la faille est exploitée depuis le lendemain et figure au catalogue des failles exploitées de la CISA.</p>
+                            <p class="news-live__todo"><b>À faire :</b> Mettre à jour le cœur de Drupal et bloquer l'accès à install.php une fois le site en ligne.</p>
+                            <a href="https://www.cyberattaque.org/fail2install-une-faille-critique-de-drupal-permet-aux-hackers-de-prendre-le-controle-des-sites-web/" target="_blank" rel="noopener noreferrer" class="article-link">Source : cyberattaque.org ↗</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-live__card reveal">
+                    <div class="news-live__top">
+                        <span class="news-live__date">22 nov. 2026</span>
+                        <span class="news-live__target">WordPress</span>
+                        <span class="news-live__status">Bloquée à temps</span>
+                    </div>
+                    <div class="news-live__body">
+                        <div class="news-live__meter"><span class="news-live__score" data-count-to="9.8">9.8</span><small>CVSS</small></div>
+                        <div>
+                            <p class="news-live__ref">CVE-2026-135202</p>
+                            <h3>Six extensions WordPress piégées par une porte dérobée</h3>
+                            <p>Le compte d'un éditeur d'extensions a été compromis et des mises à jour piégées ont été publiées pour six de ses extensions, installées sur environ 3 600 sites. L'équipe WordPress a détecté et bloqué ces versions avant leur diffusion. C'est une attaque de la chaîne d'approvisionnement : le danger vient d'une mise à jour, pas d'une erreur de code.</p>
+                            <p class="news-live__todo"><b>À faire :</b> Limiter le nombre d'extensions, surveiller leurs mises à jour et retirer celles qui sont fermées.</p>
+                            <a href="https://thehackernews.com/2026/11/wordpress-blocks-six-backdoored-wp.html" target="_blank" rel="noopener noreferrer" class="article-link">Source : The Hacker News ↗</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-live__card reveal">
+                    <div class="news-live__top">
+                        <span class="news-live__date">19 nov. 2026</span>
+                        <span class="news-live__target">PHP</span>
+                        <span class="news-live__status">Correctifs publiés</span>
+                    </div>
+                    <div class="news-live__body">
+                        <div class="news-live__meter"><span class="news-live__score news-live__score--na">—</span><small>CVSS</small></div>
+                        <div>
+                            <p class="news-live__ref">Nouvelle alerte</p>
+                            <h3>PHP : nouvelle alerte sur toutes les versions maintenues</h3>
+                            <p>Un mois après PHP2Shell, l'équipe de PHP a annoncé le 18 novembre de nouvelles vulnérabilités touchant l'ensemble des versions encore maintenues, avec des correctifs publiés le 19 novembre. Mon cas d'étude principal continue donc d'évoluer.</p>
+                            <p class="news-live__todo"><b>À faire :</b> Vérifier la version de PHP de chaque serveur et appliquer les nouvelles versions corrigées.</p>
+                            <a href="https://www.cyberattaque.org/php-lance-une-nouvelle-alerte-critique-toutes-les-versions-maintenues-concernees-par-des-failles-de-securite/" target="_blank" rel="noopener noreferrer" class="article-link">Source : cyberattaque.org ↗</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="news-live__card news-live__card--hot reveal">
+                    <div class="news-live__top">
+                        <span class="news-live__date">2 nov. 2026</span>
+                        <span class="news-live__target">WordPress</span>
+                        <span class="news-live__status">Exploitée</span>
+                    </div>
+                    <div class="news-live__body">
+                        <div class="news-live__meter"><span class="news-live__score news-live__score--na">—</span><small>CVSS</small></div>
+                        <div>
+                            <p class="news-live__ref">CVE-2026-102435</p>
+                            <h3>Une extension de formulaire qui ouvre la porte du serveur</h3>
+                            <p>L'extension Ultra Addons for Contact Form 7 (jusqu'à la version 3.5.54) vérifie mal les chemins de fichiers. Un attaquant peut supprimer un fichier clé de WordPress, ce qui remet le site en mode installation et lui permet d'en prendre le contrôle.</p>
+                            <p class="news-live__todo"><b>À faire :</b> Mettre à jour l'extension, ou la désactiver si aucun correctif n'est disponible.</p>
+                            <a href="https://thesmallbusinesscybersecurityguy.co.uk/blog/wordpress-router-vulnerabilities-uk-smb-november-2026-11-03/" target="_blank" rel="noopener noreferrer" class="article-link">Source : The Small Business Cybersecurity Guy ↗</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <!-- ACTUALITES:END -->
 
         </section>
 

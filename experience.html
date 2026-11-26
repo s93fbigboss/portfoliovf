@@ -40,7 +40,7 @@
             <div class="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="profil.html">Profil</a>
-                <a href="epreuves.html">Démonstration des épreuves</a>
+                <a href="epreuves.html">Épreuve</a>
                 <a href="formation.html">Formation</a>
                 <a href="experience.html" class="active" aria-current="page">Expérience</a>
                 <a href="projets.html">Projets</a>
@@ -80,75 +80,138 @@
             </div>
             <p class="section-tag">Mon parcours</p>
             <h1 class="pg-hero__title">Mes <span>expériences</span></h1>
-            <p class="pg-hero__lead">Trois expériences très différentes, et ce que chacune m'a appris.</p>
+            <p class="pg-hero__lead">Mon entreprise, mes expériences et mes engagements, et ce que chacun m'a appris.</p>
             <span class="pg-hero__index" aria-hidden="true">04</span>
         </section>
 
-        <!-- CARTES QUI S'EMPILENT AU DÉFILEMENT -->
+        <!-- MON ENTREPRISE : ORANGE -->
         <section class="pg-section">
-            <div class="xp-stack" data-stack>
-                <article class="xp-card" data-stack-card style="--i: 0">
-                    <div class="xp-card__media">
-                        <img src="orange.webp" width="600" height="375" loading="lazy" decoding="async" alt="Logo Orange">
-                        <span class="xp-card__count">01 / 03</span>
-                    </div>
-                    <div class="xp-card__body">
-                        <span class="pg-badge">Alternance · Depuis septembre 2025</span>
-                        <h2>Pilote d'activité</h2>
-                        <p class="xp-card__sub">Orange PPC OI</p>
-                        <p>Dans le cadre de mon BTS SIO SISR, j'effectue mon alternance chez Orange PPC OI en tant que pilote d'activité.</p><p>Je vois de l'intérieur comment fonctionne un grand opérateur, au milieu des équipes qui gèrent les infrastructures et les services réseau.</p>
-                        <div class="xp-card__cols">
-                            <div>
-                                <h3>Mon environnement professionnel</h3>
-                                <ul class="pg-list"><li>Suivi et coordination des activités.</li><li>Découverte des environnements liés à la fibre optique.</li><li>Observation des activités de supervision.</li><li>Découverte des activités liées au support réseau.</li><li>Développement de mon organisation et de ma communication professionnelle.</li></ul>
-                            </div>
-                            <div>
-                                <h3>Environnement</h3>
-                                <div class="pg-tags"><span>Télécommunications</span><span>Fibre optique</span><span>Supervision</span><span>Support réseau</span><span>Coordination</span></div>
+            <div class="org reveal">
+                <div class="org__intro">
+                    <p class="section-tag">MON ENTREPRISE D'ALTERNANCE</p>
+                    <h2>Orange<span>.</span></h2>
+                    <p>Orange est un groupe international de télécommunications. Il conçoit et déploie des réseaux (fibre, 4G, 5G, câbles sous-marins) et des services numériques pour les particuliers, les entreprises et les territoires.</p>
+                    <p>Le groupe a aussi une branche dédiée à la sécurité, <strong>Orange Cyberdefense</strong>, ce qui rejoint directement mon projet de continuer en cybersécurité après le BTS.</p>
+                    <a class="org__link" href="https://www.orange.com/fr/notre-groupe/a-propos-de-nous" target="_blank" rel="noopener noreferrer">
+                        <span>Découvrir Orange</span><span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+                <ul class="org__stats">
+                    <li><strong data-stat="26">26</strong><span>pays où Orange est opérateur</span></li>
+                    <li><strong data-stat="340" data-suffix=" M">340 M</strong><span>clients particuliers et entreprises</span></li>
+                    <li><strong data-stat="123500" data-format="fr">123 500</strong><span>salariés dans le monde</span></li>
+                    <li><strong data-stat="36">36</strong><span>centres de sécurité Orange Cyberdefense, ouverts 24 h/24</span></li>
+                </ul>
+                <p class="org__source">Chiffres publiés par le groupe Orange sur orange.com.</p>
+            </div>
+        </section>
+
+        <!-- EXPÉRIENCES PROFESSIONNELLES -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">EXPÉRIENCES PROFESSIONNELLES</p>
+                <h2>Là où <span>j'ai travaillé.</span></h2>
+                <p>Cliquez sur une ligne pour l'ouvrir.</p>
+            </div>
+            <div class="acc reveal">
+                <article class="acc-item is-open" data-acc>
+                    <h3 class="acc-item__head">
+                        <button type="button" class="acc-item__btn" aria-expanded="true" aria-controls="acc-01" id="acc-btn-01">
+                            <span class="acc-item__num">01</span>
+                            <span class="acc-item__title">Pilote d'activité</span>
+                            <span class="acc-item__org">Orange PPC OI</span>
+                            <span class="acc-item__period">Alternance · depuis sept. 2025</span>
+                            <span class="acc-item__plus" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="acc-item__panel" id="acc-01" role="region" aria-labelledby="acc-btn-01">
+                        <div class="acc-item__inner">
+                            <div class="acc-item__media"><img src="orange.webp" width="600" height="375" loading="lazy" decoding="async" alt="Logo Orange"></div>
+                            <div class="acc-item__body">
+                                <p>Dans le cadre de mon BTS SIO SISR, j'effectue mon alternance chez Orange PPC OI en tant que pilote d'activité.</p><p>Je vois de l'intérieur comment fonctionne un grand opérateur, au milieu des équipes qui gèrent les infrastructures et les services réseau.</p>
+                                <div class="acc-item__cols">
+                                    <div><h4>Mon environnement professionnel</h4><ul class="pg-list"><li>Suivi et coordination des activités.</li><li>Découverte des environnements liés à la fibre optique.</li><li>Observation des activités de supervision.</li><li>Découverte des activités liées au support réseau.</li><li>Développement de mon organisation et de ma communication professionnelle.</li></ul></div>
+                                    <div><h4>Environnement</h4><div class="pg-tags"><span>Télécommunications</span><span>Fibre optique</span><span>Supervision</span><span>Support réseau</span><span>Coordination</span></div></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </article>
-                <article class="xp-card" data-stack-card style="--i: 1">
-                    <div class="xp-card__media">
-                        <img src="bafa.webp" width="900" height="530" loading="lazy" decoding="async" alt="Illustration du BAFA">
-                        <span class="xp-card__count">02 / 03</span>
-                    </div>
-                    <div class="xp-card__body">
-                        <span class="pg-badge">Formation et animation · BAFA</span>
-                        <h2>Animateur</h2>
-                        <p class="xp-card__sub">Avant l'informatique, il y a eu l'animation.</p>
-                        <p>Avec mon BAFA, j'ai été animateur sur plusieurs colonies et séjours de vacances. C'est là que j'ai appris à gérer un groupe, à rester calme et à prendre des décisions.</p>
-                        <div class="xp-card__cols">
-                            <div>
-                                <h3>Mes missions</h3>
-                                <ul class="pg-list"><li>Encadrement et accompagnement des enfants.</li><li>Préparation et animation d'activités.</li><li>Participation à la vie quotidienne des séjours.</li><li>Travail en équipe avec les autres animateurs.</li><li>Veiller à la sécurité et au bien-être des enfants.</li></ul>
-                            </div>
-                            <div>
-                                <h3>Compétences développées</h3>
-                                <div class="pg-tags"><span>Responsabilité</span><span>Organisation</span><span>Communication</span><span>Travail d'équipe</span><span>Adaptabilité</span></div>
+                <article class="acc-item" data-acc>
+                    <h3 class="acc-item__head">
+                        <button type="button" class="acc-item__btn" aria-expanded="false" aria-controls="acc-02" id="acc-btn-02">
+                            <span class="acc-item__num">02</span>
+                            <span class="acc-item__title">Menuiserie</span>
+                            <span class="acc-item__org">Atelier</span>
+                            <span class="acc-item__period">Environ un mois</span>
+                            <span class="acc-item__plus" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="acc-item__panel" id="acc-02" role="region" aria-labelledby="acc-btn-02">
+                        <div class="acc-item__inner">
+                            <div class="acc-item__media"><img src="menuiserie.webp" width="900" height="675" loading="lazy" decoding="async" alt="Illustration de la menuiserie"></div>
+                            <div class="acc-item__body">
+                                <p>J'ai travaillé environ un mois en menuiserie. Un métier très différent de l'informatique, mais avec la même exigence : mesurer deux fois, couper une fois.</p>
+                                <div class="acc-item__cols">
+                                    <div><h4>Ce que j'ai appris</h4><ul class="pg-list"><li>Découverte du travail manuel et technique.</li><li>Importance de la précision dans les réalisations.</li><li>Respect des consignes et des règles de sécurité.</li><li>Découverte du fonctionnement d'un environnement professionnel.</li></ul></div>
+                                    <div><h4>Compétences développées</h4><div class="pg-tags"><span>Précision</span><span>Rigueur</span><span>Concentration</span><span>Travail manuel</span></div></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </article>
-                <article class="xp-card" data-stack-card style="--i: 2">
-                    <div class="xp-card__media">
-                        <img src="menuiserie.webp" width="900" height="675" loading="lazy" decoding="async" alt="Illustration de la menuiserie">
-                        <span class="xp-card__count">03 / 03</span>
-                    </div>
-                    <div class="xp-card__body">
-                        <span class="pg-badge">Environ un mois</span>
-                        <h2>Menuiserie</h2>
-                        <p class="xp-card__sub">Un mois dans un atelier, loin des écrans.</p>
-                        <p>J'ai travaillé environ un mois en menuiserie. Un métier très différent de l'informatique, mais avec la même exigence : mesurer deux fois, couper une fois.</p>
-                        <div class="xp-card__cols">
-                            <div>
-                                <h3>Ce que j'ai appris</h3>
-                                <ul class="pg-list"><li>Découverte du travail manuel et technique.</li><li>Importance de la précision dans les réalisations.</li><li>Respect des consignes et des règles de sécurité.</li><li>Découverte du fonctionnement d'un environnement professionnel.</li></ul>
+            </div>
+        </section>
+
+        <!-- ENGAGEMENTS -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">MES ENGAGEMENTS</p>
+                <h2>En dehors <span>de l'informatique.</span></h2>
+            </div>
+            <div class="acc reveal">
+                <article class="acc-item" data-acc>
+                    <h3 class="acc-item__head">
+                        <button type="button" class="acc-item__btn" aria-expanded="false" aria-controls="acc-03" id="acc-btn-03">
+                            <span class="acc-item__num">03</span>
+                            <span class="acc-item__title">Animateur</span>
+                            <span class="acc-item__org">BAFA</span>
+                            <span class="acc-item__period">Colonies et séjours</span>
+                            <span class="acc-item__plus" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="acc-item__panel" id="acc-03" role="region" aria-labelledby="acc-btn-03">
+                        <div class="acc-item__inner">
+                            <div class="acc-item__media"><img src="bafa.webp" width="900" height="530" loading="lazy" decoding="async" alt="Illustration du BAFA"></div>
+                            <div class="acc-item__body">
+                                <p>J'ai passé mon BAFA, puis j'ai été animateur sur plusieurs colonies et séjours de vacances. C'est là que j'ai appris à gérer un groupe, à rester calme et à prendre des décisions.</p>
+                                <div class="acc-item__cols">
+                                    <div><h4>Mes missions</h4><ul class="pg-list"><li>Encadrement et accompagnement des enfants.</li><li>Préparation et animation d'activités.</li><li>Participation à la vie quotidienne des séjours.</li><li>Travail en équipe avec les autres animateurs.</li><li>Veiller à la sécurité et au bien-être des enfants.</li></ul></div>
+                                    <div><h4>Compétences développées</h4><div class="pg-tags"><span>Responsabilité</span><span>Organisation</span><span>Communication</span><span>Travail d'équipe</span><span>Adaptabilité</span></div></div>
+                                </div>
                             </div>
-                            <div>
-                                <h3>Compétences développées</h3>
-                                <div class="pg-tags"><span>Précision</span><span>Rigueur</span><span>Concentration</span><span>Travail manuel</span></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="acc-item" data-acc>
+                    <h3 class="acc-item__head">
+                        <button type="button" class="acc-item__btn" aria-expanded="false" aria-controls="acc-04" id="acc-btn-04">
+                            <span class="acc-item__num">04</span>
+                            <span class="acc-item__title">Maraudes</span>
+                            <span class="acc-item__org">Engagement solidaire</span>
+                            <span class="acc-item__period">Bénévolat</span>
+                            <span class="acc-item__plus" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="acc-item__panel" id="acc-04" role="region" aria-labelledby="acc-btn-04">
+                        <div class="acc-item__inner">
+                            <div class="acc-item__media"><span class="acc-item__icon"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span></div>
+                            <div class="acc-item__body">
+                                <p>J'ai participé à des maraudes pour aller à la rencontre des personnes qui vivent à la rue. Prendre le temps de discuter et d'écouter, ça remet les choses en perspective.</p>
+                                <div class="acc-item__cols">
+                                    <div><h4>Ce que ça m'apporte</h4><ul class="pg-list"><li>Aller vers les autres, sans jugement.</li><li>Écouter avant de répondre.</li><li>Agir en équipe sur le terrain.</li></ul></div>
+                                    <div><h4>Qualités</h4><div class="pg-tags"><span>Écoute</span><span>Solidarité</span><span>Engagement</span><span>Travail d'équipe</span></div></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -161,7 +224,6 @@
             <div class="pg-section__head reveal">
                 <p class="section-tag">Mon évolution</p>
                 <h2>Ce que ces expériences <span>m'ont apporté.</span></h2>
-                <p>Ce que je garde de ces trois expériences.</p>
             </div>
             <div class="xp-takes">
                 <article class="xp-take reveal">

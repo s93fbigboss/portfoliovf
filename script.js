@@ -899,3 +899,138 @@ document.addEventListener("DOMContentLoaded", () => {
         run();
     }
 })();
+
+
+/* =====================================================
+   VEILLE — TITRES DÉCHIFFRÉS + COMPTEURS
+===================================================== */
+
+(() => {
+    if (!document.body.classList.contains("page-veille")) return;
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!motionOK || !("IntersectionObserver" in window)) return;
+
+    // 1. Les titres de section se « déchiffrent » quand ils apparaissent
+    const GLYPHS = "01ABCDEF#$%&*<>/\\=+";
+    const decrypt = (el) => {
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) if (walker.currentNode.textContent.trim()) nodes.push(walker.currentNode);
+        nodes.forEach((node) => {
+            const target = node.textContent;
+            let frame = 0;
+            const total = 18;
+            const tick = () => {
+                const done = Math.floor((frame / total) * target.length);
+                node.textContent = target.split("").map((ch, i) => {
+                    if (i < done || ch === " " || ch === "\n") return ch;
+                    return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+                }).join("");
+                if (++frame <= total) requestAnimationFrame(() => setTimeout(tick, 28));
+                else node.textContent = target;
+            };
+            tick();
+        });
+    };
+    const titles = document.querySelectorAll(".veille-section-heading h2, [data-decrypt]");
+    const tio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (e.isIntersecting) { decrypt(e.target); tio.unobserve(e.target); }
+        });
+    }, { threshold: 0.6 });
+    // le titre principal attend la fin de l'intro terminal
+    setTimeout(() => titles.forEach((t) => tio.observe(t)), 1800);
+
+    // 2. Les scores et chiffres clés comptent jusqu'à leur valeur
+    const counters = document.querySelectorAll(".article-facts strong, [data-count-to]");
+    const cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            cio.unobserve(e.target);
+            const raw = (e.target.dataset.countTo || e.target.textContent).trim();
+            const value = parseFloat(raw.replace(",", "."));
+            if (Number.isNaN(value)) return;
+            const decimals = raw.includes(".") ? 1 : 0;
+            const start = performance.now();
+            const run = (now) => {
+                const t = Math.min(1, (now - start) / 1100);
+                const eased = 1 - Math.pow(1 - t, 4);
+                e.target.textContent = (value * eased).toFixed(decimals);
+                if (t < 1) requestAnimationFrame(run);
+                else e.target.textContent = raw;
+            };
+            requestAnimationFrame(run);
+        });
+    }, { threshold: 0.6 });
+    counters.forEach((c) => cio.observe(c));
+})();
+
+
+/* =====================================================
+   ÉPREUVE — SURBRILLANCE DES COLONNES DU TABLEAU DE SYNTHÈSE
+===================================================== */
+
+(() => {
+    const table = document.querySelector("[data-synthese]");
+    if (!table) return;
+    const legend = document.querySelectorAll(".ts-legend__item");
+    const highlight = (col) => {
+        table.querySelectorAll("[data-col]").forEach((el) => el.classList.toggle("is-col", el.dataset.col === col));
+        legend.forEach((el) => el.classList.toggle("is-col", el.dataset.col === col));
+    };
+    const targets = [...table.querySelectorAll("[data-col]"), ...legend];
+    targets.forEach((el) => {
+        el.addEventListener("mouseenter", () => highlight(el.dataset.col));
+        el.addEventListener("mouseleave", () => highlight(null));
+    });
+})();
+
+
+/* =====================================================
+   EXPÉRIENCE — ACCORDÉON + CHIFFRES QUI DÉFILENT
+===================================================== */
+
+(() => {
+    // Accordéon : une ligne ouverte à la fois par groupe
+    document.querySelectorAll("[data-acc]").forEach((item) => {
+        const btn = item.querySelector(".acc-item__btn");
+        btn.addEventListener("click", () => {
+            const open = !item.classList.contains("is-open");
+            item.parentElement.querySelectorAll("[data-acc]").forEach((other) => {
+                other.classList.remove("is-open");
+                other.querySelector(".acc-item__btn").setAttribute("aria-expanded", "false");
+            });
+            if (open) {
+                item.classList.add("is-open");
+                btn.setAttribute("aria-expanded", "true");
+            }
+        });
+    });
+
+    // Chiffres clés (Orange) : comptage jusqu'à la valeur
+    const stats = document.querySelectorAll("[data-stat]");
+    if (!stats.length || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const fmt = (n, el) => {
+        const v = Math.round(n);
+        const txt = el.dataset.format === "fr" ? v.toLocaleString("fr-FR") : String(v);
+        return txt + (el.dataset.suffix || "");
+    };
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            io.unobserve(e.target);
+            const target = Number(e.target.dataset.stat);
+            const final = e.target.textContent;
+            const t0 = performance.now();
+            const run = (now) => {
+                const t = Math.min(1, (now - t0) / 1400);
+                e.target.textContent = fmt(target * (1 - Math.pow(1 - t, 4)), e.target);
+                if (t < 1) requestAnimationFrame(run);
+                else e.target.textContent = final;
+            };
+            requestAnimationFrame(run);
+        });
+    }, { threshold: 0.6 });
+    stats.forEach((s) => io.observe(s));
+})();
