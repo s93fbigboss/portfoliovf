@@ -18,7 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="commun.css">
-    <link rel="stylesheet" href="formation-experience.css">
+    <link rel="stylesheet" href="onglets.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
     <link rel="stylesheet" href="motion.css">
@@ -27,7 +27,7 @@
     <script src="script.js" defer></script>
 </head>
 
-<body class="page-formation">
+<body class="page-onglet">
 
     <!-- NAVIGATION -->
 
@@ -72,132 +72,68 @@
 
     <!-- CONTENU PRINCIPAL -->
 
-    <main>
+    <main class="pg-main">
 
-        <section class="page-container">
-
-            <!-- INTRODUCTION -->
-
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Mon parcours scolaire</span>
-
-                <h1>Ma <span>formation</span></h1>
-
-                <p>
-                    Du bac STI2D au BTS SIO : comment je suis arrivé aux systèmes et réseaux.
-                </p>
-
+        <!-- EN-TÊTE DE L'ONGLET -->
+        <section class="pg-hero">
+            <div class="pg-hero__meta">
+                <span>03 / 08</span>
+                <span>FORMATION</span>
             </div>
+            <p class="section-tag">Mon parcours scolaire</p>
+            <h1 class="pg-hero__title">Ma <span>formation</span></h1>
+            <p class="pg-hero__lead">Du bac STI2D au BTS SIO : comment je suis arrivé aux systèmes et réseaux.</p>
+            <span class="pg-hero__index" aria-hidden="true">03</span>
+        </section>
 
+        <!-- FRISE QUI SE REMPLIT AU DÉFILEMENT -->
+        <section class="pg-section">
+            <div class="fm-timeline" data-timeline>
+                <div class="fm-timeline__line" aria-hidden="true"><span></span></div>
 
-            <!-- PARCOURS -->
-
-            <section class="timeline">
-
-                <!-- BTS SIO -->
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-content">
-
-                        <span class="timeline-date">
-                            2025 – 2027
-                        </span>
-
-                        <span class="experience-label">
-                            Formation en cours
-                        </span>
-
-                        <h2>
-                            BTS Services Informatiques aux Organisations
-                        </h2>
-
-                        <h3>
-                            Option SISR – Solutions d'infrastructure,
-                            systèmes et réseaux
-                        </h3>
-
-                        <p>
-                            Actuellement en deuxième année de BTS SIO
-                            à Schola Nova, je me spécialise dans les
-                            systèmes et les réseaux informatiques.
-                        </p>
-
-                        <ul>
-                            <li>Administration des systèmes informatiques.</li>
-                            <li>Configuration et gestion des réseaux.</li>
-                            <li>Découverte des services d'infrastructure.</li>
-                            <li>Virtualisation et environnements Linux.</li>
-                            <li>Diagnostic et résolution de problèmes techniques.</li>
-                        </ul>
-
-                        <p>
-                            On apprend beaucoup par la pratique : TP, maquettes réseau et projets.
-                        </p>
-
+                <article class="fm-item" data-timeline-item>
+                    <div class="fm-item__date">
+                        <span class="fm-item__year">2025 – 2027</span>
+                        <span class="pg-badge pg-badge--live">Formation en cours</span>
                     </div>
-
+                    <span class="fm-item__node" aria-hidden="true"></span>
+                    <div class="fm-item__card">
+                        <h2>BTS Services Informatiques aux Organisations</h2>
+                        <h3>Option SISR – Solutions d'infrastructure, systèmes et réseaux</h3>
+                        <p>Actuellement en deuxième année de BTS SIO à Schola Nova, je me spécialise dans les systèmes et les réseaux informatiques.</p>
+                        <ul class="pg-list"><li>Administration des systèmes informatiques.</li><li>Configuration et gestion des réseaux.</li><li>Découverte des services d'infrastructure.</li><li>Virtualisation et environnements Linux.</li><li>Diagnostic et résolution de problèmes techniques.</li></ul>
+                        <p>On apprend beaucoup par la pratique : TP, maquettes réseau et projets.</p>
+                    </div>
                 </article>
 
-
-                <!-- BAC STI2D -->
-
-                <article class="timeline-item reveal">
-
-                    <div class="timeline-content">
-
-                        <span class="timeline-date">
-                            Diplôme obtenu
-                        </span>
-
-                        <span class="experience-label">
-                            Baccalauréat
-                        </span>
-
+                <article class="fm-item" data-timeline-item>
+                    <div class="fm-item__date">
+                        <span class="fm-item__year">Bac</span>
+                        <span class="pg-badge">Diplôme obtenu</span>
+                    </div>
+                    <span class="fm-item__node" aria-hidden="true"></span>
+                    <div class="fm-item__card">
                         <h2>Baccalauréat STI2D</h2>
-
-                        <h3>
-                            Sciences et Technologies de l'Industrie
-                            et du Développement Durable
-                        </h3>
-
-                        <p>
-                            J'ai obtenu un baccalauréat STI2D,
-                            avec la spécialité SIN :
-                            Systèmes d'Information et Numérique.
-                        </p>
-
-                        <ul>
-                            <li>Découverte des systèmes numériques.</li>
-                            <li>Compréhension des systèmes techniques.</li>
-                            <li>Initiation aux technologies informatiques.</li>
-                            <li>Développement d'une approche technique et logique.</li>
-                        </ul>
-
+                        <h3>Sciences et Technologies de l'Industrie et du Développement Durable</h3>
+                        <p>J'ai obtenu un baccalauréat STI2D, avec la spécialité SIN : Systèmes d'Information et Numérique.</p>
+                        <ul class="pg-list"><li>Découverte des systèmes numériques.</li><li>Compréhension des systèmes techniques.</li><li>Initiation aux technologies informatiques.</li><li>Développement d'une approche technique et logique.</li></ul>
                     </div>
-
                 </article>
+            </div>
+        </section>
 
-            </section>
-
-
-            <!-- OBJECTIF -->
-
-            <section class="skills-note reveal">
-
-                <span class="section-tag">Mon objectif</span>
-
-                <h2>
-                    Après le BTS, la cybersécurité.
-                </h2>
-
-                <p>
-                    D'abord obtenir mon BTS avec des bases solides en systèmes et réseaux, puis continuer dans la cybersécurité. En attendant, je fais le plus de projets concrets possible pour gagner en autonomie.
-                </p>
-
-            </section>
-
+        <!-- OBJECTIF : LE CHEMIN -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">Mon objectif</p>
+                <h2>Après le BTS, <span>la cybersécurité.</span></h2>
+                <p>D'abord obtenir mon BTS avec des bases solides en systèmes et réseaux, puis continuer dans la cybersécurité. En attendant, je fais le plus de projets concrets possible pour gagner en autonomie.</p>
+            </div>
+            <ol class="fm-path reveal" aria-label="Mon parcours">
+                <li class="fm-path__stop is-done"><span>Bac STI2D</span><small>Obtenu</small></li>
+                <li class="fm-path__stop is-now"><span>BTS SIO SISR</span><small>En cours</small></li>
+                <li class="fm-path__stop is-next"><span>Cybersécurité</span><small>La suite</small></li>
+            </ol>
         </section>
 
         <!-- ONGLET SUIVANT -->

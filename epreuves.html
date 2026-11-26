@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="commun.css">
-    <link rel="stylesheet" href="epreuves.css">
+    <link rel="stylesheet" href="onglets.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
     <link rel="stylesheet" href="motion.css">
@@ -21,7 +21,7 @@
     <script src="script.js" defer></script>
 </head>
 
-<body id="top" class="epreuves-page">
+<body class="page-onglet">
 
     <header class="header">
         <nav class="navbar">
@@ -48,142 +48,96 @@
         </nav>
     </header>
 
-    <main>
-        <section class="epreuves-hero">
-            <div class="epreuves-container">
-                <div class="epreuves-kicker reveal">
-                    <span class="kicker-line"></span>
-                    BTS SIO · OPTION SISR
-                    <span class="kicker-index">PORTFOLIO / 03</span>
-                </div>
+    <main class="pg-main">
 
-                <div class="epreuves-hero-grid">
-                    <div class="epreuves-intro reveal">
-                        <p class="section-tag">MON DOSSIER DE PREUVES</p>
-                        <h1>Démonstration<br>des <span>épreuves.</span></h1>
-                        <p class="epreuves-lead">
-                            Cette page rassemble progressivement les travaux, réalisations et documents
-                            qui permettent d'illustrer les compétences développées pendant ma formation.
-                        </p>
-                    </div>
+        <!-- EN-TÊTE DE L'ONGLET -->
+        <section class="pg-hero">
+            <div class="pg-hero__meta">
+                <span>02 / 08</span>
+                <span>DÉMONSTRATION DES ÉPREUVES</span>
+            </div>
+            <p class="section-tag">MON DOSSIER DE PREUVES</p>
+            <h1 class="pg-hero__title">Démonstration des <span>épreuves.</span></h1>
+            <p class="pg-hero__lead">Cette page rassemble progressivement les travaux, réalisations et documents qui permettent d'illustrer les compétences développées pendant ma formation.</p>
+            <span class="pg-hero__index" aria-hidden="true">02</span>
+        </section>
 
-                    <aside class="epreuves-side-note reveal" aria-label="Démarche de travail">
-                        <span class="side-note-number">03</span>
-                        <span class="side-note-label">APPRENDRE / CONFIGURER / VÉRIFIER</span>
-                        <p>Du cours à la mise en pratique.</p>
-                        <span class="side-note-code">SISR — 2026</span>
-                    </aside>
+        <!-- TROIS AXES : PANNEAUX DÉPLIABLES -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">LES DOMAINES DE COMPÉTENCES</p>
+                <h2>Trois axes. <span>Des preuves concrètes.</span></h2>
+                <p>Sélection de travaux et d'expériences liés à mon parcours en BTS SIO SISR. Survolez un axe pour l'ouvrir.</p>
+            </div>
+            <div class="ep-panels reveal">
+            <article class="ep-panel is-active" tabindex="0" data-panel>
+                <div class="ep-panel__rail" aria-hidden="true">
+                    <span class="ep-panel__num">01</span>
+                    <span class="ep-panel__cat">RÉSEAUX</span>
                 </div>
-
-                <div class="epreuves-method reveal">
-                    <span class="method-label">MA DÉMARCHE</span>
-                    <p>
-                        Comprendre un besoin, préparer une solution, la mettre en œuvre,
-                        effectuer des tests et expliquer les résultats obtenus.
-                    </p>
-                    <span class="method-arrow" aria-hidden="true">↓</span>
+                <div class="ep-panel__body">
+                    <p class="ep-panel__over">INFRASTRUCTURE &amp; CONFIGURATION <span>NET_01</span></p>
+                    <h3>Construire et connecter.</h3>
+                    <p>Travaux de réseau réalisés en environnement pédagogique : segmentation, VLAN, liens trunk, routage inter-VLAN et tests de connectivité.</p>
+                    <div class="pg-tags"><span>VLAN</span><span>TRUNK</span><span>ROUTAGE</span><span>PACKET TRACER</span></div>
+                    <a href="projets.html" class="epreuve-link uiverse-stack uiverse-stack--wide">
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer uiverse-stack__label">Voir les projets réseau ↗</span>
+                    </a>
                 </div>
+            </article>
+            <article class="ep-panel" tabindex="0" data-panel>
+                <div class="ep-panel__rail" aria-hidden="true">
+                    <span class="ep-panel__num">02</span>
+                    <span class="ep-panel__cat">SYSTÈMES</span>
+                </div>
+                <div class="ep-panel__body">
+                    <p class="ep-panel__over">INSTALLATION &amp; ADMINISTRATION <span>SYS_02</span></p>
+                    <h3>Installer et administrer.</h3>
+                    <p>Travaux pratiques autour des systèmes, de l'installation de machines virtuelles et de la découverte des services d'infrastructure.</p>
+                    <div class="pg-tags"><span>DEBIAN</span><span>LINUX</span><span>VMWARE</span><span>SERVICES</span></div>
+                    <a href="competences.html" class="epreuve-link uiverse-stack uiverse-stack--wide">
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer uiverse-stack__label">Voir mes compétences ↗</span>
+                    </a>
+                </div>
+            </article>
+            <article class="ep-panel" tabindex="0" data-panel>
+                <div class="ep-panel__rail" aria-hidden="true">
+                    <span class="ep-panel__num">03</span>
+                    <span class="ep-panel__cat">ENTREPRISE</span>
+                </div>
+                <div class="ep-panel__body">
+                    <p class="ep-panel__over">EXPÉRIENCE PROFESSIONNELLE <span>PRO_03</span></p>
+                    <h3>Découvrir le terrain.</h3>
+                    <p>Présentation de mon alternance chez Orange, de mon rôle de pilote d'activité et de mon environnement professionnel.</p>
+                    <div class="pg-tags"><span>ORANGE</span><span>ALTERNANCE</span><span>FIBRE</span><span>SUPERVISION</span></div>
+                    <a href="experience.html" class="epreuve-link uiverse-stack uiverse-stack--wide">
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer" aria-hidden="true"></span>
+                    <span class="uiverse-stack__layer uiverse-stack__label">Voir mon expérience ↗</span>
+                    </a>
+                </div>
+            </article>
             </div>
         </section>
 
-        <section class="epreuves-content" aria-labelledby="preuves-title">
-            <div class="epreuves-container">
-                <div class="epreuves-section-heading reveal">
-                    <div>
-                        <p class="section-tag">LES DOMAINES DE COMPÉTENCES</p>
-                        <h2 id="preuves-title">Trois axes.<br><span>Des preuves concrètes.</span></h2>
-                    </div>
-                    <p class="heading-aside">Sélection de travaux et d'expériences liés à mon parcours en BTS SIO SISR.</p>
-                </div>
-
-                <div class="epreuves-list">
-                    <article class="epreuve-card reveal" data-epreuve-card>
-                        <div class="epreuve-card-index">
-                            <span class="epreuve-number">01</span>
-                            <span class="epreuve-category">RÉSEAUX</span>
-                        </div>
-                        <div class="epreuve-card-main">
-                            <p class="epreuve-overline">INFRASTRUCTURE & CONFIGURATION</p>
-                            <h3>Construire et connecter.</h3>
-                            <p>
-                                Travaux de réseau réalisés en environnement pédagogique : segmentation,
-                                VLAN, liens trunk, routage inter-VLAN et tests de connectivité.
-                            </p>
-                            <div class="epreuve-tags">
-                                <span>VLAN</span><span>TRUNK</span><span>ROUTAGE</span><span>PACKET TRACER</span>
-                            </div>
-                            <a href="projets.html" class="epreuve-link uiverse-stack uiverse-stack--wide">
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer uiverse-stack__label">Voir les projets réseau ↗</span>
-                            </a>
-                        </div>
-                        <div class="epreuve-card-mark" aria-hidden="true">NET<span>_01</span></div>
-                    </article>
-
-                    <article class="epreuve-card reveal" data-epreuve-card>
-                        <div class="epreuve-card-index">
-                            <span class="epreuve-number">02</span>
-                            <span class="epreuve-category">SYSTÈMES</span>
-                        </div>
-                        <div class="epreuve-card-main">
-                            <p class="epreuve-overline">INSTALLATION & ADMINISTRATION</p>
-                            <h3>Installer et administrer.</h3>
-                            <p>
-                                Travaux pratiques autour des systèmes, de l'installation de machines
-                                virtuelles et de la découverte des services d'infrastructure.
-                            </p>
-                            <div class="epreuve-tags">
-                                <span>DEBIAN</span><span>LINUX</span><span>VMWARE</span><span>SERVICES</span>
-                            </div>
-                            <a href="competences.html" class="epreuve-link uiverse-stack uiverse-stack--wide">
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer uiverse-stack__label">Voir mes compétences ↗</span>
-                            </a>
-                        </div>
-                        <div class="epreuve-card-mark" aria-hidden="true">SYS<span>_02</span></div>
-                    </article>
-
-                    <article class="epreuve-card reveal" data-epreuve-card>
-                        <div class="epreuve-card-index">
-                            <span class="epreuve-number">03</span>
-                            <span class="epreuve-category">ENTREPRISE</span>
-                        </div>
-                        <div class="epreuve-card-main">
-                            <p class="epreuve-overline">EXPÉRIENCE PROFESSIONNELLE</p>
-                            <h3>Découvrir le terrain.</h3>
-                            <p>
-                                Présentation de mon alternance chez Orange, de mon rôle de pilote
-                                d'activité et de mon environnement professionnel.
-                            </p>
-                            <div class="epreuve-tags">
-                                <span>ORANGE</span><span>ALTERNANCE</span><span>FIBRE</span><span>SUPERVISION</span>
-                            </div>
-                            <a href="experience.html" class="epreuve-link uiverse-stack uiverse-stack--wide">
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer" aria-hidden="true"></span>
-                                <span class="uiverse-stack__layer uiverse-stack__label">Voir mon expérience ↗</span>
-                            </a>
-                        </div>
-                        <div class="epreuve-card-mark" aria-hidden="true">PRO<span>_03</span></div>
-                    </article>
-                </div>
-
-                <div class="epreuves-note reveal">
-                    <span class="note-icon">i</span>
-                    <p>
-                        Les comptes rendus, captures et documents justificatifs seront ajoutés au fur
-                        et à mesure de leur finalisation. Aucun résultat non vérifié n'est présenté comme validé.
-                    </p>
-                </div>
+        <!-- MA DÉMARCHE -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">MA DÉMARCHE</p>
+                <h2>Apprendre, configurer, <span>vérifier.</span></h2>
             </div>
+            <ol class="ep-steps reveal" data-steps><li class="ep-step"><span class="ep-step__dot">01</span><span class="ep-step__txt">Comprendre le besoin</span></li><li class="ep-step"><span class="ep-step__dot">02</span><span class="ep-step__txt">Préparer une solution</span></li><li class="ep-step"><span class="ep-step__dot">03</span><span class="ep-step__txt">La mettre en œuvre</span></li><li class="ep-step"><span class="ep-step__dot">04</span><span class="ep-step__txt">Effectuer des tests</span></li><li class="ep-step"><span class="ep-step__dot">05</span><span class="ep-step__txt">Expliquer les résultats</span></li></ol>
+            <p class="pg-note reveal"><span class="pg-note__icon">i</span>Les comptes rendus, captures et documents justificatifs seront ajoutés au fur et à mesure de leur finalisation. Aucun résultat non vérifié n'est présenté comme validé.</p>
         </section>
 
         <!-- ONGLET SUIVANT -->
@@ -200,7 +154,7 @@
     <footer class="footer">
         <a href="index.html" class="logo">semih<span class="logo-dot">.</span>dev</a>
         <p>© <span id="current-year"></span> Semih Dusunceli · Portfolio</p>
-        <a href="#top" class="back-top uiverse-stack" aria-label="Retour en haut">
+        <a href="#" class="back-top uiverse-stack" aria-label="Retour en haut">
             <span class="uiverse-stack__layer" aria-hidden="true"></span>
             <span class="uiverse-stack__layer" aria-hidden="true"></span>
             <span class="uiverse-stack__layer" aria-hidden="true"></span>

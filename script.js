@@ -569,7 +569,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Titres de page : découpe en mots
     if (motionOK) {
-        document.querySelectorAll(".page-heading h1, .epreuves-intro h1").forEach((title) => {
+        document.querySelectorAll(".page-heading h1, .pg-hero__title").forEach((title) => {
             let w = 0;
             const wrapWord = (content) => {
                 const outer = document.createElement("span");
@@ -689,4 +689,213 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".hack-transition")?.remove();
         document.body.classList.remove("is-hacking");
     });
+})();
+
+
+/* =====================================================
+   ONGLETS — FORMATS ANIMÉS
+   (Épreuves, Formation, Expérience, Projets, Compétences, Contact)
+===================================================== */
+
+(() => {
+    if (!document.body.classList.contains("page-onglet")) return;
+
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const onScroll = [];
+
+    // 1. Grand numéro de l'en-tête : léger effet de profondeur
+    const index = document.querySelector(".pg-hero__index");
+    if (index && motionOK) {
+        onScroll.push(() => {
+            index.style.setProperty("--parallax", `${Math.min(window.scrollY, 600) * 0.25}px`);
+        });
+    }
+
+    // 2. Épreuves : panneaux qui s'ouvrent au survol, au clic ou au clavier
+    const panels = document.querySelectorAll("[data-panel]");
+    const desktop = window.matchMedia("(min-width: 1001px)");
+    const openPanel = (panel) => {
+        panels.forEach((p) => p.classList.toggle("is-active", p === panel));
+    };
+    panels.forEach((panel) => {
+        panel.addEventListener("mouseenter", () => desktop.matches && openPanel(panel));
+        panel.addEventListener("focusin", () => openPanel(panel));
+        panel.addEventListener("click", () => openPanel(panel));
+        panel.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                if (event.target === panel) { event.preventDefault(); openPanel(panel); }
+            }
+        });
+    });
+
+    // 3. Formation : la frise se remplit avec le défilement
+    const timeline = document.querySelector("[data-timeline]");
+    if (timeline) {
+        const fill = timeline.querySelector(".fm-timeline__line span");
+        const items = timeline.querySelectorAll("[data-timeline-item]");
+        onScroll.push(() => {
+            const rect = timeline.getBoundingClientRect();
+            const mark = window.innerHeight * 0.82;
+            fill.style.setProperty("--fill", clamp((mark - rect.top) / rect.height, 0, 1).toFixed(3));
+            items.forEach((item) => {
+                item.classList.toggle("is-on", item.getBoundingClientRect().top < mark || !motionOK);
+            });
+        });
+    }
+
+    // 4. Expérience : la carte recouverte recule légèrement
+    const stackCards = Array.from(document.querySelectorAll("[data-stack-card]"));
+    if (stackCards.length && motionOK) {
+        onScroll.push(() => {
+            stackCards.forEach((card, i) => {
+                const next = stackCards[i + 1];
+                if (!next) return;
+                const r = card.getBoundingClientRect();
+                const n = next.getBoundingClientRect();
+                const p = clamp((r.bottom - n.top) / r.height, 0, 1);
+                card.style.setProperty("--shrink", (1 - p * 0.05).toFixed(4));
+                card.style.setProperty("--dim", (1 - p * 0.35).toFixed(3));
+            });
+        });
+    }
+
+    // 5. Projets : les terminaux tapent leur commande quand ils apparaissent
+    const terms = document.querySelectorAll(".pj-term");
+    if (terms.length && "IntersectionObserver" in window) {
+        const typeIn = (term) => {
+            const cmd = term.querySelector("[data-type]");
+            const text = cmd.dataset.type;
+            if (!motionOK) { cmd.textContent += text; term.classList.add("is-typed"); return; }
+            let i = 0;
+            const step = () => {
+                cmd.textContent = "$ " + text.slice(0, ++i);
+                if (i < text.length) setTimeout(step, 45 + Math.random() * 40);
+                else setTimeout(() => term.classList.add("is-typed"), 200);
+            };
+            step();
+        };
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { typeIn(entry.target); io.unobserve(entry.target); }
+            });
+        }, { threshold: 0.5 });
+        terms.forEach((t) => io.observe(t));
+    }
+
+    // 6. Compétences : onglets accessibles avec pastille qui glisse
+    const tabsRoot = document.querySelector("[data-tabs]");
+    if (tabsRoot) {
+        const tabs = Array.from(tabsRoot.querySelectorAll('[role="tab"]'));
+        const indicator = tabsRoot.querySelector(".sk-tabs__indicator");
+        const place = (tab) => {
+            indicator.style.setProperty("--y", `${tab.offsetTop}px`);
+            indicator.style.setProperty("--h", `${tab.offsetHeight}px`);
+        };
+        const select = (tab, focus) => {
+            tabs.forEach((t) => {
+                const on = t === tab;
+                t.setAttribute("aria-selected", String(on));
+                t.tabIndex = on ? 0 : -1;
+                const pane = document.getElementById(t.getAttribute("aria-controls"));
+                if (on) {
+                    pane.hidden = false;
+                    // relance l'animation d'entrée du panneau
+                    pane.style.animation = "none";
+                    void pane.offsetWidth;
+                    pane.style.animation = "";
+                } else {
+                    pane.hidden = true;
+                }
+            });
+            place(tab);
+            if (focus) tab.focus();
+        };
+        tabs.forEach((tab, i) => {
+            tab.addEventListener("click", () => select(tab));
+            tab.addEventListener("keydown", (event) => {
+                const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
+                if (event.key in keys) {
+                    event.preventDefault();
+                    select(tabs[(i + keys[event.key] + tabs.length) % tabs.length], true);
+                } else if (event.key === "Home") { event.preventDefault(); select(tabs[0], true); }
+                else if (event.key === "End") { event.preventDefault(); select(tabs[tabs.length - 1], true); }
+            });
+        });
+        const current = () => tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0];
+        place(current());
+        window.addEventListener("resize", () => place(current()));
+        document.fonts?.ready.then(() => place(current()));
+    }
+
+    // 7. Contact : mot qui change, compteur, envoi sans quitter la page
+    const rotator = document.querySelector("[data-rotate]");
+    if (rotator && motionOK) {
+        const words = Array.from(rotator.children);
+        let k = 0;
+        setInterval(() => {
+            const out = words[k];
+            k = (k + 1) % words.length;
+            out.classList.remove("is-on");
+            out.classList.add("is-out");
+            words[k].classList.remove("is-out");
+            words[k].classList.add("is-on");
+            setTimeout(() => out.classList.remove("is-out"), 700);
+        }, 2400);
+    }
+
+    const form = document.querySelector("[data-contact-form]");
+    if (form) {
+        const message = form.querySelector("#message");
+        const count = form.querySelector("[data-count]");
+        const feedback = form.querySelector(".ct-feedback");
+        const button = form.querySelector(".ct-send");
+        const label = button.querySelector(".uiverse-cta__text");
+
+        message.addEventListener("input", () => { count.textContent = message.value.length; });
+
+        form.addEventListener("submit", async (event) => {
+            if (!window.fetch) return; // envoi classique
+            event.preventDefault();
+            feedback.classList.remove("is-error");
+            feedback.textContent = "";
+            form.classList.add("is-sending");
+            button.disabled = true;
+            label.textContent = "Envoi…";
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { Accept: "application/json" },
+                });
+                if (!response.ok) throw new Error("Réponse " + response.status);
+                form.reset();
+                count.textContent = "0";
+                label.textContent = "Message envoyé ✓";
+                feedback.textContent = "Merci, votre message est bien parti. Je vous réponds dès que possible.";
+                setTimeout(() => {
+                    label.textContent = "Envoyer le message";
+                    button.disabled = false;
+                    form.classList.remove("is-sending");
+                }, 4000);
+            } catch (error) {
+                // En cas de souci réseau, on bascule sur l'envoi classique du formulaire
+                feedback.classList.add("is-error");
+                feedback.textContent = "Petit souci d'envoi, nouvel essai…";
+                form.classList.remove("is-sending");
+                HTMLFormElement.prototype.submit.call(form);
+            }
+        });
+    }
+
+    // Boucle de défilement unique, synchronisée sur l'affichage
+    if (onScroll.length) {
+        let ticking = false;
+        const run = () => { onScroll.forEach((fn) => fn()); ticking = false; };
+        window.addEventListener("scroll", () => {
+            if (!ticking) { ticking = true; requestAnimationFrame(run); }
+        }, { passive: true });
+        window.addEventListener("resize", run);
+        run();
+    }
 })();

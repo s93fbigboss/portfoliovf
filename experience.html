@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="commun.css">
-    <link rel="stylesheet" href="formation-experience.css">
+    <link rel="stylesheet" href="onglets.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
     <link rel="stylesheet" href="motion.css">
@@ -25,7 +25,7 @@
     <script src="script.js" defer></script>
 </head>
 
-<body class="page-experience">
+<body class="page-onglet">
 
     <!-- NAVIGATION -->
 
@@ -70,298 +70,116 @@
 
     <!-- CONTENU PRINCIPAL -->
 
-    <main>
+    <main class="pg-main">
 
-        <!-- INTRODUCTION -->
-
-        <section class="page-container">
-
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Mon parcours</span>
-
-                <h1>Mes expériences</h1>
-
-                <p>
-                    Trois expériences très différentes, et ce que chacune m'a appris.
-                </p>
-
+        <!-- EN-TÊTE DE L'ONGLET -->
+        <section class="pg-hero">
+            <div class="pg-hero__meta">
+                <span>04 / 08</span>
+                <span>EXPÉRIENCE</span>
             </div>
-
+            <p class="section-tag">Mon parcours</p>
+            <h1 class="pg-hero__title">Mes <span>expériences</span></h1>
+            <p class="pg-hero__lead">Trois expériences très différentes, et ce que chacune m'a appris.</p>
+            <span class="pg-hero__index" aria-hidden="true">04</span>
         </section>
 
-
-        <!-- ORANGE -->
-
-        <section class="page-container">
-
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Expérience professionnelle</span>
-
-                <h2>Mon alternance chez Orange</h2>
-
-                <p>
-                    Mon terrain d'apprentissage dans les télécoms.
-                </p>
-
-            </div>
-
-            <article class="experience-main reveal">
-
-                <div class="experience-top">
-
-                    <div class="experience-logo">
+        <!-- CARTES QUI S'EMPILENT AU DÉFILEMENT -->
+        <section class="pg-section">
+            <div class="xp-stack" data-stack>
+                <article class="xp-card" data-stack-card style="--i: 0">
+                    <div class="xp-card__media">
                         <img src="orange.webp" width="600" height="375" loading="lazy" decoding="async" alt="Logo Orange">
+                        <span class="xp-card__count">01 / 03</span>
                     </div>
-
-                    <div class="experience-heading">
-
-                        <span class="experience-label">
-                            Alternance · Depuis septembre 2025
-                        </span>
-
+                    <div class="xp-card__body">
+                        <span class="pg-badge">Alternance · Depuis septembre 2025</span>
                         <h2>Pilote d'activité</h2>
-
-                        <h3>Orange PPC OI</h3>
-
+                        <p class="xp-card__sub">Orange PPC OI</p>
+                        <p>Dans le cadre de mon BTS SIO SISR, j'effectue mon alternance chez Orange PPC OI en tant que pilote d'activité.</p><p>Je vois de l'intérieur comment fonctionne un grand opérateur, au milieu des équipes qui gèrent les infrastructures et les services réseau.</p>
+                        <div class="xp-card__cols">
+                            <div>
+                                <h3>Mon environnement professionnel</h3>
+                                <ul class="pg-list"><li>Suivi et coordination des activités.</li><li>Découverte des environnements liés à la fibre optique.</li><li>Observation des activités de supervision.</li><li>Découverte des activités liées au support réseau.</li><li>Développement de mon organisation et de ma communication professionnelle.</li></ul>
+                            </div>
+                            <div>
+                                <h3>Environnement</h3>
+                                <div class="pg-tags"><span>Télécommunications</span><span>Fibre optique</span><span>Supervision</span><span>Support réseau</span><span>Coordination</span></div>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-                <div class="experience-description">
-
-                    <p>
-                        Dans le cadre de mon BTS SIO SISR, j'effectue
-                        mon alternance chez Orange PPC OI en tant que
-                        pilote d'activité.
-                    </p>
-
-                    <p>
-                        Je vois de l'intérieur comment fonctionne un grand opérateur, au milieu des équipes qui gèrent les infrastructures et les services réseau.
-                    </p>
-
-                </div>
-
-                <div class="experience-missions">
-
-                    <h3>Mon environnement professionnel</h3>
-
-                    <ul>
-                        <li>Suivi et coordination des activités.</li>
-                        <li>Découverte des environnements liés à la fibre optique.</li>
-                        <li>Observation des activités de supervision.</li>
-                        <li>Découverte des activités liées au support réseau.</li>
-                        <li>Développement de mon organisation et de ma communication professionnelle.</li>
-                    </ul>
-
-                </div>
-
-                <div class="experience-skills">
-
-                    <h3>Environnement professionnel</h3>
-
-                    <div class="tags">
-                        <span>Télécommunications</span>
-                        <span>Fibre optique</span>
-                        <span>Supervision</span>
-                        <span>Support réseau</span>
-                        <span>Coordination</span>
+                </article>
+                <article class="xp-card" data-stack-card style="--i: 1">
+                    <div class="xp-card__media">
+                        <img src="bafa.webp" width="900" height="530" loading="lazy" decoding="async" alt="Illustration du BAFA">
+                        <span class="xp-card__count">02 / 03</span>
                     </div>
-
-                </div>
-
-            </article>
-
+                    <div class="xp-card__body">
+                        <span class="pg-badge">Formation et animation · BAFA</span>
+                        <h2>Animateur</h2>
+                        <p class="xp-card__sub">Avant l'informatique, il y a eu l'animation.</p>
+                        <p>Avec mon BAFA, j'ai été animateur sur plusieurs colonies et séjours de vacances. C'est là que j'ai appris à gérer un groupe, à rester calme et à prendre des décisions.</p>
+                        <div class="xp-card__cols">
+                            <div>
+                                <h3>Mes missions</h3>
+                                <ul class="pg-list"><li>Encadrement et accompagnement des enfants.</li><li>Préparation et animation d'activités.</li><li>Participation à la vie quotidienne des séjours.</li><li>Travail en équipe avec les autres animateurs.</li><li>Veiller à la sécurité et au bien-être des enfants.</li></ul>
+                            </div>
+                            <div>
+                                <h3>Compétences développées</h3>
+                                <div class="pg-tags"><span>Responsabilité</span><span>Organisation</span><span>Communication</span><span>Travail d'équipe</span><span>Adaptabilité</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="xp-card" data-stack-card style="--i: 2">
+                    <div class="xp-card__media">
+                        <img src="menuiserie.webp" width="900" height="675" loading="lazy" decoding="async" alt="Illustration de la menuiserie">
+                        <span class="xp-card__count">03 / 03</span>
+                    </div>
+                    <div class="xp-card__body">
+                        <span class="pg-badge">Environ un mois</span>
+                        <h2>Menuiserie</h2>
+                        <p class="xp-card__sub">Un mois dans un atelier, loin des écrans.</p>
+                        <p>J'ai travaillé environ un mois en menuiserie. Un métier très différent de l'informatique, mais avec la même exigence : mesurer deux fois, couper une fois.</p>
+                        <div class="xp-card__cols">
+                            <div>
+                                <h3>Ce que j'ai appris</h3>
+                                <ul class="pg-list"><li>Découverte du travail manuel et technique.</li><li>Importance de la précision dans les réalisations.</li><li>Respect des consignes et des règles de sécurité.</li><li>Découverte du fonctionnement d'un environnement professionnel.</li></ul>
+                            </div>
+                            <div>
+                                <h3>Compétences développées</h3>
+                                <div class="pg-tags"><span>Précision</span><span>Rigueur</span><span>Concentration</span><span>Travail manuel</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
-
-        <!-- BAFA -->
-
-        <section class="page-container">
-
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Expérience associative</span>
-
-                <h2>Mon expérience avec le BAFA</h2>
-
-                <p>
-                    Avant l'informatique, il y a eu l'animation.
-                </p>
-
+        <!-- CE QUE J'EN GARDE -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">Mon évolution</p>
+                <h2>Ce que ces expériences <span>m'ont apporté.</span></h2>
+                <p>Ce que je garde de ces trois expériences.</p>
             </div>
-
-            <article class="experience-secondary reveal">
-
-                <div class="experience-icon">
-                    <img src="bafa.webp" width="900" height="530" loading="lazy" decoding="async" alt="Illustration du BAFA">
-                </div>
-
-                <span class="experience-label">
-                    Formation et animation · BAFA
-                </span>
-
-                <h3>Animateur</h3>
-
-                <p>
-                    Avec mon BAFA, j'ai été animateur sur plusieurs colonies et séjours de vacances. C'est là que j'ai appris à gérer un groupe, à rester calme et à prendre des décisions.
-                </p>
-
-                <div class="experience-missions">
-
-                    <h3>Mes missions</h3>
-
-                    <ul>
-                        <li>Encadrement et accompagnement des enfants.</li>
-                        <li>Préparation et animation d'activités.</li>
-                        <li>Participation à la vie quotidienne des séjours.</li>
-                        <li>Travail en équipe avec les autres animateurs.</li>
-                        <li>Veiller à la sécurité et au bien-être des enfants.</li>
-                    </ul>
-
-                </div>
-
-                <div class="experience-skills">
-
-                    <h3>Compétences développées</h3>
-
-                    <div class="tags">
-                        <span>Responsabilité</span>
-                        <span>Organisation</span>
-                        <span>Communication</span>
-                        <span>Travail d'équipe</span>
-                        <span>Adaptabilité</span>
-                    </div>
-
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- MENUISERIE -->
-
-        <section class="page-container">
-
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Autre expérience professionnelle</span>
-
-                <h2>Découverte de la menuiserie</h2>
-
-                <p>
-                    Un mois dans un atelier, loin des écrans.
-                </p>
-
-            </div>
-
-            <article class="experience-secondary reveal">
-
-                <div class="experience-icon">
-                    <img src="menuiserie.webp" width="900" height="675" loading="lazy" decoding="async" alt="Illustration de la menuiserie">
-                </div>
-
-                <span class="experience-label">
-                    Environ un mois
-                </span>
-
-                <h3>Expérience en menuiserie</h3>
-
-                <p>
-                    J'ai travaillé environ un mois en menuiserie. Un métier très différent de l'informatique, mais avec la même exigence : mesurer deux fois, couper une fois.
-                </p>
-
-                <div class="experience-missions">
-
-                    <h3>Ce que j'ai appris</h3>
-
-                    <ul>
-                        <li>Découverte du travail manuel et technique.</li>
-                        <li>Importance de la précision dans les réalisations.</li>
-                        <li>Respect des consignes et des règles de sécurité.</li>
-                        <li>Découverte du fonctionnement d'un environnement professionnel.</li>
-                    </ul>
-
-                </div>
-
-                <div class="experience-skills">
-
-                    <h3>Compétences développées</h3>
-
-                    <div class="tags">
-                        <span>Précision</span>
-                        <span>Rigueur</span>
-                        <span>Concentration</span>
-                        <span>Travail manuel</span>
-                    </div>
-
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- BILAN -->
-
-        <section class="page-container">
-
-            <div class="page-heading reveal">
-
-                <span class="section-tag">Mon évolution</span>
-
-                <h2>Ce que ces expériences m'ont apporté</h2>
-
-                <p>
-                    Ce que je garde de ces trois expériences.
-                </p>
-
-            </div>
-
-            <div class="summary-grid">
-
-                <article class="summary-card reveal">
-
-                    <span class="summary-icon icon-box"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
-
+            <div class="xp-takes">
+                <article class="xp-take reveal">
+                    <span class="icon-box"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
                     <h3>Responsabilité</h3>
-
-                    <p>
-                        Quand on me confie quelque chose, je vais au bout.
-                    </p>
-
+                    <p>Quand on me confie quelque chose, je vais au bout.</p>
                 </article>
-
-
-                <article class="summary-card reveal">
-
-                    <span class="summary-icon icon-box"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span>
-
+                <article class="xp-take reveal">
+                    <span class="icon-box"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span>
                     <h3>Travail d'équipe</h3>
-
-                    <p>
-                        Parler avec des profils très différents, des enfants aux techniciens.
-                    </p>
-
+                    <p>Parler avec des profils très différents, des enfants aux techniciens.</p>
                 </article>
-
-
-                <article class="summary-card reveal">
-
-                    <span class="summary-icon icon-box"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h4l10 10h4"/><path d="M3 17h4l3-3"/><path d="M14 10l3-3h4"/><path d="m18 4 3 3-3 3"/><path d="m18 14 3 3-3 3"/></svg></span>
-
+                <article class="xp-take reveal">
+                    <span class="icon-box"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h4l10 10h4"/><path d="M3 17h4l3-3"/><path d="M14 10l3-3h4"/><path d="m18 4 3 3-3 3"/><path d="m18 14 3 3-3 3"/></svg></span>
                     <h3>Adaptabilité</h3>
-
-                    <p>
-                        Trouver ma place vite, même dans un domaine que je ne connais pas.
-                    </p>
-
+                    <p>Trouver ma place vite, même dans un domaine que je ne connais pas.</p>
                 </article>
-
             </div>
-
         </section>
 
         <!-- ONGLET SUIVANT -->

@@ -19,7 +19,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="commun.css">
-    <link rel="stylesheet" href="competences.css">
+    <link rel="stylesheet" href="onglets.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="uiverse-buttons.css">
     <link rel="stylesheet" href="motion.css">
@@ -28,7 +28,7 @@
     <script src="script.js" defer></script>
 </head>
 
-<body>
+<body class="page-onglet">
 
     <!-- NAVIGATION -->
 
@@ -75,176 +75,128 @@
 
     <!-- CONTENU PRINCIPAL -->
 
-    <main class="page-container skills-page">
+    <main class="pg-main">
 
-        <!-- INTRODUCTION -->
-
-        <section class="page-heading reveal">
-
-            <span class="section-tag">Mon savoir-faire</span>
-
-            <h1>Mes <span>compétences</span></h1>
-
-            <p>
-                Ce que je sais faire aujourd'hui, et ce que je suis encore en train d'apprendre.
-            </p>
-
+        <!-- EN-TÊTE DE L'ONGLET -->
+        <section class="pg-hero">
+            <div class="pg-hero__meta">
+                <span>06 / 08</span>
+                <span>COMPÉTENCES</span>
+            </div>
+            <p class="section-tag">Mon savoir-faire</p>
+            <h1 class="pg-hero__title">Mes <span>compétences</span></h1>
+            <p class="pg-hero__lead">Ce que je sais faire aujourd'hui, et ce que je suis encore en train d'apprendre.</p>
+            <span class="pg-hero__index" aria-hidden="true">06</span>
         </section>
 
-
-        <!-- PRÉSENTATION -->
-
-        <section class="skills-intro reveal">
-
-            <h2>
-                Des bases techniques que je continue de développer.
-            </h2>
-
-            <p>
-                J'apprends mieux en manipulant qu'en lisant : chaque notion ci-dessous, je l'ai d'abord pratiquée en TP.
-            </p>
-
-        </section>
-
-
-        <!-- COMPÉTENCES -->
-
-        <section class="skills-list reveal">
-
-            <article class="skill-row">
-
-                <span class="skill-number">01</span>
-
-                <div class="skill-content">
-
-                    <h2>Réseaux informatiques</h2>
-
-                    <div class="skill-subpart">
-                        <h3>Configuration réseau</h3>
-                        <p>
-                            Création de VLAN et configuration des ports
-                            Access et Trunk sur des équipements réseau.
-                        </p>
-                    </div>
-
-                    <div class="skill-subpart">
-                        <h3>Adressage et routage</h3>
-                        <p>
-                            Utilisation de l'adressage IPv4 et mise en
-                            communication de plusieurs VLAN.
-                        </p>
-                    </div>
-
-                    <span class="skill-level">
-                        Pratiqué en TP
-                    </span>
-
-                </div>
-
-                <span class="skill-category">RÉSEAU</span>
-
-            </article>
-
-
-            <article class="skill-row">
-
-                <span class="skill-number">02</span>
-
-                <div class="skill-content">
-
-                    <h2>Systèmes et virtualisation</h2>
-
-                    <div class="skill-subpart">
-                        <h3>Linux Debian</h3>
-                        <p>
-                            Installation du système, utilisation du terminal
-                            et découverte des commandes Linux.
-                        </p>
-                    </div>
-
-                    <div class="skill-subpart">
-                        <h3>Virtualisation</h3>
-                        <p>
-                            Création et configuration de machines virtuelles
-                            avec VMware Workstation.
-                        </p>
-                    </div>
-
-                    <span class="skill-level">
-                        Pratiqué en TP
-                    </span>
-
-                </div>
-
-                <span class="skill-category">SYSTÈME</span>
-
-            </article>
-
-
-            <article class="skill-row">
-
-                <span class="skill-number">03</span>
-
-                <div class="skill-content">
-
-                    <h2>Services réseau</h2>
-
-                    <div class="skill-subpart">
-                        <h3>DNS</h3>
-                        <p>
-                            Compréhension du mécanisme de résolution
-                            des noms en adresses IP.
-                        </p>
-                    </div>
-
-                    <div class="skill-subpart">
-                        <h3>DHCP</h3>
-                        <p>
-                            Compréhension de l'attribution automatique
-                            des paramètres réseau aux équipements.
-                        </p>
-                    </div>
-
-                    <span class="skill-level skill-theory">
-                        Notions étudiées
-                    </span>
-
-                </div>
-
-                <span class="skill-category">SERVICES</span>
-
-            </article>
-
-        </section>
-
-
-        <!-- OUTILS -->
-
-        <section class="skills-tools reveal">
-
-            <span class="section-tag">Outils utilisés</span>
-
-            <div class="tools-list">
-                <span>Cisco Packet Tracer</span>
-                <span>VMware Workstation</span>
-                <span>Visual Studio Code</span>
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <h2>Des bases techniques que je <span>continue de développer.</span></h2>
+                <p>J'apprends mieux en manipulant qu'en lisant : chaque notion ci-dessous, je l'ai d'abord pratiquée en TP.</p>
             </div>
 
+            <!-- ONGLETS INTERACTIFS -->
+            <div class="sk-tabs reveal" data-tabs>
+                <div class="sk-tabs__list" role="tablist" aria-label="Domaines de compétences">
+                    <button class="sk-tab" role="tab" id="sk-tab-01" aria-controls="sk-pane-01" aria-selected="true" tabindex="0">
+                        <span class="sk-tab__num">01</span>
+                        <span class="sk-tab__name">Réseaux informatiques</span>
+                        <span class="sk-tab__cat">RÉSEAU</span>
+                    </button>
+                    <button class="sk-tab" role="tab" id="sk-tab-02" aria-controls="sk-pane-02" aria-selected="false" tabindex="-1">
+                        <span class="sk-tab__num">02</span>
+                        <span class="sk-tab__name">Systèmes et virtualisation</span>
+                        <span class="sk-tab__cat">SYSTÈME</span>
+                    </button>
+                    <button class="sk-tab" role="tab" id="sk-tab-03" aria-controls="sk-pane-03" aria-selected="false" tabindex="-1">
+                        <span class="sk-tab__num">03</span>
+                        <span class="sk-tab__name">Services réseau</span>
+                        <span class="sk-tab__cat">SERVICES</span>
+                    </button>
+                    <span class="sk-tabs__indicator" aria-hidden="true"></span>
+                </div>
+                <div class="sk-tabs__panes">
+                <div class="sk-pane" role="tabpanel" id="sk-pane-01" aria-labelledby="sk-tab-01">
+                    <div class="sk-pane__head">
+                        <span class="sk-pane__big" aria-hidden="true">01</span>
+                        <div>
+                            <h2>Réseaux informatiques</h2>
+                            <span class="sk-level">Pratiqué en TP</span>
+                        </div>
+                    </div>
+                    <div class="sk-subs">
+                        <div class="sk-sub">
+                            <span class="sk-sub__n">01.1</span>
+                            <h3>Configuration réseau</h3>
+                            <p>Création de VLAN et configuration des ports Access et Trunk sur des équipements réseau.</p>
+                        </div>
+                        <div class="sk-sub">
+                            <span class="sk-sub__n">01.2</span>
+                            <h3>Adressage et routage</h3>
+                            <p>Utilisation de l'adressage IPv4 et mise en communication de plusieurs VLAN.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sk-pane" role="tabpanel" id="sk-pane-02" aria-labelledby="sk-tab-02" hidden>
+                    <div class="sk-pane__head">
+                        <span class="sk-pane__big" aria-hidden="true">02</span>
+                        <div>
+                            <h2>Systèmes et virtualisation</h2>
+                            <span class="sk-level">Pratiqué en TP</span>
+                        </div>
+                    </div>
+                    <div class="sk-subs">
+                        <div class="sk-sub">
+                            <span class="sk-sub__n">02.1</span>
+                            <h3>Linux Debian</h3>
+                            <p>Installation du système, utilisation du terminal et découverte des commandes Linux.</p>
+                        </div>
+                        <div class="sk-sub">
+                            <span class="sk-sub__n">02.2</span>
+                            <h3>Virtualisation</h3>
+                            <p>Création et configuration de machines virtuelles avec VMware Workstation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sk-pane" role="tabpanel" id="sk-pane-03" aria-labelledby="sk-tab-03" hidden>
+                    <div class="sk-pane__head">
+                        <span class="sk-pane__big" aria-hidden="true">03</span>
+                        <div>
+                            <h2>Services réseau</h2>
+                            <span class="sk-level sk-level--theory">Notions étudiées</span>
+                        </div>
+                    </div>
+                    <div class="sk-subs">
+                        <div class="sk-sub">
+                            <span class="sk-sub__n">03.1</span>
+                            <h3>DNS</h3>
+                            <p>Compréhension du mécanisme de résolution des noms en adresses IP.</p>
+                        </div>
+                        <div class="sk-sub">
+                            <span class="sk-sub__n">03.2</span>
+                            <h3>DHCP</h3>
+                            <p>Compréhension de l'attribution automatique des paramètres réseau aux équipements.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </section>
 
+        <!-- OUTILS -->
+        <section class="pg-section">
+            <div class="pg-section__head reveal">
+                <p class="section-tag">Outils utilisés</p>
+            </div>
+            <ul class="sk-tools reveal"><li><span class="sk-tool__n">01</span><span class="sk-tool__name">Cisco Packet Tracer</span><span class="sk-tool__arrow" aria-hidden="true">↗</span></li><li><span class="sk-tool__n">02</span><span class="sk-tool__name">VMware Workstation</span><span class="sk-tool__arrow" aria-hidden="true">↗</span></li><li><span class="sk-tool__n">03</span><span class="sk-tool__name">Visual Studio Code</span><span class="sk-tool__arrow" aria-hidden="true">↗</span></li></ul>
+        </section>
 
         <!-- CONCLUSION -->
-
-        <section class="skills-footer reveal">
-
-            <h2>
-                La suite ? Rester à jour.
-            </h2>
-
-            <p>
-                Dans un domaine qui bouge aussi vite, se tenir informé fait partie du métier. C'est le rôle de ma veille.
-            </p>
-
+        <section class="pg-section">
+            <div class="pg-quote reveal">
+                <h2>La suite ? <span>Rester à jour.</span></h2>
+                <p>Dans un domaine qui bouge aussi vite, se tenir informé fait partie du métier. C'est le rôle de ma veille.</p>
+            </div>
         </section>
 
         <!-- ONGLET SUIVANT -->
