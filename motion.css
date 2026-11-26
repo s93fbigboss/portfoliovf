@@ -503,6 +503,130 @@ body.is-hacking > *:not(.hack-transition) {
     }
 }
 
+
+/* =====================================================
+   10. ONGLET SUIVANT (fin de chaque page, dans l'ordre du menu)
+===================================================== */
+
+.next-step {
+    width: min(1250px, 90%);
+    margin: 40px auto 90px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.next-step__link {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 6px 24px;
+    padding: 34px 6px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--white);
+}
+
+/* Fond d'accent qui monte depuis le bas au survol */
+.next-step__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--cyan);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 520ms var(--ease-out);
+}
+
+.next-step__label {
+    grid-column: 1 / -1;
+    color: var(--muted);
+    font-family: "Fira Code", monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color var(--dur-base) ease, transform 520ms var(--ease-out);
+}
+
+.next-step__title {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 6vw, 76px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.035em;
+    transition: transform 520ms var(--ease-out), color var(--dur-base) ease;
+}
+
+.next-step__arrow {
+    width: clamp(52px, 6vw, 76px);
+    height: clamp(52px, 6vw, 76px);
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    font-size: clamp(22px, 2.6vw, 30px);
+    transition: transform 520ms var(--ease-spring), background var(--dur-base) ease, color var(--dur-base) ease, border-color var(--dur-base) ease;
+}
+
+.next-step__link:hover::before,
+.next-step__link:focus-visible::before {
+    transform: scaleY(1);
+}
+
+.next-step__link:hover,
+.next-step__link:focus-visible {
+    color: var(--on-accent);
+}
+
+.next-step__link:hover .next-step__label,
+.next-step__link:focus-visible .next-step__label {
+    color: var(--on-accent);
+    transform: translateX(14px);
+}
+
+.next-step__link:hover .next-step__title,
+.next-step__link:focus-visible .next-step__title {
+    transform: translateX(14px);
+}
+
+.next-step__link:hover .next-step__arrow,
+.next-step__link:focus-visible .next-step__arrow {
+    transform: translateX(-10px) rotate(-45deg);
+    background: var(--on-accent);
+    color: var(--cyan);
+    border-color: transparent;
+}
+
+.next-step__link:focus-visible {
+    outline: none;
+}
+
+.next-step__link:active .next-step__arrow {
+    transform: translateX(-10px) rotate(-45deg) scale(.92);
+}
+
+/* Page veille : même bloc en vert terminal */
+body.page-veille .next-step__link::before { background: #00ff66; }
+body.page-veille .next-step__link:hover,
+body.page-veille .next-step__link:hover .next-step__label { color: #050807; }
+body.page-veille .next-step__link:hover .next-step__arrow { background: #050807; color: #00ff66; }
+
+@media (max-width: 600px) {
+    .next-step__link {
+        padding: 26px 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .next-step__link::before,
+    .next-step__title,
+    .next-step__label,
+    .next-step__arrow {
+        transition: none;
+    }
+}
+
 .summary-card > .icon-box {
     display: grid;
 }
