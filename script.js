@@ -77,7 +77,8 @@ const typingText = document.getElementById("typing-text");
 const typingWords = [
     "Étudiant en BTS SIO SISR",
     "Pilote d'activité chez Orange",
-    "Passionné d'informatique"
+    "Passionné d'informatique",
+    "Cap sur la cybersécurité"
 ];
 
 let wordIndex = 0;
