@@ -109,81 +109,44 @@
         <section class="pg-section">
             <div class="pg-section__head reveal">
                 <p class="section-tag">MES DOSSIERS</p>
-                <h2>Les documents <span>de chaque projet.</span></h2>
-                <p>Survolez un dossier pour l'entrouvrir, cliquez pour sortir ses documents. Les PDF arrivent au fur et à mesure.</p>
+                <h2>Un dossier <span>par projet.</span></h2>
+                <p>Chaque dossier rassemble les documents d'un projet : schémas, documents techniques et comptes rendus en PDF, ajoutés au fur et à mesure. Survolez un dossier pour l'entrouvrir, cliquez pour sortir ses documents.</p>
             </div>
             <div class="pj-desk reveal">
-                <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Réseau redondant&quot;, &quot;meta&quot;: &quot;01 · Projet scolaire&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;marble&quot;, &quot;colors&quot;: [&quot;#07080a&quot;, &quot;#15171b&quot;, &quot;#2b3a12&quot;, &quot;#6f9a12&quot;, &quot;#d4ff3a&quot;, &quot;#f2f1ec&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 3.3, &quot;angle&quot;: -0.4, &quot;gloss&quot;: 0.5, &quot;veins&quot;: 0.45}, &quot;seed&quot;: 3, &quot;labelPlacement&quot;: &quot;bottom-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Schéma Packet Tracer&quot;, &quot;meta&quot;: &quot;Image&quot;, &quot;image&quot;: &quot;packet-tracer.webp&quot;, &quot;href&quot;: &quot;packet-tracer.webp&quot;}, {&quot;name&quot;: &quot;Document technique&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 0"></div>
-                <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Infra Orange&quot;, &quot;meta&quot;: &quot;02 · Projet pro&quot;, &quot;art&quot;: &quot;verdant&quot;, &quot;seed&quot;: 7, &quot;labelPlacement&quot;: &quot;top-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 1"></div>
-                <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;NAS perso&quot;, &quot;meta&quot;: &quot;03 · Projet perso&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;streak&quot;, &quot;colors&quot;: [&quot;#f2f1ec&quot;, &quot;#dfe9b0&quot;, &quot;#a8e000&quot;, &quot;#1a1c12&quot;, &quot;#2a2c33&quot;, &quot;#8a8f99&quot;, &quot;#e6e6e0&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 1.5, &quot;angle&quot;: -0.6, &quot;gloss&quot;: 0.2, &quot;veins&quot;: 0}, &quot;seed&quot;: 11, &quot;labelPlacement&quot;: &quot;top-right&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 2"></div>
+                <article class="pj-item reveal">
+                    <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Réseau redondant&quot;, &quot;meta&quot;: &quot;01 · Projet scolaire&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;marble&quot;, &quot;colors&quot;: [&quot;#07080a&quot;, &quot;#15171b&quot;, &quot;#2b3a12&quot;, &quot;#6f9a12&quot;, &quot;#d4ff3a&quot;, &quot;#f2f1ec&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 3.3, &quot;angle&quot;: -0.4, &quot;gloss&quot;: 0.5, &quot;veins&quot;: 0.45}, &quot;seed&quot;: 3, &quot;labelPlacement&quot;: &quot;bottom-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Schéma Packet Tracer&quot;, &quot;meta&quot;: &quot;Image&quot;, &quot;image&quot;: &quot;packet-tracer.webp&quot;, &quot;href&quot;: &quot;packet-tracer.webp&quot;}, {&quot;name&quot;: &quot;Document technique&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 0"></div>
+                    <div class="pj-item__cap">
+                        <p class="pj-item__kicker">01 · Projet scolaire · BTS SIO SISR</p>
+                        <h3>Architecture réseau redondante</h3>
+                        <p>Une infrastructure simulée sous Cisco Packet Tracer : VLAN 10 et 20, liaisons trunk, routage inter-VLAN et redondance des passerelles avec HSRP.</p>
+                        <div class="pg-tags"><span>Cisco 3560</span><span>Cisco 2960</span><span>VLAN</span><span>HSRP</span></div>
+                        <span class="pg-badge pg-badge--done">Réalisé</span>
+                    </div>
+                </article>
+                <article class="pj-item reveal">
+                    <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Infra Orange&quot;, &quot;meta&quot;: &quot;02 · Projet pro&quot;, &quot;art&quot;: &quot;verdant&quot;, &quot;seed&quot;: 7, &quot;labelPlacement&quot;: &quot;top-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 1"></div>
+                    <div class="pj-item__cap">
+                        <p class="pj-item__kicker">02 · Projet professionnel · Orange</p>
+                        <h3>Infrastructure réseau chez Orange</h3>
+                        <p>Concevoir et mettre en place une architecture réseau intégrant différents services d'infrastructure, dans le cadre de mon alternance.</p>
+                        <div class="pg-tags"><span>DHCP</span><span>DNS</span><span>Firewall</span></div>
+                        <span class="pg-badge pg-badge--wait">En préparation</span>
+                    </div>
+                </article>
+                <article class="pj-item reveal">
+                    <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;NAS perso&quot;, &quot;meta&quot;: &quot;03 · Projet perso&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;streak&quot;, &quot;colors&quot;: [&quot;#f2f1ec&quot;, &quot;#dfe9b0&quot;, &quot;#a8e000&quot;, &quot;#1a1c12&quot;, &quot;#2a2c33&quot;, &quot;#8a8f99&quot;, &quot;#e6e6e0&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 1.5, &quot;angle&quot;: -0.6, &quot;gloss&quot;: 0.2, &quot;veins&quot;: 0}, &quot;seed&quot;: 11, &quot;labelPlacement&quot;: &quot;top-right&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 2"></div>
+                    <div class="pj-item__cap">
+                        <p class="pj-item__kicker">03 · Projet personnel</p>
+                        <h3>NAS à la maison</h3>
+                        <p>Construire et configurer un serveur de stockage réseau pour découvrir le partage de fichiers et l'administration système.</p>
+                        <div class="pg-tags"><span>NAS</span><span>Linux</span><span>Stockage réseau</span></div>
+                        <span class="pg-badge pg-badge--wait">En préparation</span>
+                    </div>
+                </article>
             </div>
             <p class="pj-desk__hint" aria-hidden="true">Survoler · Cliquer pour ouvrir · Échap pour fermer</p>
         </section>
 
-        <section class="pg-section">
-            <div class="pj-grid">
-
-                <!-- PROJET 01 : MIS EN AVANT -->
-                <article class="pj-card pj-card--feature reveal">
-                    <div class="pj-card__media">
-                        <img src="packet-tracer.webp" width="1040" height="630" loading="lazy" decoding="async" alt="Architecture réseau réalisée sur Cisco Packet Tracer">
-                        <span class="pj-card__scan" aria-hidden="true"></span>
-                        <span class="pg-badge pg-badge--done">Réalisé</span>
-                    </div>
-                    <div class="pj-card__body">
-                        <small class="pj-card__kicker">01 · PROJET SCOLAIRE — BTS SIO SISR</small>
-                        <h2>Conception d'une architecture réseau redondante</h2>
-                        <p>Réalisation d'une infrastructure réseau simulée avec Cisco Packet Tracer. Le projet consiste à configurer plusieurs commutateurs Cisco, à segmenter le réseau en VLAN et à mettre en place une redondance des passerelles.</p>
-                        <h3>Objectifs du projet</h3>
-                        <ul class="pj-checks"><li><span class="pj-check"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Créer et configurer les VLAN 10 et VLAN 20.</li><li><span class="pj-check"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Configurer les liaisons trunk entre les commutateurs.</li><li><span class="pj-check"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Mettre en place le routage inter-VLAN.</li><li><span class="pj-check"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Configurer le protocole HSRP.</li><li><span class="pj-check"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Étudier la redondance des passerelles réseau.</li></ul>
-                        <h3>Environnement technique</h3>
-                        <div class="pg-tags"><span>Cisco 3560</span><span>Cisco 2960</span><span>Packet Tracer</span><span>VLAN</span><span>HSRP</span><span>Trunk</span></div>
-                        <p class="pj-card__doc">Document technique PDF : en préparation</p>
-                    </div>
-                </article>
-
-                <!-- PROJET 02 -->
-                <article class="pj-card reveal">
-                    <div class="pj-term" aria-hidden="true">
-                        <div class="pj-term__bar"><i></i><i></i><i></i><span>semih@sisr: ~</span></div>
-                        <div class="pj-term__screen">
-                            <span class="pj-term__cmd" data-type="./infra --site orange">$ </span>
-                            <span class="pj-term__out">&gt; DHCP ......... planifié</span><span class="pj-term__out">&gt; DNS .......... planifié</span><span class="pj-term__out">&gt; Firewall ..... planifié</span>
-                            <span class="pj-term__status">en attente de réalisation<b class="pj-term__caret"></b></span>
-                        </div>
-                    </div>
-                    <div class="pj-card__body">
-                        <small class="pj-card__kicker">02 · PROJET PROFESSIONNEL</small>
-                        <h2>Conception d'une infrastructure réseau chez Orange</h2>
-                        <p>Projet professionnel prévu dans le cadre de mon expérience en entreprise. L'objectif sera de concevoir et de mettre en place une architecture réseau intégrant différents services d'infrastructure.</p>
-                        <h3>Technologies envisagées</h3>
-                        <div class="pg-tags"><span>DHCP</span><span>DNS</span><span>Réseaux</span><span>Firewall</span></div>
-                        <span class="pg-badge pg-badge--wait">Projet en attente de réalisation</span>
-                    </div>
-                </article>
-
-                <!-- PROJET 03 -->
-                <article class="pj-card reveal">
-                    <div class="pj-term" aria-hidden="true">
-                        <div class="pj-term__bar"><i></i><i></i><i></i><span>semih@sisr: ~</span></div>
-                        <div class="pj-term__screen">
-                            <span class="pj-term__cmd" data-type="./nas --init maison">$ </span>
-                            <span class="pj-term__out">&gt; stockage réseau ... à monter</span><span class="pj-term__out">&gt; partage fichiers .. à configurer</span><span class="pj-term__out">&gt; système Linux .... à installer</span>
-                            <span class="pj-term__status">en attente de réalisation<b class="pj-term__caret"></b></span>
-                        </div>
-                    </div>
-                    <div class="pj-card__body">
-                        <small class="pj-card__kicker">03 · PROJET PERSONNEL</small>
-                        <h2>Création et configuration d'un NAS personnel</h2>
-                        <p>Projet personnel visant à construire et configurer un serveur de stockage réseau à domicile. L'objectif sera de découvrir le stockage réseau, le partage de fichiers et l'administration système.</p>
-                        <h3>Technologies envisagées</h3>
-                        <div class="pg-tags"><span>NAS</span><span>Stockage réseau</span><span>Linux</span><span>Administration</span></div>
-                        <span class="pg-badge pg-badge--wait">Projet en attente de réalisation</span>
-                    </div>
-                </article>
-
-            </div>
-        </section>
 
         <!-- ONGLET SUIVANT -->
         <nav class="next-step reveal" aria-label="Onglet suivant">

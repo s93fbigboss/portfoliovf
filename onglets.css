@@ -2619,12 +2619,10 @@ body.light-theme .pg-badge--wait {
 
 .pj-desk {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 40px 56px;
-    padding: 50px 20px 60px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px 32px;
+    padding: 50px 32px 46px;
     border: 1px solid var(--border);
     border-radius: 28px;
     overflow: hidden;
@@ -2632,7 +2630,54 @@ body.light-theme .pg-badge--wait {
     background: var(--bg-alt);
 }
 
-/* Bureau pointillé, comme sur le modèle */
+/* Un projet = son dossier + sa présentation */
+.pj-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+}
+
+.pj-item__cap {
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+    width: 100%;
+    max-width: 340px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.pj-item__kicker {
+    color: var(--cyan);
+    font-family: "Fira Code", monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.pj-item__cap h3 {
+    color: var(--white);
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+}
+
+.pj-item__cap > p:not(.pj-item__kicker) {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.pj-item__cap .pg-badge {
+    margin-top: 4px;
+}
+
+@media (max-width: 1100px) {
+    .pj-desk {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+}
+
 .pj-desk::before {
     content: "";
     position: absolute;
