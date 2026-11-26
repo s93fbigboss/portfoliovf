@@ -35,7 +35,7 @@
     border: 4px solid var(--cyan);
     border-radius: 50%;
     background: var(--bg);
-    box-shadow: 0 0 12px rgba(8, 199, 233, 0.3);
+    box-shadow: 0 0 12px rgb(var(--accent-rgb) / 0.3);
 }
 
 .timeline-card,
@@ -95,7 +95,7 @@
     width: fit-content;
     margin: 10px 0;
     padding: 7px 13px;
-    border: 1px solid rgba(8, 199, 233, 0.3);
+    border: 1px solid rgb(var(--accent-rgb) / 0.3);
     border-radius: 30px;
     color: var(--cyan);
     font-size: 12px;

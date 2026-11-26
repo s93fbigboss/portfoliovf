@@ -48,7 +48,7 @@ body:not(.light-theme) .uiverse-cta.uiverse-cta--type1 {
     --uiverse-text: var(--cyan);
     --uiverse-fill: var(--cyan);
     --uiverse-hover-text: var(--bg);
-    --uiverse-shadow: rgba(8, 199, 233, .3);
+    --uiverse-shadow: rgb(var(--accent-rgb) / .3);
 }
 
 .uiverse-cta__text {
@@ -155,10 +155,10 @@ body.page-veille .uiverse-cta.uiverse-cta--type1:hover {
     transform-style: preserve-3d;
 }
 
-/* Thème sombre : bloc violet foncé, survol cyan */
+/* Thème sombre : bloc graphite, survol lime */
 body:not(.light-theme) .uiverse-stack {
-    --stack-bg: #2E2C52;
-    --stack-side: #22213F;
+    --stack-bg: #22222A;
+    --stack-side: #17171D;
     --stack-hover: var(--cyan);
     --stack-hover-text: #0E0D1C;
 }
@@ -330,7 +330,7 @@ body.page-veille .uiverse-stack {
 
 .theme-toggle:hover {
     transform: rotate(180deg) scale(1.08);
-    box-shadow: 0 0 18px rgba(8, 199, 233, .35);
+    box-shadow: 0 0 18px rgb(var(--accent-rgb) / .35);
 }
 
 .theme-toggle:hover::after {

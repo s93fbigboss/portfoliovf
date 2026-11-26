@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#19182f">
+    <meta name="theme-color" content="#0B0B0E">
     <meta name="description" content="Portfolio de Semih Dusunceli, étudiant en BTS SIO SISR et alternant chez Orange. Découvrez son parcours, ses compétences et ses projets.">
 
     <title>Semih.dev | Portfolio</title>
@@ -12,7 +12,7 @@
     <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="commun.css">
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="uiverse-buttons.css">
 
     <!-- JavaScript -->
+    <script>document.documentElement.classList.add("js");</script>
+    <script src="glass-reveal.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 
@@ -65,48 +67,63 @@
 
     <main>
 
-        <!-- HERO D'ACCUEIL INSPIRÉ DE PRISMA, ADAPTÉ AU PORTFOLIO -->
-        <section class="prisma-hero" id="accueil" aria-labelledby="home-title">
-            <video
-                class="prisma-hero__video"
-                data-home-hero-video
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-hidden="true">
-                <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4" type="video/mp4">
-            </video>
+        <!-- HERO : LOGO EN VERRE LIQUIDE -->
+        <section class="glass-hero" id="accueil" aria-labelledby="home-title">
+            <div class="glass-hero__inner">
 
-            <div class="prisma-hero__noise" aria-hidden="true"></div>
-            <div class="prisma-hero__shade" aria-hidden="true"></div>
+                <div class="glass-hero__text">
+                    <p class="glass-hero__eyebrow hero-step">
+                        <span class="glass-hero__status" aria-hidden="true"></span>
+                        PORTFOLIO · BTS SIO SISR · <span id="hero-year">2026</span>
+                    </p>
 
-            <div class="prisma-hero__content">
-                <div class="prisma-hero__identity">
-                    <p class="prisma-hero__eyebrow">PORTFOLIO PERSONNEL · BTS SIO SISR</p>
-                    <h1 class="prisma-hero__title" id="home-title" aria-label="Semih Dusunceli">
-                        <span class="prisma-hero__first-name">SEMİH<span class="prisma-hero__asterisk" aria-hidden="true">*</span></span>
-                        <span class="prisma-hero__last-name">DUSUNCELI</span>
+                    <h1 class="glass-hero__title" id="home-title" aria-label="Semih Dusunceli">
+                        <span class="glass-hero__line" data-split aria-hidden="true">SEMİH<span class="glass-hero__accent">.</span></span>
+                        <span class="glass-hero__line glass-hero__line--outline" data-split aria-hidden="true">DUSUNCELI</span>
                     </h1>
+
+                    <p class="glass-hero__role hero-step">
+                        <span class="glass-hero__prompt" aria-hidden="true">&gt;_</span>
+                        <span id="typing-text">Étudiant en BTS SIO SISR</span><span class="glass-hero__caret" aria-hidden="true"></span>
+                    </p>
+
+                    <p class="glass-hero__copy hero-step">
+                        En deuxième année à Schola Nova et alternant chez Orange comme pilote d'activité.
+                        Je construis mes compétences là où ça se passe : systèmes, réseaux, infrastructure.
+                    </p>
+
+                    <div class="glass-hero__actions hero-step">
+                        <a href="projets.html" class="uiverse-cta uiverse-cta--type1">
+                            <span class="uiverse-cta__text">Voir mes projets ↗</span>
+                        </a>
+                        <a href="profil.html" class="text-link">Qui suis-je ?</a>
+                    </div>
                 </div>
 
-                <div class="prisma-hero__intro">
-                    <p class="prisma-hero__role">
-                        <span class="prisma-hero__status" aria-hidden="true"></span>
-                        <span id="typing-text">Étudiant en BTS SIO SISR</span>
+                <div class="glass-hero__visual hero-step">
+                    <div class="glass-hero__stage" data-glass-stage></div>
+                    <p class="glass-hero__hint" aria-hidden="true">
+                        <span>FIG. 01 — S/ DOT</span>
+                        <span>CLIQUE POUR REJOUER ↺</span>
                     </p>
-                    <p class="prisma-hero__copy">
-                        En deuxième année à Schola Nova et alternant chez Orange comme pilote d'activité,
-                        je développe mes compétences en systèmes, réseaux et infrastructure.
-                    </p>
-                    <p class="prisma-hero__domains">SYSTÈMES · RÉSEAUX · INFRASTRUCTURE</p>
-                    <a class="prisma-hero__cta" href="projets.html">
-                        Découvrir mes projets
-                        <span class="prisma-hero__cta-icon" aria-hidden="true">→</span>
-                    </a>
                 </div>
+
             </div>
+
+            <ul class="glass-hero__meta hero-step" aria-label="En bref">
+                <li><span>ALTERNANCE</span>Orange · Pilote d'activité</li>
+                <li><span>FORMATION</span>Schola Nova · SISR</li>
+                <li><span>STATUT</span>Disponible pour échanger</li>
+            </ul>
         </section>
+
+        <!-- BANDEAU DÉFILANT -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                <span>SYSTÈMES</span><i>✦</i><span>RÉSEAUX</span><i>✦</i><span>VLAN</span><i>✦</i><span>LINUX DEBIAN</span><i>✦</i><span>VIRTUALISATION</span><i>✦</i><span>CYBERSÉCURITÉ</span><i>✦</i><span>PACKET TRACER</span><i>✦</i><span>SUPERVISION</span><i>✦</i>
+                <span>SYSTÈMES</span><i>✦</i><span>RÉSEAUX</span><i>✦</i><span>VLAN</span><i>✦</i><span>LINUX DEBIAN</span><i>✦</i><span>VIRTUALISATION</span><i>✦</i><span>CYBERSÉCURITÉ</span><i>✦</i><span>PACKET TRACER</span><i>✦</i><span>SUPERVISION</span><i>✦</i>
+            </div>
+        </div>
 
 
         <!-- PARCOURS -->

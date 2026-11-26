@@ -10,26 +10,33 @@
 ===================================================== */
 
 :root {
-    --bg: #19182F;
-    --bg-alt: #141426;
+    /* Palette « graphite + lime » : fond presque noir, accent lime électrique.
+       --cyan est gardé comme nom de variable pour ne pas casser les autres fichiers :
+       c'est la couleur d'accent du site. */
+    --bg: #0B0B0E;
+    --bg-alt: #111116;
 
-    --card: #222238;
-    --card-hover: #2A2A43;
+    --card: #15151B;
+    --card-hover: #1C1C23;
 
-    --cyan: #08C7E9;
-    --blue: #0878E8;
+    --cyan: #D4FF3A;
+    --blue: #A8E000;
+    --accent-rgb: 212 255 58;
+    --on-accent: #0B0B0E;
 
-    --white: #F5F5FA;
-    --text: #D2D2DF;
-    --muted: #A5A5B8;
+    --white: #F2F1EC;
+    --text: #CFCEC7;
+    --muted: #9A998F;
 
-    --border: rgba(255,255,255,.10);
-    --shadow: rgba(0,0,0,.25);
+    --border: rgba(255,255,255,.09);
+    --shadow: rgba(0,0,0,.4);
 
-    --header-bg: rgba(25,24,47,.96);
-    --footer-bg: #10101F;
+    --header-bg: rgba(11,11,14,.82);
+    --footer-bg: #08080A;
 
-    --gradient: linear-gradient(100deg, var(--blue), var(--cyan));
+    --gradient: linear-gradient(100deg, #B9F200, #E4FF85);
+
+    --font-display: "Bricolage Grotesque", "Inter", Arial, sans-serif;
 }
 
 
@@ -68,7 +75,18 @@ button {
 
 img {
     max-width: 100%;
+    height: auto;
     display: block;
+}
+
+h1, h2, h3,
+.logo {
+    font-family: var(--font-display);
+}
+
+::selection {
+    background: var(--cyan);
+    color: var(--on-accent);
 }
 
 h1, h2, h3, h4 {
@@ -137,7 +155,7 @@ p {
     position: relative;
     padding: 8px 0;
 
-    color: #C1C1D0;
+    color: #C9C8C0;
     font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
@@ -203,7 +221,7 @@ p {
 .theme-toggle:hover {
     transform: rotate(20deg);
     border-color: var(--cyan);
-    background: rgba(8,199,233,.1);
+    background: rgb(var(--accent-rgb) / .1);
 }
 
 
@@ -289,13 +307,13 @@ p {
 .btn-primary,
 .primary-button {
     background: var(--gradient);
-    color: #FFFFFF;
+    color: var(--on-accent);
     border: 1px solid transparent;
 }
 
 .btn-primary:hover,
 .primary-button:hover {
-    box-shadow: 0 7px 24px rgba(8,199,233,.25);
+    box-shadow: 0 7px 24px rgb(var(--accent-rgb) / .3);
 }
 
 .btn-ghost {
@@ -342,24 +360,28 @@ footer p {
 ===================================================== */
 
 body.light-theme {
-    --bg: #F7F9FC;
-    --bg-alt: #EDF3FA;
+    --bg: #F3F2ED;
+    --bg-alt: #EBEAE3;
 
     --card: #FFFFFF;
-    --card-hover: #F1F7FC;
+    --card-hover: #F8F7F2;
 
-    --cyan: #079FBD;
-    --blue: #4A91D9;
+    --cyan: #4A6800;
+    --blue: #3A5200;
+    --accent-rgb: 74 104 0;
+    --on-accent: #FFFFFF;
 
-    --white: #34445B;
-    --text: #53647A;
-    --muted: #8492A5;
+    --white: #141414;
+    --text: #3A3A35;
+    --muted: #66655E;
 
-    --border: #E1E9F2;
-    --shadow: rgba(80,110,145,.08);
+    --border: #DDDBD2;
+    --shadow: rgba(30,30,10,.07);
 
-    --header-bg: rgba(255,255,255,.96);
-    --footer-bg: #EAF0F7;
+    --header-bg: rgba(243,242,237,.88);
+    --footer-bg: #EAE9E2;
+
+    --gradient: linear-gradient(100deg, #3A5200, #5C8000);
 }
 
 
@@ -367,24 +389,24 @@ body.light-theme {
 
 body.light-theme .navbar {
     background: var(--header-bg);
-    border-bottom: 1px solid #E5ECF4;
+    border-bottom: 1px solid var(--border);
 }
 
 body.light-theme .nav-links a {
-    color: #52647B;
+    color: var(--muted);
 }
 
 body.light-theme .nav-links a:hover,
 body.light-theme .nav-links a.active {
-    color: #079FBD;
+    color: var(--cyan);
 }
 
 
 /* Bouton jour / nuit */
 
 body.light-theme .theme-toggle {
-    color: #52647B;
-    border-color: #D5E0EC;
+    color: var(--muted);
+    border-color: var(--border);
 }
 
 
@@ -392,31 +414,31 @@ body.light-theme .theme-toggle {
 
 body.light-theme .footer,
 body.light-theme footer {
-    background: #EAF0F7;
-    border-top: 1px solid #DCE5EF;
+    background: var(--footer-bg);
+    border-top: 1px solid var(--border);
 }
 
 body.light-theme .footer p,
 body.light-theme footer p {
-    color: #718198;
+    color: var(--muted);
 }
 
 body.light-theme .footer .logo,
 body.light-theme footer .logo {
-    color: #34445B;
+    color: var(--white);
 }
 
 
 /* Boutons */
 
 body.light-theme .btn-ghost {
-    color: #52647B;
-    border-color: #D5E0EC;
+    color: var(--muted);
+    border-color: var(--border);
 }
 
 body.light-theme .btn-ghost:hover {
-    color: #079FBD;
-    border-color: #079FBD;
+    color: var(--cyan);
+    border-color: var(--cyan);
 }
 
 
@@ -436,4 +458,127 @@ body.light-theme .btn-ghost:hover {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+/* =====================================================
+   9. MENU MOBILE (bouton ajouté par script.js)
+===================================================== */
+
+.nav-burger {
+    display: none;
+    position: relative;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.nav-burger span {
+    position: absolute;
+    left: 50%;
+    width: 18px;
+    height: 2px;
+    margin-left: -9px;
+    border-radius: 2px;
+    background: var(--white);
+    transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), opacity .2s ease, top .35s ease;
+}
+
+.nav-burger span:nth-child(1) { top: 15px; }
+.nav-burger span:nth-child(2) { top: 21px; }
+.nav-burger span:nth-child(3) { top: 27px; }
+
+.nav-open .nav-burger span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav-open .nav-burger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-open .nav-burger span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+@media (max-width: 1180px) {
+    .navbar {
+        position: relative;
+    }
+
+    .nav-burger {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 999;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 10px 5% 24px;
+
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+
+        clip-path: inset(0 0 100% 0);
+        visibility: hidden;
+        transition: clip-path .5s cubic-bezier(.7, 0, .2, 1), visibility 0s .5s;
+    }
+
+    .nav-open .nav-links {
+        clip-path: inset(0 0 0 0);
+        visibility: visible;
+        transition: clip-path .5s cubic-bezier(.7, 0, .2, 1), visibility 0s;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        font-family: var(--font-display);
+        font-size: clamp(22px, 5vw, 30px);
+        font-weight: 700;
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity .3s ease, transform .4s ease, color .3s ease;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-open .nav-links a {
+        opacity: 1;
+        transform: none;
+    }
+
+    .nav-open .nav-links a:nth-child(1) { transition-delay: .08s; }
+    .nav-open .nav-links a:nth-child(2) { transition-delay: .12s; }
+    .nav-open .nav-links a:nth-child(3) { transition-delay: .16s; }
+    .nav-open .nav-links a:nth-child(4) { transition-delay: .2s; }
+    .nav-open .nav-links a:nth-child(5) { transition-delay: .24s; }
+    .nav-open .nav-links a:nth-child(6) { transition-delay: .28s; }
+    .nav-open .nav-links a:nth-child(7) { transition-delay: .32s; }
+    .nav-open .nav-links a:nth-child(8) { transition-delay: .36s; }
+    .nav-open .nav-links a:nth-child(9) { transition-delay: .4s; }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--cyan);
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 560px) {
+    .nav-contact {
+        display: none !important;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
 }

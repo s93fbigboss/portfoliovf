@@ -34,7 +34,7 @@ function updateThemeButton() {
     if (themeColor) {
         themeColor.setAttribute(
             "content",
-            isLight ? "#f4f6fc" : "#19182f"
+            isLight ? "#F3F2ED" : "#0B0B0E"
         );
     }
 }
@@ -111,26 +111,6 @@ function typeWriter() {
 const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 ).matches;
-
-const homeHeroVideo = document.querySelector("[data-home-hero-video]");
-
-if (homeHeroVideo) {
-    homeHeroVideo.addEventListener("error", () => {
-        homeHeroVideo.classList.add("is-unavailable");
-    }, { once: true });
-
-    if (reduceMotion) {
-        homeHeroVideo.pause();
-    } else {
-        const videoPlayback = homeHeroVideo.play();
-
-        if (videoPlayback && typeof videoPlayback.catch === "function") {
-            videoPlayback.catch(() => {
-                homeHeroVideo.classList.add("is-unavailable");
-            });
-        }
-    }
-}
 
 if (typingText) {
     if (!reduceMotion) {
@@ -418,3 +398,150 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+/* =====================================================
+   ACCUEIL — LOGO EN VERRE LIQUIDE + ENTRÉE DU TITRE
+===================================================== */
+
+(() => {
+    const hero = document.querySelector(".glass-hero");
+    if (!hero) return;
+
+    const stage = hero.querySelector("[data-glass-stage]");
+    const yearEl = document.getElementById("hero-year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // 1. Découpe du titre en lettres (chacune animée avec un petit décalage)
+    let index = 0;
+    hero.querySelectorAll("[data-split]").forEach((line) => {
+        const parts = Array.from(line.childNodes);
+        line.textContent = "";
+        parts.forEach((node) => {
+            const target = node.nodeType === Node.TEXT_NODE ? line : node;
+            const text = node.textContent;
+            if (node.nodeType !== Node.TEXT_NODE) {
+                node.textContent = "";
+                line.appendChild(node);
+            }
+            Array.from(text).forEach((char) => {
+                const wrap = document.createElement("span");
+                wrap.className = "glass-hero__char";
+                const inner = document.createElement("span");
+                inner.textContent = char;
+                inner.style.setProperty("--i", index++);
+                wrap.appendChild(inner);
+                target.appendChild(wrap);
+            });
+        });
+    });
+
+    // 2. Lancement de la chorégraphie
+    let live = false;
+    function goLive() {
+        if (live) return;
+        live = true;
+        hero.classList.add("is-live");
+        // Quand toutes les lettres sont en place, le survol reprend la main
+        setTimeout(() => hero.classList.add("is-done"), 350 + index * 45 + 950);
+    }
+    // Sécurité : le texte apparaît même si le WebGL tarde
+    setTimeout(goLive, 1200);
+
+    // 3. Logo « S. » en verre liquide, aux couleurs du thème
+    const css = (name) => getComputedStyle(document.body).getPropertyValue(name).trim();
+
+    function logoSvg(isLight) {
+        const ink = isLight ? "#141414" : "#F2F1EC";
+        const dot = isLight ? "#5C8000" : "#D4FF3A";
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path fill="${ink}" d="M8 8H72V28H28V40H72V92H8V72H52V60H8Z"/>
+            <rect fill="${dot}" x="78" y="72" width="20" height="20"/>
+        </svg>`;
+    }
+
+    function themeOptions() {
+        const isLight = document.body.classList.contains("light-theme");
+        const bg = css("--bg") || (isLight ? "#F3F2ED" : "#0B0B0E");
+        return {
+            logo: logoSvg(isLight),
+            look: isLight ? "light" : "dark",
+            background: bg,
+            plateColor: isLight ? "#FFFFFF" : "#15151B",
+            originalColors: true,
+            iconPlate: !isLight,
+            tileSize: 300,
+            logoScale: 0.6,
+            finalScale: isLight ? 0.85 : 1,
+            hold: 3.5,
+        };
+    }
+
+    if (stage && window.GlassReveal) {
+        const reveal = window.GlassReveal.mount(stage, {
+            ...themeOptions(),
+            onStart: goLive,
+        });
+
+        // Changement de thème : on repeint le verre sans recréer le canvas
+        new MutationObserver(() => reveal.update(themeOptions()))
+            .observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    } else {
+        goLive();
+    }
+
+    // 4. Halo qui suit la souris
+    if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
+        let frame = 0;
+        hero.addEventListener("pointermove", (event) => {
+            if (frame) return;
+            frame = requestAnimationFrame(() => {
+                const rect = hero.getBoundingClientRect();
+                hero.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+                hero.style.setProperty("--my", `${event.clientY - rect.top}px`);
+                frame = 0;
+            });
+        });
+    }
+})();
+
+
+/* =====================================================
+   MENU MOBILE (toutes les pages)
+===================================================== */
+
+(() => {
+    const links = document.querySelector(".nav-links");
+    const actions = document.querySelector(".nav-actions");
+    if (!links || !actions) return;
+
+    const bar = links.closest(".navbar") || links.parentElement;
+    links.id = links.id || "menu-principal";
+
+    const burger = document.createElement("button");
+    burger.type = "button";
+    burger.className = "nav-burger";
+    burger.setAttribute("aria-label", "Ouvrir le menu");
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-controls", links.id);
+    burger.innerHTML = "<span></span><span></span><span></span>";
+    actions.appendChild(burger);
+
+    function setOpen(open) {
+        bar.classList.toggle("nav-open", open);
+        document.body.classList.toggle("menu-open", open);
+        burger.setAttribute("aria-expanded", String(open));
+        burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+    }
+
+    burger.addEventListener("click", () => setOpen(!bar.classList.contains("nav-open")));
+    links.addEventListener("click", (event) => {
+        if (event.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setOpen(false);
+    });
+    window.matchMedia("(min-width: 1181px)").addEventListener("change", (event) => {
+        if (event.matches) setOpen(false);
+    });
+})();

@@ -1,106 +1,10 @@
-
 /* =====================================================
    SEMIH.DEV — ACCUEIL
-   Direction artistique : Digital Editorial
+   Direction artistique : graphite + lime, logo en verre liquide
 ===================================================== */
-
-/* VARIABLES LOCALES */
 
 .page-accueil {
-    --hero-line: rgba(165, 165, 184, .19);
-    --hero-soft: rgba(8, 199, 233, .08);
-    --hero-glow: rgba(8, 199, 233, .13);
-}
-
-/* =====================================================
-   1. HERO
-===================================================== */
-
-.hero {
-    min-height: calc(100vh - 76px);
-    padding: 45px 5% 55px;
-    position: relative;
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-
-    background:
-        radial-gradient(circle at 78% 40%, var(--hero-glow), transparent 32%),
-        radial-gradient(circle at 10% 85%, rgba(92, 65, 180, .12), transparent 30%),
-        var(--bg);
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    background-image:
-        linear-gradient(var(--hero-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--hero-line) 1px, transparent 1px);
-
-    background-size: 70px 70px;
-    opacity: .16;
-
-    mask-image: linear-gradient(to bottom, black, transparent 90%);
-}
-
-.hero-inner {
-    width: 100%;
-    max-width: 1450px;
-    margin: auto;
-    position: relative;
-    z-index: 2;
-}
-
-.hero-topline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-
-    padding-bottom: 20px;
-    margin-bottom: 55px;
-
-    border-bottom: 1px solid var(--hero-line);
-
-    color: var(--muted);
-    font-family: "Fira Code", monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-}
-
-.hero-location {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    flex-shrink: 0;
-
-    border-radius: 50%;
-    background: #28C840;
-    box-shadow: 0 0 12px rgba(40, 200, 64, .6);
-}
-
-/* =====================================================
-   2. COMPOSITION PRINCIPALE
-===================================================== */
-
-.hero-main {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
-    align-items: center;
-    gap: 50px;
-}
-
-.intro {
-    min-width: 0;
+    --hero-soft: rgb(var(--accent-rgb) / .06);
 }
 
 .eyebrow {
@@ -113,342 +17,376 @@
     letter-spacing: 3px;
 }
 
-.intro-copy {
-    width: 100%;
-}
-
-.intro-copy h1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    margin: 0 0 30px;
-
-    color: var(--white);
-    font-size: clamp(65px, 9.5vw, 138px);
-    font-weight: 900;
-    line-height: .84;
-    letter-spacing: -9px;
-}
-
-.hero-title-small {
-    margin-bottom: 18px;
-
-    color: var(--muted);
-    font-family: "Fira Code", monospace;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 5px;
-    line-height: 1.5;
-}
-
 .highlight {
     color: var(--cyan);
 }
 
-.hero-title-outline {
-    margin-top: 18px;
-
-    color: transparent;
-    -webkit-text-stroke: 1px var(--muted);
-
-    font-size: clamp(28px, 4.2vw, 58px);
-    font-weight: 800;
-    letter-spacing: -2px;
-    line-height: 1;
-}
 
 /* =====================================================
-   3. MÉTIER / ANIMATION
+   1. HERO — LOGO EN VERRE LIQUIDE
 ===================================================== */
 
-.hero-role {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.glass-hero {
+    --mx: 30%;
+    --my: 40%;
 
-    min-height: 40px;
-    margin-bottom: 25px;
-}
-
-.role-line {
-    width: 35px;
-    height: 2px;
-    flex-shrink: 0;
-
-    background: var(--cyan);
-}
-
-.hero-role p {
-    margin: 0;
-
-    color: var(--cyan);
-    font-family: "Fira Code", monospace;
-    font-size: clamp(14px, 1.8vw, 19px);
-}
-
-.cursor {
-    display: inline-block;
-    margin-left: 2px;
-    animation: blink .7s infinite;
-}
-
-@keyframes blink {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
-}
-
-.description {
-    max-width: 640px;
-    margin-bottom: 32px;
-
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.9;
-    white-space: pre-line;
-}
-
-/* =====================================================
-   4. BOUTONS
-===================================================== */
-
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px;
-}
-
-.hero-actions .btn {
-    transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.hero-actions .btn:hover {
-    transform: translateY(-4px);
-}
-
-/* =====================================================
-   5. PHOTO
-===================================================== */
-
-.hero-visual {
-    width: 100%;
-    max-width: 440px;
-    justify-self: end;
     position: relative;
-    padding: 25px 20px;
-}
-
-.visual-index,
-.visual-caption {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    color: var(--muted);
-    font-family: "Fira Code", monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-}
-
-.visual-index {
-    margin-bottom: 18px;
-}
-
-.portrait-frame {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-
-    padding: 12px;
-
-    border: 1px solid rgba(8, 199, 233, .45);
-    background: var(--card);
-
-    box-shadow: 18px 18px 0 rgba(8, 199, 233, .08);
-}
-
-.portrait-frame::before {
-    content: "";
-    position: absolute;
-    inset: 7px;
-    z-index: 1;
-    pointer-events: none;
-
-    border: 1px solid rgba(255, 255, 255, .15);
-}
-
-.portrait-frame img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-    object-fit: cover;
-    object-position: center 35%;
-
-    filter: saturate(.8);
-    transition: filter .4s ease, transform .5s ease;
-}
-
-.portrait-frame:hover img {
-    filter: saturate(1.1);
-    transform: scale(1.015);
-}
-
-.portrait-frame-label {
-    position: absolute;
-    top: -13px;
-    left: 25px;
-    z-index: 3;
-
-    padding: 6px 12px;
-
-    background: var(--bg);
-    color: var(--cyan);
-
-    font-family: "Fira Code", monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-}
-
-.portrait-cross {
-    position: absolute;
-    z-index: 3;
-
-    color: var(--cyan);
-    font-family: "Fira Code", monospace;
-    font-size: 22px;
-}
-
-.portrait-cross-one {
-    top: -13px;
-    right: -10px;
-}
-
-.portrait-cross-two {
-    bottom: -13px;
-    left: -10px;
-}
-
-.visual-caption {
-    margin-top: 22px;
-}
-
-/* =====================================================
-   6. BANDEAU TECHNIQUE
-===================================================== */
-
-.hero-bottom {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 25px;
-
-    margin-top: 65px;
-    padding-top: 22px;
-
-    border-top: 1px solid var(--hero-line);
-}
-
-.hero-bottom-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: var(--text);
-    font-family: "Fira Code", monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-}
-
-.bottom-number {
-    color: var(--cyan);
-    font-size: 12px;
-}
-
-.hero-bottom-note {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    margin-left: auto;
-
-    color: var(--muted);
-    font-family: "Fira Code", monospace;
-    font-size: 10px;
-}
-
-/* =====================================================
-   7. COORDONNÉES DÉCORATIVES
-===================================================== */
-
-.hero-coordinate {
-    position: absolute;
-    z-index: 1;
-
-    color: var(--muted);
-    opacity: .4;
-
-    font-family: "Fira Code", monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    writing-mode: vertical-rl;
-}
-
-.coordinate-one {
-    top: 150px;
-    right: 17px;
-}
-
-.coordinate-two {
-    bottom: 100px;
-    left: 15px;
-    transform: rotate(180deg);
-}
-
-/* =====================================================
-   8. DÉFILEMENT
-===================================================== */
-
-.scroll-cue {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
+    overflow: hidden;
+    isolation: isolate;
+    min-height: calc(100svh - 76px);
+    padding: clamp(36px, 6vh, 70px) 5% 0;
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+
+    background: var(--bg);
+}
+
+/* Halo qui suit la souris (position mise à jour par script.js) */
+.glass-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(520px circle at var(--mx) var(--my), rgb(var(--accent-rgb) / .09), transparent 60%);
+    transition: background .2s ease;
+}
+
+/* Fines lignes de repère, façon plan technique */
+.glass-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to right, var(--border) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 25% 100%, 100% 33.33%;
+    opacity: .55;
+    mask-image: linear-gradient(to bottom, #000 40%, transparent);
+}
+
+.glass-hero__inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
     align-items: center;
-    gap: 8px;
+    gap: clamp(30px, 5vw, 80px);
+}
+
+.glass-hero__text {
+    min-width: 0;
+}
+
+.glass-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
 
     color: var(--muted);
     font-family: "Fira Code", monospace;
-    font-size: 9px;
-    letter-spacing: 3px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
 }
 
-.scroll-cue span {
-    width: 1px;
-    height: 25px;
-
+.glass-hero__status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     background: var(--cyan);
-    animation: scroll-line 1.5s infinite;
+    box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / .6);
+    animation: hero-pulse 2s ease-out infinite;
 }
 
-@keyframes scroll-line {
-    0% {
-        transform: scaleY(.2);
-        transform-origin: top;
-    }
-    50% {
-        transform: scaleY(1);
-        transform-origin: top;
-    }
-    100% {
-        transform: scaleY(.2);
-        transform-origin: bottom;
-    }
+.glass-hero__title {
+    margin: 0 0 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: clamp(64px, 10.5vw, 168px);
+    font-weight: 800;
+    line-height: .86;
+    letter-spacing: -.045em;
 }
+
+.glass-hero__line {
+    display: block;
+    white-space: nowrap;
+}
+
+.glass-hero__line--outline {
+    margin-top: .08em;
+    font-size: .52em;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--white);
+}
+
+.glass-hero__accent {
+    color: var(--cyan);
+}
+
+/* Lettres découpées par script.js : chacune monte derrière un masque */
+.glass-hero__char {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: .04em;
+}
+
+.glass-hero__char > span {
+    display: inline-block;
+    transition: transform .25s ease, color .25s ease;
+}
+
+/* Petit saut des lettres au survol du titre */
+.glass-hero__char:hover > span {
+    transform: translateY(-8%) rotate(-4deg);
+    color: var(--cyan);
+}
+
+.glass-hero__line--outline .glass-hero__char:hover > span {
+    -webkit-text-stroke-color: var(--cyan);
+}
+
+.glass-hero__role {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 32px;
+    margin-bottom: 18px;
+
+    color: var(--white);
+    font-family: "Fira Code", monospace;
+    font-size: clamp(15px, 1.5vw, 19px);
+}
+
+.glass-hero__prompt {
+    color: var(--cyan);
+}
+
+.glass-hero__caret {
+    width: 10px;
+    height: 1.2em;
+    margin-left: -6px;
+    background: var(--cyan);
+    animation: hero-blink 1s steps(1) infinite;
+}
+
+.glass-hero__copy {
+    max-width: 520px;
+    margin-bottom: 34px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.glass-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 26px;
+}
+
+.glass-hero__visual {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    justify-self: end;
+}
+
+.glass-hero__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--bg);
+    cursor: pointer;
+}
+
+/* Coins de visée autour du logo */
+.glass-hero__visual::before,
+.glass-hero__visual::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 26px;
+    height: 26px;
+    pointer-events: none;
+    border-color: var(--cyan);
+    border-style: solid;
+}
+
+.glass-hero__visual::before {
+    top: -8px;
+    left: -8px;
+    border-width: 2px 0 0 2px;
+}
+
+.glass-hero__visual::after {
+    right: -8px;
+    bottom: 38px;
+    border-width: 0 2px 2px 0;
+}
+
+.glass-hero__hint {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+
+    color: var(--muted);
+    font-family: "Fira Code", monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.glass-hero__meta {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    list-style: none;
+    border-top: 1px solid var(--border);
+}
+
+.glass-hero__meta li {
+    padding: 20px 0 24px;
+
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.glass-hero__meta li + li {
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+}
+
+.glass-hero__meta li span {
+    display: block;
+    margin-bottom: 4px;
+
+    color: var(--muted);
+    font-family: "Fira Code", monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+
+/* --- Chorégraphie d'entrée (seulement si JavaScript est actif) --- */
+
+.js .glass-hero .hero-step {
+    opacity: 0;
+    transform: translateY(22px);
+}
+
+.js .glass-hero .glass-hero__char > span {
+    transform: translateY(105%);
+}
+
+.js .glass-hero.is-live .hero-step {
+    animation: hero-rise .9s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+.js .glass-hero.is-live .glass-hero__char > span {
+    animation: hero-letter .9s cubic-bezier(.2, .9, .25, 1) forwards;
+    animation-delay: calc(.35s + var(--i) * 45ms);
+}
+
+.js .glass-hero.is-live .glass-hero__visual { animation-delay: 0s; }
+.js .glass-hero.is-live .glass-hero__eyebrow { animation-delay: .2s; }
+.js .glass-hero.is-live .glass-hero__role { animation-delay: 1.05s; }
+.js .glass-hero.is-live .glass-hero__copy { animation-delay: 1.2s; }
+.js .glass-hero.is-live .glass-hero__actions { animation-delay: 1.35s; }
+.js .glass-hero.is-live .glass-hero__meta { animation-delay: 1.6s; }
+
+/* Une fois l'entrée finie, le survol des lettres reprend la main */
+.js .glass-hero.is-done .glass-hero__char > span {
+    animation: none;
+    transform: none;
+}
+
+.js .glass-hero.is-done .glass-hero__char:hover > span {
+    transform: translateY(-8%) rotate(-4deg);
+}
+
+@keyframes hero-rise {
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-letter {
+    to { transform: translateY(0); }
+}
+
+@keyframes hero-blink {
+    50% { opacity: 0; }
+}
+
+@keyframes hero-pulse {
+    0%   { box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / .6); }
+    100% { box-shadow: 0 0 0 12px rgb(var(--accent-rgb) / 0); }
+}
+
+
+/* =====================================================
+   2. BANDEAU DÉFILANT
+===================================================== */
+
+.marquee {
+    overflow: hidden;
+    padding: 18px 0;
+    background: var(--cyan);
+    color: var(--on-accent);
+    transform: rotate(-1.2deg) scale(1.02);
+    margin: 10px 0 30px;
+}
+
+.marquee__track {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    width: max-content;
+    animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+    animation-play-state: paused;
+}
+
+.marquee span {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.6vw, 32px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    white-space: nowrap;
+}
+
+.marquee i {
+    font-style: normal;
+    font-size: 18px;
+}
+
+@keyframes marquee {
+    to { transform: translateX(-50%); }
+}
+
 
 /* =====================================================
    9. SECTIONS
@@ -687,7 +625,7 @@
 .contact-strip {
     padding: 65px 5%;
     background:
-        linear-gradient(110deg, rgba(8, 199, 233, .09), transparent 65%),
+        linear-gradient(110deg, rgb(var(--accent-rgb) / .09), transparent 65%),
         var(--bg-alt);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
@@ -714,122 +652,58 @@
     letter-spacing: -1.5px;
 }
 
-/* =====================================================
-   13. ANIMATIONS
-===================================================== */
 
-@media (prefers-reduced-motion: no-preference) {
-    .hero-main .intro {
-        animation: hero-enter .8s ease both;
-    }
-
-    .hero-visual {
-        animation: visual-enter 1s .15s ease both;
-    }
-}
-
-@keyframes hero-enter {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes visual-enter {
-    from {
-        opacity: 0;
-        transform: translateX(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
 
 /* =====================================================
-   14. RESPONSIVE
+   13. RESPONSIVE
 ===================================================== */
 
 @media (max-width: 1050px) {
-    .hero-main {
-        grid-template-columns: minmax(0, 1fr) minmax(250px, .65fr);
-        gap: 30px;
-    }
-
-    .intro-copy h1 {
-        font-size: clamp(58px, 8vw, 100px);
-        letter-spacing: -6px;
-    }
-
     .journey-layout {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .glass-hero {
+        min-height: auto;
+        padding-top: 30px;
+    }
+
+    .glass-hero__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .glass-hero__visual {
+        order: -1;
+        max-width: 380px;
+        justify-self: center;
+    }
+
+    .glass-hero__meta {
+        grid-template-columns: 1fr;
+    }
+
+    .glass-hero__meta li + li {
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid var(--border);
     }
 }
 
 @media (max-width: 768px) {
-    .hero {
-        min-height: auto;
-        padding: 55px 6% 75px;
-    }
-
-    .hero-topline {
-        margin-bottom: 40px;
-        font-size: 9px;
-        letter-spacing: 1px;
-    }
-
-    .hero-main {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
-
-    .intro-copy h1 {
-        font-size: clamp(60px, 13vw, 100px);
-        letter-spacing: -5px;
-    }
-
-    .hero-visual {
-        width: min(100%, 390px);
-        justify-self: center;
-    }
-
-    .hero-bottom {
-        margin-top: 45px;
-        gap: 18px;
-    }
-
-    .hero-bottom-note {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .scroll-cue,
-    .hero-coordinate {
-        display: none;
-    }
-
     .section,
     .technical-section {
-        padding: 75px 6%;
-    }
-
-    .journey-layout {
-        grid-template-columns: 1fr;
+        padding: 70px 5%;
     }
 
     .technical-heading {
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
     }
 
     .technical-item {
-        grid-template-columns: 35px minmax(0, 1fr) 30px;
-        gap: 12px;
+        grid-template-columns: 45px 1fr 25px;
     }
 
     .technical-description {
@@ -837,363 +711,42 @@
     }
 
     .contact-strip-inner {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
     }
 }
 
 @media (max-width: 480px) {
-    .hero {
-        padding-top: 40px;
+    .glass-hero__title {
+        font-size: clamp(54px, 17vw, 80px);
     }
 
-    .hero-topline {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .intro-copy h1 {
-        font-size: clamp(52px, 14vw, 70px);
-        letter-spacing: -4px;
-    }
-
-    .hero-title-outline {
-        font-size: clamp(24px, 7vw, 35px);
-        letter-spacing: -1px;
-    }
-
-    .description {
-        font-size: 14px;
-    }
-
-    .hero-actions {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .hero-actions .btn {
-        text-align: center;
-    }
-
-    .hero-bottom-item {
-        font-size: 9px;
+    .glass-hero__visual {
+        max-width: 300px;
     }
 
     .journey-feature,
     .journey-secondary {
-        padding: 23px;
-    }
-
-    .journey-feature h3,
-    .journey-secondary h3 {
-        font-size: 43px;
-    }
-
-    .technical-item {
-        min-height: 85px;
-    }
-
-    .technical-name {
-        font-size: 16px;
-    }
-
-    .contact-strip {
-        padding: 55px 6%;
+        padding: 22px;
     }
 }
+
 
 /* =====================================================
-   HERO D'ACCUEIL VIDÉO — ADAPTATION PRISMA
+   14. MOUVEMENTS RÉDUITS
 ===================================================== */
 
-.prisma-hero {
-    position: relative;
-    isolation: isolate;
-    width: min(calc(100% - 32px), 1560px);
-    height: min(920px, calc(100vh - 112px));
-    height: clamp(600px, calc(100svh - 112px), 920px);
-    min-height: 600px;
-    margin: 18px auto 76px;
-    overflow: hidden;
-    border-radius: 30px;
-    background:
-        radial-gradient(circle at 76% 35%, rgba(8, 199, 233, .23), transparent 34%),
-        radial-gradient(circle at 18% 80%, rgba(92, 65, 180, .32), transparent 42%),
-        #11121c;
-}
-
-.prisma-hero__video,
-.prisma-hero__noise,
-.prisma-hero__shade {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.prisma-hero__video {
-    z-index: -2;
-    object-fit: cover;
-    opacity: .68;
-    filter: saturate(.8) brightness(.76);
-}
-
-.prisma-hero__video.is-unavailable {
-    display: none;
-}
-
-.prisma-hero__noise {
-    z-index: 0;
-    pointer-events: none;
-    opacity: .14;
-    background-image: radial-gradient(rgba(225, 224, 204, .38) .55px, transparent .7px);
-    background-size: 4px 4px;
-    mix-blend-mode: overlay;
-}
-
-.prisma-hero__shade {
-    z-index: -1;
-    pointer-events: none;
-    background:
-        linear-gradient(180deg, rgba(5, 6, 10, .28) 0%, rgba(5, 6, 10, .04) 35%, rgba(5, 6, 10, .87) 100%),
-        linear-gradient(90deg, rgba(5, 6, 10, .16), transparent 75%);
-}
-
-.prisma-hero__content {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
-    align-items: end;
-    gap: clamp(28px, 5vw, 76px);
-    padding: clamp(120px, 15vh, 180px) clamp(24px, 5vw, 76px) clamp(34px, 5vw, 68px);
-}
-
-.prisma-hero__identity {
-    min-width: 0;
-}
-
-.prisma-hero__eyebrow,
-.prisma-hero__domains {
-    color: rgba(225, 224, 204, .72);
-    font-family: "Fira Code", monospace;
-    font-size: 10px;
-    letter-spacing: .18em;
-}
-
-.prisma-hero__eyebrow {
-    margin-bottom: clamp(20px, 3vw, 38px);
-}
-
-.prisma-hero__title {
-    margin: 0;
-    color: #E1E0CC;
-    font-weight: 500;
-    line-height: .82;
-    letter-spacing: -.07em;
-}
-
-.prisma-hero__first-name {
-    position: relative;
-    display: inline-block;
-    font-size: clamp(92px, 19vw, 270px);
-    animation: prisma-word-pull-up .8s cubic-bezier(.16, 1, .3, 1) .08s both;
-}
-
-.prisma-hero__asterisk {
-    position: absolute;
-    top: .65em;
-    right: -.3em;
-    color: var(--cyan);
-    font-size: .31em;
-}
-
-.prisma-hero__last-name {
-    display: block;
-    margin-top: clamp(14px, 2.5vw, 28px);
-    color: rgba(225, 224, 204, .74);
-    font-family: "Fira Code", monospace;
-    font-size: clamp(13px, 1.35vw, 19px);
-    letter-spacing: .34em;
-    animation: prisma-word-pull-up .8s cubic-bezier(.16, 1, .3, 1) .2s both;
-}
-
-.prisma-hero__intro {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 22px;
-    max-width: 440px;
-    padding-bottom: 8px;
-    color: #E1E0CC;
-    animation: prisma-copy-rise .8s cubic-bezier(.16, 1, .3, 1) .45s both;
-}
-
-.prisma-hero__role {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    color: #E1E0CC;
-    font-family: "Fira Code", monospace;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.prisma-hero__status {
-    width: 8px;
-    height: 8px;
-    flex: 0 0 8px;
-    border-radius: 50%;
-    background: #28C840;
-    box-shadow: 0 0 12px rgba(40, 200, 64, .7);
-}
-
-.prisma-hero__copy {
-    max-width: 42ch;
-    margin: 0;
-    color: rgba(225, 224, 204, .82);
-    font-size: clamp(15px, 1.1vw, 17px);
-    line-height: 1.75;
-}
-
-.prisma-hero__domains {
-    margin: 0;
-    color: rgba(225, 224, 204, .58);
-    font-size: 9px;
-}
-
-.prisma-hero__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    min-height: 50px;
-    padding: 4px 5px 4px 22px;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    background: #E1E0CC;
-    color: #151515;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: gap .3s ease, transform .3s ease, box-shadow .3s ease;
-}
-
-.prisma-hero__cta:hover {
-    gap: 16px;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, .22);
-}
-
-.prisma-hero__cta:focus-visible {
-    outline: 3px solid var(--cyan);
-    outline-offset: 4px;
-}
-
-.prisma-hero__cta-icon {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #151515;
-    color: #E1E0CC;
-    font-size: 21px;
-    line-height: 1;
-    transition: transform .3s ease;
-}
-
-.prisma-hero__cta:hover .prisma-hero__cta-icon {
-    transform: scale(1.1);
-}
-
-@keyframes prisma-word-pull-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes prisma-copy-rise {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 900px) {
-    .prisma-hero {
-        height: min(900px, calc(100vh - 112px));
-        height: clamp(640px, calc(100svh - 112px), 900px);
-        min-height: 640px;
-    }
-
-    .prisma-hero__content {
-        grid-template-columns: 1fr;
-        align-content: end;
-        gap: 32px;
-        padding-top: 150px;
-    }
-
-    .prisma-hero__first-name {
-        font-size: clamp(100px, 19vw, 190px);
-    }
-
-    .prisma-hero__intro {
-        max-width: 560px;
-        gap: 16px;
-    }
-}
-
-@media (max-width: 560px) {
-    .prisma-hero {
-        width: calc(100% - 20px);
-        height: min(850px, calc(100vh - 96px));
-        height: clamp(660px, calc(100svh - 96px), 850px);
-        min-height: 660px;
-        margin: 10px auto 54px;
-        border-radius: 20px;
-    }
-
-    .prisma-hero__content {
-        gap: 28px;
-        padding: 132px 22px 28px;
-    }
-
-    .prisma-hero__eyebrow {
-        margin-bottom: 26px;
-        font-size: 9px;
-    }
-
-    .prisma-hero__first-name {
-        font-size: clamp(76px, 20vw, 122px);
-    }
-
-    .prisma-hero__last-name {
-        margin-top: 16px;
-        font-size: 12px;
-        letter-spacing: .27em;
-    }
-
-    .prisma-hero__copy {
-        font-size: 14px;
-    }
-
-    .prisma-hero__domains {
-        font-size: 8px;
-        letter-spacing: .1em;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .prisma-hero__first-name,
-    .prisma-hero__last-name,
-    .prisma-hero__intro {
-        animation: none;
+    .js .glass-hero .hero-step,
+    .js .glass-hero .glass-hero__char > span {
         opacity: 1;
         transform: none;
+        animation: none !important;
     }
 
-    .prisma-hero__cta,
-    .prisma-hero__cta-icon {
-        transition-duration: .01ms;
+    .marquee__track,
+    .glass-hero__status,
+    .glass-hero__caret {
+        animation: none;
     }
 }
