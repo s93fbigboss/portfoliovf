@@ -1,0 +1,79 @@
+/* From Uiverse.io by Gaurav-WebDev - https://uiverse.io/Gaurav-WebDev/tall-mayfly-60
+   MIT License, Copyright (c) Gaurav-WebDev (Gaurav Sharma) */
+
+.uiverse-cta.uiverse-cta--type1 {
+    --uiverse-border: #252525;
+    --uiverse-text: #333;
+    --uiverse-fill: #333;
+    --uiverse-hover-text: #fff;
+    --uiverse-shadow: #252525;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 200px;
+    max-width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    overflow: hidden;
+    border: 2px solid var(--uiverse-border);
+    border-radius: 30px;
+    background-color: transparent;
+    color: var(--uiverse-text);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all .5s ease-in-out;
+}
+
+body:not(.light-theme) .uiverse-cta.uiverse-cta--type1 {
+    --uiverse-border: var(--cyan);
+    --uiverse-text: var(--cyan);
+    --uiverse-fill: var(--cyan);
+    --uiverse-hover-text: var(--bg);
+    --uiverse-shadow: rgba(8, 199, 233, .3);
+}
+
+.uiverse-cta__text {
+    position: relative;
+    z-index: 1;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.skills-footer .uiverse-cta.uiverse-cta--type1 {
+    display: inline-flex;
+}
+
+.contact-form .uiverse-cta.uiverse-cta--type1 {
+    border: 2px solid var(--uiverse-border);
+}
+
+.uiverse-cta--type1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 10px;
+    height: 10px;
+    border-radius: 30px;
+    background-color: var(--uiverse-fill);
+    visibility: hidden;
+    transition: all .5s ease-in-out;
+}
+
+.uiverse-cta.uiverse-cta--type1:hover {
+    border-color: transparent;
+    box-shadow: 1px 1px 200px var(--uiverse-shadow);
+    color: var(--uiverse-hover-text);
+    transform: none;
+}
+
+.uiverse-cta.uiverse-cta--type1:hover::after {
+    visibility: visible;
+    transform: scale(100) translateX(2px);
+}
