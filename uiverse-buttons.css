@@ -51,6 +51,21 @@ body:not(.light-theme) .uiverse-cta.uiverse-cta--type1 {
     --uiverse-shadow: rgb(var(--accent-rgb) / .3);
 }
 
+/* Ces boutons portent aussi les classes .btn-primary / .primary-button, qui ajoutent
+   un fond en dégradé : on l'annule, sinon le texte se confond avec le fond. */
+.uiverse-cta.uiverse-cta--type1.btn-primary,
+.uiverse-cta.uiverse-cta--type1.primary-button {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 30px;
+}
+
+.uiverse-cta.uiverse-cta--type1.btn-primary:hover,
+.uiverse-cta.uiverse-cta--type1.primary-button:hover {
+    background: transparent;
+    box-shadow: 1px 1px 200px var(--uiverse-shadow);
+}
+
 .uiverse-cta__text {
     position: relative;
     z-index: 1;
