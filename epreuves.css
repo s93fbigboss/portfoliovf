@@ -162,7 +162,7 @@
     border-bottom: 1px solid var(--border);
     background: transparent;
     transform-style: preserve-3d;
-    transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+    transition: opacity .65s cubic-bezier(.2, .7, .2, 1), background .3s ease, border-color .3s ease, box-shadow .3s ease, transform .35s cubic-bezier(.2, .75, .25, 1);
 }
 
 .epreuve-card::before {
@@ -218,9 +218,19 @@
 .epreuves-note p { color: var(--muted); font-family: Inter, sans-serif; font-size: 13px; line-height: 1.8; }
 
 /* ANIMATIONS JS */
-.epreuves-page .epreuve-card.epreuve-animate { opacity: 0; transform: translateY(35px); }
-.epreuves-page .epreuve-card.epreuve-visible { opacity: 1; transform: translateY(0); }
-.epreuves-page .epreuve-card.epreuve-visible:hover { transform: translateY(-4px); }
+.epreuves-page .epreuve-card.epreuve-animate {
+    opacity: 0;
+    transform: translateY(35px);
+}
+
+.epreuves-page .epreuve-card.epreuve-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.epreuves-page .epreuve-card.epreuve-visible:hover {
+    transform: translateY(-4px);
+}
 
 /* THÈME CLAIR */
 body.light-theme .epreuves-hero { background: radial-gradient(circle at 83% 28%, rgba(8,199,233,.10), transparent 30%), #f4f6fc; }

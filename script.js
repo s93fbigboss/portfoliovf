@@ -366,6 +366,16 @@ document.addEventListener("DOMContentLoaded", () => {
         cards.forEach((card, index) => {
             card.classList.add("epreuve-animate");
             card.style.transitionDelay = `${index * 120}ms`;
+
+            const cleanRevealStyles = (event) => {
+                if (event.target !== card || event.propertyName !== "opacity") return;
+
+                card.classList.remove("epreuve-animate");
+                card.style.removeProperty("transition-delay");
+                card.removeEventListener("transitionend", cleanRevealStyles);
+            };
+
+            card.addEventListener("transitionend", cleanRevealStyles);
             cardObserver.observe(card);
         });
     } else {
