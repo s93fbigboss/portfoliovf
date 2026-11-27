@@ -2978,6 +2978,7 @@ body.light-theme .pg-badge--wait {
 
 /* Boutons Télécharger (PDF / Excel) + Imprimer */
 .ts-buttons {
+    padding: 0 0 22px 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
