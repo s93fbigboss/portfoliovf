@@ -1054,17 +1054,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =====================================================
-   PING — LA MASCOTTE DU SITE
+   NOVA — LA MASCOTTE DU SITE
    Une astuce par page, les yeux suivent la souris,
    clic = petit saut + astuce suivante, × = rangé pour la session.
 ===================================================== */
 
 (() => {
-    if (sessionStorage.getItem("ping-hidden") === "1") return;
+    if (sessionStorage.getItem("nova-hidden") === "1") return;
 
     const page = (location.pathname.split("/").pop() || "index.html").replace(".html", "") || "index";
     const TIPS = {
-        index: ["Salut, moi c'est Ping ! Clique sur « Qui suis-je ? » pour commencer la visite.", "Clique sur le logo en verre pour rejouer son animation."],
+        index: ["Salut, moi c'est Nova ! Clique sur « Qui suis-je ? » pour commencer la visite.", "Clique sur le logo en verre pour rejouer son animation."],
         profil: ["Ici, tout sur Semih : son école, son entreprise et ce qui le motive.", "Les flèches en haut mènent à l'onglet suivant."],
         epreuves: ["Survole une compétence du tableau pour voir les réalisations qui la mobilisent.", "Chaque étape du déroulé renvoie vers l'onglet qui l'illustre."],
         formation: ["Fais défiler : la frise se remplit au fur et à mesure.", "Le lien vers le site de Schola Nova est juste en dessous."],
@@ -1081,10 +1081,10 @@ document.addEventListener("DOMContentLoaded", () => {
     root.className = "ping";
     root.innerHTML = `
         <div class="ping__bubble" role="status" aria-live="polite">
-            <strong>PING &gt;_</strong><span class="ping__text"></span>
+            <strong>NOVA &gt;_</strong><span class="ping__text"></span>
             <button class="ping__close" type="button" aria-label="Ranger la mascotte">×</button>
         </div>
-        <button class="ping__bot" type="button" aria-label="Ping, la mascotte : afficher une astuce">
+        <button class="ping__bot" type="button" aria-label="Nova, la mascotte : afficher une astuce">
             <svg viewBox="0 0 74 84" aria-hidden="true">
                 <path class="p-wave" d="M29 4a11 11 0 0 1 16 0"/>
                 <path class="p-wave p-wave--2" d="M25 0a17 17 0 0 1 24 0"/>
@@ -1134,7 +1134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bot.addEventListener("animationend", () => bot.classList.remove("is-jump"));
 
     root.querySelector(".ping__close").addEventListener("click", () => {
-        sessionStorage.setItem("ping-hidden", "1");
+        sessionStorage.setItem("nova-hidden", "1");
         root.hidden = true;
     });
 
