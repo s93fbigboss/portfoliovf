@@ -2974,3 +2974,27 @@ body.light-theme .pg-badge--wait {
         display: none !important;
     }
 }
+
+
+/* Boutons Télécharger (PDF / Excel) + Imprimer */
+.ts-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+a.ts-print {
+    text-decoration: none;
+}
+
+.ts-download .ui-icon {
+    transition: transform 400ms var(--ease-spring);
+}
+
+.ts-download:hover .ui-icon {
+    transform: translateY(3px);
+}
+
+@media print {
+    .ts-buttons { display: none !important; }
+}
