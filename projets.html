@@ -26,6 +26,7 @@
 
     <!-- JAVASCRIPT -->
     <script src="glass-folder.js" defer></script>
+    <script src="realisations.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 
@@ -86,7 +87,7 @@
                 <span class="pg-hero__badge"><i aria-hidden="true"></i>05 / 08 · PROJETS</span>
                 <p class="section-tag">Mes réalisations</p>
                 <h1 class="pg-hero__title">Mes <span>projets</span></h1>
-                <p class="pg-hero__lead">Un projet terminé, deux en préparation : école, entreprise et perso.</p>
+                <p class="pg-hero__lead">Mes réalisations en formation et chez Orange, chacune avec ses documents. Les mêmes que dans mon tableau de synthèse.</p>
                 <div class="pg-hero__foot">
                     <div class="pg-hero__author">
                         <span class="pg-hero__line" aria-hidden="true"></span>
@@ -109,41 +110,17 @@
         <section class="pg-section">
             <div class="pg-section__head reveal">
                 <p class="section-tag">MES DOSSIERS</p>
-                <h2>Un dossier <span>par projet.</span></h2>
+                <h2>Un dossier <span>par réalisation.</span></h2>
                 <p>Chaque dossier rassemble les documents d'un projet : schémas, documents techniques et comptes rendus en PDF, ajoutés au fur et à mesure. Survolez un dossier pour l'entrouvrir, cliquez pour sortir ses documents.</p>
             </div>
-            <div class="pj-desk reveal">
-                <article class="pj-item reveal">
-                    <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Réseau redondant&quot;, &quot;meta&quot;: &quot;01 · Projet scolaire&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;marble&quot;, &quot;colors&quot;: [&quot;#07080a&quot;, &quot;#15171b&quot;, &quot;#2b3a12&quot;, &quot;#6f9a12&quot;, &quot;#d4ff3a&quot;, &quot;#f2f1ec&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 3.3, &quot;angle&quot;: -0.4, &quot;gloss&quot;: 0.5, &quot;veins&quot;: 0.45}, &quot;seed&quot;: 3, &quot;labelPlacement&quot;: &quot;bottom-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Schéma Packet Tracer&quot;, &quot;meta&quot;: &quot;Image&quot;, &quot;image&quot;: &quot;packet-tracer.webp&quot;, &quot;href&quot;: &quot;packet-tracer.webp&quot;}, {&quot;name&quot;: &quot;Document technique&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 0"></div>
-                    <div class="pj-item__cap">
-                        <p class="pj-item__kicker">01 · Projet scolaire · BTS SIO SISR</p>
-                        <h3>Architecture réseau redondante</h3>
-                        <p>Une infrastructure simulée sous Cisco Packet Tracer : VLAN 10 et 20, liaisons trunk, routage inter-VLAN et redondance des passerelles avec HSRP.</p>
-                        <div class="pg-tags"><span>Cisco 3560</span><span>Cisco 2960</span><span>VLAN</span><span>HSRP</span></div>
-                        <span class="pg-badge pg-badge--done">Réalisé</span>
-                    </div>
-                </article>
-                <article class="pj-item reveal">
-                    <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;Infra Orange&quot;, &quot;meta&quot;: &quot;02 · Projet pro&quot;, &quot;art&quot;: &quot;verdant&quot;, &quot;seed&quot;: 7, &quot;labelPlacement&quot;: &quot;top-left&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 1"></div>
-                    <div class="pj-item__cap">
-                        <p class="pj-item__kicker">02 · Projet professionnel · Orange</p>
-                        <h3>Infrastructure réseau chez Orange</h3>
-                        <p>Concevoir et mettre en place une architecture réseau intégrant différents services d'infrastructure, dans le cadre de mon alternance.</p>
-                        <div class="pg-tags"><span>DHCP</span><span>DNS</span><span>Firewall</span></div>
-                        <span class="pg-badge pg-badge--wait">En préparation</span>
-                    </div>
-                </article>
-                <article class="pj-item reveal">
-                    <div class="pj-folder" data-folder='{&quot;label&quot;: &quot;NAS perso&quot;, &quot;meta&quot;: &quot;03 · Projet perso&quot;, &quot;art&quot;: {&quot;style&quot;: &quot;streak&quot;, &quot;colors&quot;: [&quot;#f2f1ec&quot;, &quot;#dfe9b0&quot;, &quot;#a8e000&quot;, &quot;#1a1c12&quot;, &quot;#2a2c33&quot;, &quot;#8a8f99&quot;, &quot;#e6e6e0&quot;], &quot;scale&quot;: 0.7, &quot;warp&quot;: 1.5, &quot;angle&quot;: -0.6, &quot;gloss&quot;: 0.2, &quot;veins&quot;: 0}, &quot;seed&quot;: 11, &quot;labelPlacement&quot;: &quot;top-right&quot;, &quot;files&quot;: [{&quot;name&quot;: &quot;Dossier de projet&quot;, &quot;meta&quot;: &quot;PDF · à venir&quot;}]}' style="--d: 2"></div>
-                    <div class="pj-item__cap">
-                        <p class="pj-item__kicker">03 · Projet personnel</p>
-                        <h3>NAS à la maison</h3>
-                        <p>Construire et configurer un serveur de stockage réseau pour découvrir le partage de fichiers et l'administration système.</p>
-                        <div class="pg-tags"><span>NAS</span><span>Linux</span><span>Stockage réseau</span></div>
-                        <span class="pg-badge pg-badge--wait">En préparation</span>
-                    </div>
-                </article>
+            <div class="pj-filters reveal" role="group" aria-label="Filtrer les réalisations">
+                <button type="button" class="pj-filter" data-filter="all" aria-pressed="true">Tout</button>
+                <button type="button" class="pj-filter" data-filter="formation" aria-pressed="false">Formation</button>
+                <button type="button" class="pj-filter" data-filter="entreprise" aria-pressed="false">Orange (OI)</button>
+                <button type="button" class="pj-filter" data-filter="e6" aria-pressed="false">Épreuve E6</button>
             </div>
+            <!-- Dossiers générés depuis realisations.js -->
+            <div class="pj-desk reveal" data-realisations></div>
             <p class="pj-desk__hint" aria-hidden="true">Survoler · Cliquer pour ouvrir · Échap pour fermer</p>
         </section>
 

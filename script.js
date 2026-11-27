@@ -966,25 +966,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 
-/* =====================================================
-   ÉPREUVE — SURBRILLANCE DES COLONNES DU TABLEAU DE SYNTHÈSE
-===================================================== */
-
-(() => {
-    const table = document.querySelector("[data-synthese]");
-    if (!table) return;
-    const legend = document.querySelectorAll(".ts-legend__item");
-    const highlight = (col) => {
-        table.querySelectorAll("[data-col]").forEach((el) => el.classList.toggle("is-col", el.dataset.col === col));
-        legend.forEach((el) => el.classList.toggle("is-col", el.dataset.col === col));
-    };
-    const targets = [...table.querySelectorAll("[data-col]"), ...legend];
-    targets.forEach((el) => {
-        el.addEventListener("mouseenter", () => highlight(el.dataset.col));
-        el.addEventListener("mouseleave", () => highlight(null));
-    });
-})();
-
 
 /* =====================================================
    EXPÉRIENCE — ACCORDÉON + CHIFFRES QUI DÉFILENT
@@ -1035,29 +1016,6 @@ document.addEventListener("DOMContentLoaded", () => {
     stats.forEach((s) => io.observe(s));
 })();
 
-
-/* =====================================================
-   PROJETS — DOSSIERS EN VERRE (couleur selon le thème)
-===================================================== */
-
-(() => {
-    const hosts = document.querySelectorAll("[data-folder]");
-    if (!hosts.length || !window.GlassFolder) return;
-    const tone = () => (document.body.classList.contains("light-theme") ? "light" : "dark");
-    const width = () => Math.min(340, Math.max(260, window.innerWidth - 80));
-    const folders = [];
-    hosts.forEach((host, i) => {
-        const cfg = JSON.parse(host.dataset.folder);
-        folders.push(window.GlassFolder.mount(host, {
-            ...cfg,
-            tone: tone(),
-            width: width(),
-            appearDelay: i * 140,
-        }));
-    });
-    new MutationObserver(() => folders.forEach((f) => f.setTone(tone())))
-        .observe(document.body, { attributes: true, attributeFilter: ["class"] });
-})();
 
 
 /* =====================================================
@@ -1204,4 +1162,161 @@ document.addEventListener("DOMContentLoaded", () => {
             eyes.forEach((e) => { e.style.transform = `translate(${(dx / d) * k}px, ${(dy / d) * k}px)`; });
         });
     }, { passive: true });
+})();
+
+
+/* =====================================================
+   RÉALISATIONS — TABLEAU DE SYNTHÈSE + DOSSIERS DE PROJETS
+   Tout vient de realisations.js (une seule liste pour les deux pages).
+===================================================== */
+
+(() => {
+    const DATA = window.REALISATIONS;
+    if (!Array.isArray(DATA)) return;
+
+    const COMPS = ["C1", "C2", "C3", "C4", "C5", "C6"];
+    const STATUT = {
+        "realise": { label: "Réalisé", cls: "done" },
+        "en-cours": { label: "En cours", cls: "live" },
+        "a-venir": { label: "À venir", cls: "wait" },
+    };
+    const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- 1. Tableau de synthèse (onglet Épreuve) ---------- */
+    const table = document.querySelector("[data-synthese]");
+    if (table) {
+        const body = table.querySelector("tbody");
+        const groups = [
+            ["formation", "Réalisations en cours de formation"],
+            ["entreprise", "Réalisations en milieu professionnel — Orange (OI)"],
+        ];
+        let r = 0;
+        body.innerHTML = groups.map(([ctx, title]) => {
+            const rows = DATA.filter((d) => d.contexte === ctx).map((d) => {
+                const cells = COMPS.map((c, i) => {
+                    const on = !d.vide && (d.competences || []).includes(c);
+                    return `<td class="ts-mark" data-col="${i}">${on
+                        ? `<span class="ts-check" aria-label="${c} mobilisée">✓</span>`
+                        : '<span class="ts-empty" aria-hidden="true"></span>'}</td>`;
+                }).join("");
+                const label = d.vide
+                    ? '<span class="ts-free">Case libre — prochaine réalisation</span>'
+                    : `${esc(d.titre)}${d.e6 ? ' <span class="ts-e6">E6</span>' : ""}<span class="ts-sub">${esc(d.resume)}</span>`;
+                return `<tr class="ts-row${d.vide ? " ts-row--free" : ""}" style="--r: ${r++}">
+                    <th scope="row" class="ts-real">${label}</th>
+                    <td class="ts-period">${d.vide ? "" : esc(d.periode)}</td>${cells}</tr>`;
+            }).join("");
+            return `<tr class="ts-group"><th colspan="${2 + COMPS.length}" scope="colgroup">${title}</th></tr>${rows}`;
+        }).join("");
+
+        // Surbrillance de la colonne survolée (délégation : marche aussi pour les lignes générées)
+        const legend = document.querySelectorAll(".ts-legend__item");
+        const highlight = (col) => {
+            table.querySelectorAll("[data-col]").forEach((el) => el.classList.toggle("is-col", el.dataset.col === col));
+            legend.forEach((el) => el.classList.toggle("is-col", el.dataset.col === col));
+        };
+        table.addEventListener("mouseover", (e) => {
+            const cell = e.target.closest("[data-col]");
+            highlight(cell ? cell.dataset.col : null);
+        });
+        table.addEventListener("mouseleave", () => highlight(null));
+        legend.forEach((el) => {
+            el.addEventListener("mouseenter", () => highlight(el.dataset.col));
+            el.addEventListener("mouseleave", () => highlight(null));
+        });
+
+        document.querySelector("[data-print-table]")?.addEventListener("click", () => window.print());
+    }
+
+    /* ---------- 2. Dossiers de projets (page Projets) ---------- */
+    const desk = document.querySelector("[data-realisations]");
+    if (desk) {
+        const LIME = { style: "marble", colors: ["#07080a", "#15171b", "#2b3a12", "#6f9a12", "#d4ff3a", "#f2f1ec"], scale: 0.7, warp: 3.3, angle: -0.4, gloss: 0.5, veins: 0.45 };
+        const STREAK = { style: "streak", colors: ["#f2f1ec", "#dfe9b0", "#a8e000", "#1a1c12", "#2a2c33", "#8a8f99", "#e6e6e0"], scale: 0.7, warp: 1.5, angle: -0.6, gloss: 0.2, veins: 0 };
+        const ARTS = [LIME, "verdant", STREAK];
+        const PLACES = ["bottom-left", "top-left", "top-right"];
+        const tone = () => (document.body.classList.contains("light-theme") ? "light" : "dark");
+        const width = () => Math.min(320, Math.max(260, window.innerWidth - 80));
+        const folders = [];
+
+        DATA.forEach((d, i) => {
+            const item = document.createElement("article");
+            item.className = "pj-item" + (d.vide ? " pj-item--free" : "");
+            item.dataset.ctx = d.contexte;
+            item.dataset.e6 = d.e6 ? "1" : "0";
+
+            if (d.vide) {
+                item.innerHTML = `
+                    <div class="pj-free" aria-hidden="true"><span>+</span></div>
+                    <div class="pj-item__cap">
+                        <p class="pj-item__kicker">${d.contexte === "entreprise" ? "Orange" : "Formation"} · Case libre</p>
+                        <h3>Prochaine réalisation</h3>
+                        <p>Emplacement réservé pour un futur projet. Il apparaîtra aussi dans le tableau de synthèse.</p>
+                    </div>`;
+                desk.appendChild(item);
+                return;
+            }
+
+            const st = STATUT[d.statut] || STATUT["en-cours"];
+            const comps = (d.competences || []).map((c) => `<span class="pj-comp" title="Compétence ${c}">${c}</span>`).join("");
+            const tags = (d.tags || []).map((t) => `<span>${esc(t)}</span>`).join("");
+            const num = String(i + 1).padStart(2, "0");
+            item.innerHTML = `
+                <div class="pj-folder"></div>
+                <div class="pj-item__cap">
+                    <p class="pj-item__kicker">${num} · ${d.contexte === "entreprise" ? "Orange (OI)" : "Formation"}${d.e6 ? ' <span class="pj-e6">E6</span>' : ""}</p>
+                    <h3>${esc(d.titre)}</h3>
+                    <p>${esc(d.resume)}</p>
+                    <div class="pg-tags">${tags}</div>
+                    <div class="pj-item__foot">
+                        <span class="pg-badge pg-badge--${st.cls}">${st.label}</span>
+                        <span class="pj-comps" aria-label="Compétences mobilisées">${comps}</span>
+                    </div>
+                </div>`;
+            desk.appendChild(item);
+
+            if (!window.GlassFolder) return;
+            const files = (d.documents || []).map((doc) => ({
+                name: doc.nom,
+                meta: doc.fichier ? doc.meta : `${doc.meta || "PDF"} · à venir`,
+                href: doc.fichier,
+                image: doc.image,
+            }));
+            folders.push(window.GlassFolder.mount(item.querySelector(".pj-folder"), {
+                label: d.titre.length > 22 ? d.titre.slice(0, 21) + "…" : d.titre,
+                meta: `${num} · ${st.label}`,
+                art: ARTS[i % ARTS.length],
+                seed: 3 + i * 4,
+                labelPlacement: PLACES[i % PLACES.length],
+                files,
+                tone: tone(),
+                width: width(),
+                appearDelay: (i % 3) * 140,
+            }));
+        });
+
+        new MutationObserver(() => folders.forEach((f) => f.setTone(tone())))
+            .observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+        // Filtres : Tout / Formation / Entreprise / E6
+        const chips = document.querySelectorAll("[data-filter]");
+        chips.forEach((chip) => chip.addEventListener("click", () => {
+            const f = chip.dataset.filter;
+            chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+            desk.querySelectorAll(".pj-item").forEach((item, k) => {
+                const show = f === "all" || (f === "e6" ? item.dataset.e6 === "1" : item.dataset.ctx === f);
+                if (show && item.hidden) {
+                    item.hidden = false;
+                    if (motionOK) {
+                        item.style.animation = "none";
+                        void item.offsetWidth;
+                        item.style.animation = `pj-in 500ms cubic-bezier(.16,1,.3,1) ${k % 6 * 40}ms both`;
+                    }
+                } else if (!show) {
+                    item.hidden = true;
+                }
+            });
+        }));
+    }
 })();

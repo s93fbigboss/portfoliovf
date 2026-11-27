@@ -2709,3 +2709,268 @@ body.light-theme .pg-badge--wait {
     font-family: var(--font-display);
     font-weight: 700;
 }
+
+
+/* =====================================================
+   16. RÉALISATIONS — FILTRES, CASES LIBRES, COMPÉTENCES
+===================================================== */
+
+.pj-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.pj-filter {
+    padding: 9px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--dur-fast) ease, color var(--dur-fast) ease, border-color var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out);
+}
+
+.pj-filter:hover {
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+}
+
+.pj-filter[aria-pressed="true"] {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    color: var(--on-accent);
+}
+
+.pj-item[hidden] {
+    display: none;
+}
+
+.pj-item__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.pj-item__foot .pg-badge {
+    margin-top: 0;
+}
+
+.pj-comps {
+    display: flex;
+    gap: 4px;
+}
+
+.pj-comp {
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: rgb(var(--accent-rgb) / .12);
+    color: var(--cyan);
+    font-family: "Fira Code", monospace;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.pj-e6,
+.ts-e6 {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 7px;
+    border-radius: 6px;
+    background: var(--cyan);
+    color: var(--on-accent);
+    font-family: "Fira Code", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    vertical-align: middle;
+}
+
+/* Case libre : emplacement en pointillés à la taille d'un dossier */
+.pj-free {
+    display: grid;
+    place-items: center;
+    width: min(320px, 100%);
+    aspect-ratio: 340 / 326;
+    border: 2px dashed var(--border);
+    border-radius: 24px;
+    color: var(--muted);
+    transition: border-color var(--dur-base) ease, color var(--dur-base) ease, transform var(--dur-base) var(--ease-out);
+}
+
+.pj-free span {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: 300;
+    transition: transform 500ms var(--ease-spring);
+}
+
+.pj-item--free:hover .pj-free {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    transform: translateY(-4px);
+}
+
+.pj-item--free:hover .pj-free span {
+    transform: rotate(90deg);
+}
+
+.pj-item--free .pj-item__cap h3 {
+    color: var(--muted);
+}
+
+@keyframes pj-in {
+    from { opacity: 0; transform: translateY(18px) scale(.97); }
+}
+
+/* Tableau : sous-titre de chaque réalisation, case libre, bouton d'impression */
+.ts-real .ts-sub {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.ts-free {
+    color: var(--muted);
+    font-style: italic;
+}
+
+.ts-row--free .ts-empty {
+    opacity: .5;
+}
+
+.ts-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-right: 30px;
+}
+
+.ts-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border: 1px solid var(--cyan);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--cyan);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background var(--dur-fast) ease, color var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out);
+}
+
+.ts-print:hover {
+    background: var(--cyan);
+    color: var(--on-accent);
+    transform: translateY(-2px);
+}
+
+.ts-print .ui-icon {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =====================================================
+   17. IMPRESSION DU TABLEAU DE SYNTHÈSE (version papier, paysage)
+===================================================== */
+
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+
+    body.page-onglet * {
+        visibility: hidden;
+    }
+
+    body.page-onglet .ts-sheet,
+    body.page-onglet .ts-sheet * {
+        visibility: visible;
+    }
+
+    body.page-onglet .ts-sheet {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: 0;
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    .ts-sheet *,
+    .ts-sheet *::before {
+        color: #000 !important;
+        background: transparent !important;
+        border-color: #999 !important;
+        box-shadow: none !important;
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .ts-table {
+        min-width: 0;
+        font-size: 9pt;
+    }
+
+    .ts-table th,
+    .ts-table td {
+        border: 1px solid #999 !important;
+        padding: 4px 6px !important;
+    }
+
+    .ts-group th {
+        background: #eee !important;
+    }
+
+    .ts-check {
+        font-weight: 800;
+    }
+
+    .ts-empty,
+    .ts-print,
+    .ts-note,
+    .ts-actions {
+        display: none !important;
+    }
+
+    .ts-opt.is-on {
+        border: 1px solid #000 !important;
+        font-weight: 700;
+    }
+
+    .ts-id {
+        padding: 0 0 8px;
+    }
+
+    .ts-scroll {
+        overflow: visible;
+    }
+
+    .ping,
+    .read-progress {
+        display: none !important;
+    }
+}
