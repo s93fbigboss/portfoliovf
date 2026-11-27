@@ -1093,16 +1093,20 @@ body.page-veille .ping {
     font-size: 13px;
     line-height: 1.5;
     box-shadow: 0 16px 36px -18px rgba(0, 0, 0, .55);
-    pointer-events: auto;
+    pointer-events: none;
+    visibility: hidden;
     opacity: 0;
     transform: translateY(8px) scale(.96);
     transform-origin: 100% 100%;
-    transition: opacity 260ms ease, transform 420ms var(--ease-spring);
+    transition: opacity 260ms ease, transform 420ms var(--ease-spring), visibility 0s linear 260ms;
 }
 
 .ping.is-talking .ping__bubble {
+    pointer-events: auto;
+    visibility: visible;
     opacity: 1;
     transform: none;
+    transition-delay: 0s;
 }
 
 .ping__bubble strong {

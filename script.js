@@ -1056,12 +1056,10 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =====================================================
    NOVA — LA MASCOTTE DU SITE
    Une astuce par page, les yeux suivent la souris,
-   clic = petit saut + astuce suivante, × = rangé pour la session.
+   clic = petit saut + astuce suivante, × = ferme la bulle.
 ===================================================== */
 
 (() => {
-    if (sessionStorage.getItem("nova-hidden") === "1") return;
-
     const page = (location.pathname.split("/").pop() || "index.html").replace(".html", "") || "index";
     const TIPS = {
         index: ["Salut, moi c'est Nova ! Clique sur « Qui suis-je ? » pour commencer la visite.", "Clique sur le logo en verre pour rejouer son animation."],
@@ -1082,7 +1080,7 @@ document.addEventListener("DOMContentLoaded", () => {
     root.innerHTML = `
         <div class="ping__bubble" role="status" aria-live="polite">
             <strong>NOVA &gt;_</strong><span class="ping__text"></span>
-            <button class="ping__close" type="button" aria-label="Ranger la mascotte">×</button>
+            <button class="ping__close" type="button" aria-label="Fermer la bulle">×</button>
         </div>
         <button class="ping__bot" type="button" aria-label="Nova, la mascotte : afficher une astuce">
             <svg viewBox="0 0 74 84" aria-hidden="true">
@@ -1133,9 +1131,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     bot.addEventListener("animationend", () => bot.classList.remove("is-jump"));
 
+    // La croix ferme seulement la bulle : Nova reste, un clic sur lui la rouvre
     root.querySelector(".ping__close").addEventListener("click", () => {
-        sessionStorage.setItem("nova-hidden", "1");
-        root.hidden = true;
+        clearTimeout(hideTimer);
+        root.classList.remove("is-talking");
+        bot.focus({ preventScroll: true });
     });
 
     if (!motionOK) return;
